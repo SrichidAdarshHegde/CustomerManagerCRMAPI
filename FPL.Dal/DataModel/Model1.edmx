@@ -1,0 +1,1381 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="CustomerManagerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Table_AttendType">
+          <Key>
+            <PropertyRef Name="AttendTypeId" />
+          </Key>
+          <Property Name="AttendTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AttendTypeName" Type="nvarchar(max)" />
+          <Property Name="CreatedBy" Type="nvarchar(max)" />
+          <Property Name="CreatedOn" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Table_Cluster">
+          <Key>
+            <PropertyRef Name="ClusterId" />
+          </Key>
+          <Property Name="ClusterId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClusterName" Type="nvarchar(max)" />
+          <Property Name="CreatedBy" Type="nvarchar(max)" />
+          <Property Name="CreatedOn" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Table_Consumables">
+          <Key>
+            <PropertyRef Name="ConsumablesId" />
+          </Key>
+          <Property Name="ConsumablesId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ConsumablesName" Type="nvarchar(max)" />
+          <Property Name="CreatedBy" Type="nvarchar(max)" />
+          <Property Name="CreatedOn" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Table_Contactdetails">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Salute" Type="nvarchar(max)" />
+          <Property Name="ContactName" Type="nvarchar(max)" />
+          <Property Name="Designation" Type="nvarchar(max)" />
+          <Property Name="Email" Type="nvarchar(max)" />
+          <Property Name="Mobile" Type="nvarchar(max)" />
+          <Property Name="MachineNumber" Type="int" />
+          <Property Name="MachineId" Type="int" />
+          <Property Name="CustomerId" Type="int" />
+          <Property Name="CreatedBy" Type="nvarchar(max)" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="ContactDetailsID" Type="nvarchar(max)" />
+          <Property Name="ModelID" Type="int" />
+          <Property Name="IsMachineDeleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="Table_Country">
+          <Key>
+            <PropertyRef Name="CountryId" />
+          </Key>
+          <Property Name="CountryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CountryName" Type="nvarchar(max)" />
+          <Property Name="CreatedBy" Type="nvarchar(max)" />
+          <Property Name="CreatedOn" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Table_CustomerRegistartion">
+          <Key>
+            <PropertyRef Name="CustomerID" />
+          </Key>
+          <Property Name="CustomerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CompanyName" Type="nvarchar(max)" />
+          <Property Name="Unit" Type="nvarchar(max)" />
+          <Property Name="AddressOne" Type="nvarchar(max)" />
+          <Property Name="AddressTwo" Type="nvarchar(max)" />
+          <Property Name="AddressThree" Type="nvarchar(max)" />
+          <Property Name="Pincode" Type="nvarchar(max)" />
+          <Property Name="City" Type="nvarchar(max)" />
+          <Property Name="State" Type="nvarchar(max)" />
+          <Property Name="Country" Type="nvarchar(max)" />
+          <Property Name="GSTIN" Type="nvarchar(max)" />
+          <Property Name="Cluster" Type="nvarchar(max)" />
+          <Property Name="RouteNumber" Type="nvarchar(max)" />
+          <Property Name="RouteId" Type="int" />
+          <Property Name="ClusterId" Type="int" />
+          <Property Name="Region" Type="nvarchar(max)" />
+          <Property Name="RegionId" Type="int" />
+          <Property Name="Zone" Type="nvarchar(max)" />
+          <Property Name="ZoneId" Type="int" />
+          <Property Name="WeeklyOff" Type="nvarchar(max)" />
+          <Property Name="WorkingStart" Type="nvarchar(max)" />
+          <Property Name="WorkingEnd" Type="nvarchar(max)" />
+          <Property Name="SecurityFormalities" Type="nvarchar(max)" />
+          <Property Name="CreatedBy" Type="nvarchar(max)" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="CompanyOldName" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Table_Faults">
+          <Key>
+            <PropertyRef Name="FaultsId" />
+          </Key>
+          <Property Name="FaultsId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FaultsName" Type="nvarchar(max)" />
+          <Property Name="CreatedBy" Type="nvarchar(max)" />
+          <Property Name="CreatedOn" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Table_Features">
+          <Key>
+            <PropertyRef Name="FeaturesId" />
+          </Key>
+          <Property Name="FeaturesId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FeaturesName" Type="nvarchar(max)" />
+          <Property Name="CreatedBy" Type="nvarchar(max)" />
+          <Property Name="CreatedOn" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Table_FollowUpDetails">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="InvoiceID" Type="int" />
+          <Property Name="MachineNumber" Type="int" />
+          <Property Name="CustomerID" Type="int" />
+          <Property Name="CustomerName" Type="nvarchar(max)" />
+          <Property Name="ModelID" Type="int" />
+          <Property Name="ModelName" Type="nvarchar(max)" />
+          <Property Name="InvoiceNumber" Type="nvarchar(max)" />
+          <Property Name="InvoiceAmount" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="DueAmount" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Date" Type="nvarchar(max)" />
+          <Property Name="Time" Type="nvarchar(max)" />
+          <Property Name="ContactPerson" Type="nvarchar(max)" />
+          <Property Name="Remarks" Type="nvarchar(max)" />
+          <Property Name="OurPerson" Type="nvarchar(max)" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="PaymentsList" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Table_InteractionsData">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CutomerId" Type="int" />
+          <Property Name="CutomerName" Type="nvarchar(max)" />
+          <Property Name="MachineId" Type="int" />
+          <Property Name="MachineNumber" Type="int" />
+          <Property Name="ModelId" Type="int" />
+          <Property Name="ModelName" Type="nvarchar(max)" />
+          <Property Name="RegionId" Type="int" />
+          <Property Name="RegionName" Type="nvarchar(max)" />
+          <Property Name="ZoneId" Type="int" />
+          <Property Name="ZoneName" Type="nvarchar(max)" />
+          <Property Name="Remarks" Type="nvarchar(max)" />
+          <Property Name="AttendedByUserId" Type="int" />
+          <Property Name="AttendedByUserName" Type="nvarchar(max)" />
+          <Property Name="AttendedHowId" Type="int" />
+          <Property Name="AttendedHowName" Type="nvarchar(max)" />
+          <Property Name="CreatedBy" Type="nvarchar(max)" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="RequestId" Type="int" />
+          <Property Name="DateOfInteraction" Type="date" />
+        </EntityType>
+        <EntityType Name="Table_InvoiceDocuments">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MachineNumber" Type="int" />
+          <Property Name="CustomerId" Type="int" />
+          <Property Name="InvoiceName" Type="nvarchar(max)" />
+          <Property Name="BlobLink" Type="nvarchar(max)" />
+          <Property Name="CreatedBy" Type="nvarchar(max)" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="InvoiceNumber" Type="nvarchar(max)" />
+          <Property Name="IsMachineDeleted" Type="bit" />
+          <Property Name="InvoiceAmount" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="DueAmount" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="IsPaid" Type="bit" />
+          <Property Name="ModelId" Type="int" />
+          <Property Name="ModelName" Type="nvarchar(max)" />
+          <Property Name="CustomerName" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Table_InvoicePerticular">
+          <Key>
+            <PropertyRef Name="InvoicePerticularId" />
+          </Key>
+          <Property Name="InvoicePerticularId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="InvoicePerticularName" Type="nvarchar(max)" />
+          <Property Name="CreatedBy" Type="nvarchar(max)" />
+          <Property Name="CreatedOn" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Table_LocationDetails">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar(max)" />
+          <Property Name="CustomerID" Type="int" />
+          <Property Name="CustomerName" Type="nvarchar(max)" />
+          <Property Name="MachineNumber" Type="int" />
+          <Property Name="RoadCondition" Type="nvarchar(max)" />
+          <Property Name="InsideCityOutsideCity" Type="nvarchar(max)" />
+          <Property Name="NearbyLodge" Type="nvarchar(max)" />
+          <Property Name="NearbyPetrolBunk" Type="nvarchar(max)" />
+          <Property Name="HotelType" Type="nvarchar(max)" />
+          <Property Name="NearbyMedicalShop" Type="nvarchar(max)" />
+          <Property Name="NearbyHospital" Type="nvarchar(max)" />
+          <Property Name="NearbyMechanicShops" Type="nvarchar(max)" />
+          <Property Name="WhatToCarry" Type="nvarchar(max)" />
+          <Property Name="TextArea" Type="nvarchar(max)" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="BestHotels" Type="nvarchar(max)" />
+          <Property Name="ClusterId" Type="int" />
+        </EntityType>
+        <EntityType Name="Table_MachineCustomerRequestsDetails">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MachineNumber" Type="int" />
+          <Property Name="MachineId" Type="int" />
+          <Property Name="CustomerId" Type="int" />
+          <Property Name="CustomerName" Type="nvarchar(max)" />
+          <Property Name="RequestFor" Type="nvarchar(max)" />
+          <Property Name="RequestForId" Type="int" />
+          <Property Name="Remarks" Type="nvarchar(max)" />
+          <Property Name="CreatedBy" Type="nvarchar(max)" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="UniqueID" Type="nvarchar(max)" />
+          <Property Name="IsMachineDeleted" Type="bit" />
+          <Property Name="Resolution" Type="nvarchar(max)" />
+          <Property Name="TokenNo" Type="int" />
+        </EntityType>
+        <EntityType Name="Table_MachineCustomerSansSDetails">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MachineNumber" Type="int" />
+          <Property Name="MachineId" Type="int" />
+          <Property Name="CustomerId" Type="int" />
+          <Property Name="CustomerName" Type="nvarchar(max)" />
+          <Property Name="SandS" Type="nvarchar(max)" />
+          <Property Name="SandSId" Type="int" />
+          <Property Name="Remarks" Type="nvarchar(max)" />
+          <Property Name="CreatedBy" Type="nvarchar(max)" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="UniqueID" Type="nvarchar(max)" />
+          <Property Name="IsMachineDeleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="Table_MachineFeatureDetails">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FeatureID" Type="int" />
+          <Property Name="FeatureName" Type="nvarchar(max)" />
+          <Property Name="MachineID" Type="int" />
+          <Property Name="MachineNumber" Type="int" />
+          <Property Name="CustomerID" Type="int" />
+          <Property Name="CustomerName" Type="nvarchar(max)" />
+          <Property Name="InvoiceID" Type="int" />
+          <Property Name="InvoiceParticulars" Type="nvarchar(max)" />
+          <Property Name="ModelID" Type="int" />
+          <Property Name="ModelName" Type="nvarchar(max)" />
+          <Property Name="WarrantyFrom" Type="datetime" />
+          <Property Name="WarrantyTill" Type="datetime" />
+          <Property Name="CreatedBy" Type="nvarchar(max)" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="FeatureDataID" Type="nvarchar(max)" />
+          <Property Name="IsMachineDeleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="Table_MachineRegistration">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MachineNumber" Type="int" />
+          <Property Name="ModelId" Type="int" />
+          <Property Name="ModelName" Type="nvarchar(max)" />
+          <Property Name="CustomerId" Type="int" />
+          <Property Name="CustomerName" Type="nvarchar(max)" />
+          <Property Name="Features" Type="nvarchar(max)" />
+          <Property Name="FeaturesId" Type="int" />
+          <Property Name="InvoiceNumber" Type="nvarchar(max)" />
+          <Property Name="InvoiceDate" Type="datetime" />
+          <Property Name="InvoiceAmount" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="InvoiceFileBlob" Type="nvarchar(max)" />
+          <Property Name="InvoicePerticularId" Type="int" />
+          <Property Name="InvoicePerticular" Type="nvarchar(max)" />
+          <Property Name="WarrantyFrom" Type="datetime" />
+          <Property Name="WarrantyTill" Type="datetime" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="CreatedBy" Type="nvarchar(max)" />
+          <Property Name="IsMachineDeleted" Type="bit" />
+          <Property Name="ContactDataID" Type="nvarchar(max)" />
+          <Property Name="FeatureDetailsID" Type="nvarchar(max)" />
+          <Property Name="DueAmount" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="IsPaid" Type="bit" />
+        </EntityType>
+        <EntityType Name="Table_Model">
+          <Key>
+            <PropertyRef Name="ModelId" />
+          </Key>
+          <Property Name="ModelId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ModelName" Type="nvarchar(max)" />
+          <Property Name="CreatedBy" Type="nvarchar(max)" />
+          <Property Name="CreatedOn" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Table_Priority">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PriorityID" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Table_Region">
+          <Key>
+            <PropertyRef Name="RegionId" />
+          </Key>
+          <Property Name="RegionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RegionName" Type="nvarchar(max)" />
+          <Property Name="CreatedBy" Type="nvarchar(max)" />
+          <Property Name="CreatedOn" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Table_Requests">
+          <Key>
+            <PropertyRef Name="RequestsId" />
+          </Key>
+          <Property Name="RequestsId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RequestsName" Type="nvarchar(max)" />
+          <Property Name="CreatedBy" Type="nvarchar(max)" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="Priority" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Table_RequestsFormData">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MachineNumber" Type="int" />
+          <Property Name="MachineId" Type="int" />
+          <Property Name="CustomerId" Type="int" />
+          <Property Name="CustomerName" Type="nvarchar(max)" />
+          <Property Name="RequestFor" Type="nvarchar(max)" />
+          <Property Name="RequestForId" Type="int" />
+          <Property Name="SandS" Type="nvarchar(max)" />
+          <Property Name="SandSId" Type="int" />
+          <Property Name="Remarks" Type="nvarchar(max)" />
+          <Property Name="IsDone" Type="bit" />
+          <Property Name="CreatedBy" Type="nvarchar(max)" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="IsMachineDeleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="Table_RoleMaster">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleName" Type="nvarchar(max)" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Table_Route">
+          <Key>
+            <PropertyRef Name="RouteId" />
+          </Key>
+          <Property Name="RouteId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RouteName" Type="nvarchar(max)" />
+          <Property Name="CreatedBy" Type="nvarchar(max)" />
+          <Property Name="CreatedOn" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Table_Sands">
+          <Key>
+            <PropertyRef Name="SandsId" />
+          </Key>
+          <Property Name="SandsId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SandsName" Type="nvarchar(max)" />
+          <Property Name="CreatedBy" Type="nvarchar(max)" />
+          <Property Name="CreatedOn" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Table_TravelBudget">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MachineNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="CustomerName" Type="nvarchar(max)" />
+          <Property Name="Purpose" Type="nvarchar(max)" />
+          <Property Name="ClusterLocation" Type="nvarchar(max)" />
+          <Property Name="CNG" Type="nvarchar(max)" />
+          <Property Name="Mileage" Type="nvarchar(max)" />
+          <Property Name="EstInterDistance" Type="nvarchar(max)" />
+          <Property Name="EstCompanyDistance" Type="nvarchar(max)" />
+          <Property Name="ActualODOReading" Type="nvarchar(max)" />
+          <Property Name="EstTravelTime" Type="nvarchar(max)" />
+          <Property Name="EstTimeForJob" Type="nvarchar(max)" />
+          <Property Name="SchdETD" Type="nvarchar(max)" />
+          <Property Name="ActualTime" Type="nvarchar(max)" />
+          <Property Name="CNGFilledPreviously" Type="nvarchar(max)" />
+          <Property Name="UserName" Type="nvarchar(max)" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="TripId" Type="nvarchar" MaxLength="50" />
+          <Property Name="TravelId" Type="int" />
+          <Property Name="UserId" Type="int" />
+        </EntityType>
+        <EntityType Name="Table_UserRegistration">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar(max)" />
+          <Property Name="Email" Type="nvarchar(max)" />
+          <Property Name="Password" Type="nvarchar(max)" />
+          <Property Name="ConfirmPassword" Type="nvarchar(max)" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="RoleId" Type="int" />
+          <Property Name="RoleName" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Table_Zone">
+          <Key>
+            <PropertyRef Name="ZoneId" />
+          </Key>
+          <Property Name="ZoneId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ZoneName" Type="nvarchar(max)" />
+          <Property Name="CreatedBy" Type="nvarchar(max)" />
+          <Property Name="CreatedOn" Type="datetime" />
+        </EntityType>
+        <EntityContainer Name="CustomerManagerModelStoreContainer">
+          <EntitySet Name="Table_AttendType" EntityType="Self.Table_AttendType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Table_Cluster" EntityType="Self.Table_Cluster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Table_Consumables" EntityType="Self.Table_Consumables" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Table_Contactdetails" EntityType="Self.Table_Contactdetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Table_Country" EntityType="Self.Table_Country" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Table_CustomerRegistartion" EntityType="Self.Table_CustomerRegistartion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Table_Faults" EntityType="Self.Table_Faults" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Table_Features" EntityType="Self.Table_Features" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Table_FollowUpDetails" EntityType="Self.Table_FollowUpDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Table_InteractionsData" EntityType="Self.Table_InteractionsData" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Table_InvoiceDocuments" EntityType="Self.Table_InvoiceDocuments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Table_InvoicePerticular" EntityType="Self.Table_InvoicePerticular" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Table_LocationDetails" EntityType="Self.Table_LocationDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Table_MachineCustomerRequestsDetails" EntityType="Self.Table_MachineCustomerRequestsDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Table_MachineCustomerSansSDetails" EntityType="Self.Table_MachineCustomerSansSDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Table_MachineFeatureDetails" EntityType="Self.Table_MachineFeatureDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Table_MachineRegistration" EntityType="Self.Table_MachineRegistration" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Table_Model" EntityType="Self.Table_Model" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Table_Priority" EntityType="Self.Table_Priority" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Table_Region" EntityType="Self.Table_Region" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Table_Requests" EntityType="Self.Table_Requests" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Table_RequestsFormData" EntityType="Self.Table_RequestsFormData" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Table_RoleMaster" EntityType="Self.Table_RoleMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Table_Route" EntityType="Self.Table_Route" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Table_Sands" EntityType="Self.Table_Sands" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Table_TravelBudget" EntityType="Self.Table_TravelBudget" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Table_UserRegistration" EntityType="Self.Table_UserRegistration" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Table_Zone" EntityType="Self.Table_Zone" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CustomerManagerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Table_AttendType">
+          <Key>
+            <PropertyRef Name="AttendTypeId" />
+          </Key>
+          <Property Name="AttendTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AttendTypeName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Table_Cluster">
+          <Key>
+            <PropertyRef Name="ClusterId" />
+          </Key>
+          <Property Name="ClusterId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClusterName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Table_Consumables">
+          <Key>
+            <PropertyRef Name="ConsumablesId" />
+          </Key>
+          <Property Name="ConsumablesId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ConsumablesName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Table_Contactdetails">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Salute" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ContactName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Designation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Mobile" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MachineNumber" Type="Int32" />
+          <Property Name="MachineId" Type="Int32" />
+          <Property Name="CustomerId" Type="Int32" />
+          <Property Name="CreatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="ContactDetailsID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ModelID" Type="Int32" />
+          <Property Name="IsMachineDeleted" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="Table_Country">
+          <Key>
+            <PropertyRef Name="CountryId" />
+          </Key>
+          <Property Name="CountryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CountryName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Table_CustomerRegistartion">
+          <Key>
+            <PropertyRef Name="CustomerID" />
+          </Key>
+          <Property Name="CustomerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CompanyName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Unit" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AddressOne" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AddressTwo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AddressThree" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Pincode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="State" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Country" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="GSTIN" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Cluster" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RouteNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RouteId" Type="Int32" />
+          <Property Name="ClusterId" Type="Int32" />
+          <Property Name="Region" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RegionId" Type="Int32" />
+          <Property Name="Zone" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ZoneId" Type="Int32" />
+          <Property Name="WeeklyOff" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="WorkingStart" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="WorkingEnd" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityFormalities" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="CompanyOldName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Table_Faults">
+          <Key>
+            <PropertyRef Name="FaultsId" />
+          </Key>
+          <Property Name="FaultsId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FaultsName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Table_Features">
+          <Key>
+            <PropertyRef Name="FeaturesId" />
+          </Key>
+          <Property Name="FeaturesId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FeaturesName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Table_FollowUpDetails">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="InvoiceID" Type="Int32" />
+          <Property Name="MachineNumber" Type="Int32" />
+          <Property Name="CustomerID" Type="Int32" />
+          <Property Name="CustomerName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ModelID" Type="Int32" />
+          <Property Name="ModelName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="InvoiceNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="InvoiceAmount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="DueAmount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Date" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Time" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ContactPerson" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OurPerson" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="PaymentsList" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Table_InteractionsData">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CutomerId" Type="Int32" />
+          <Property Name="CutomerName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MachineId" Type="Int32" />
+          <Property Name="MachineNumber" Type="Int32" />
+          <Property Name="ModelId" Type="Int32" />
+          <Property Name="ModelName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RegionId" Type="Int32" />
+          <Property Name="RegionName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ZoneId" Type="Int32" />
+          <Property Name="ZoneName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AttendedByUserId" Type="Int32" />
+          <Property Name="AttendedByUserName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AttendedHowId" Type="Int32" />
+          <Property Name="AttendedHowName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="RequestId" Type="Int32" />
+          <Property Name="DateOfInteraction" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="Table_InvoiceDocuments">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MachineNumber" Type="Int32" />
+          <Property Name="CustomerId" Type="Int32" />
+          <Property Name="InvoiceName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BlobLink" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="InvoiceNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsMachineDeleted" Type="Boolean" />
+          <Property Name="InvoiceAmount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="DueAmount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="IsPaid" Type="Boolean" />
+          <Property Name="ModelId" Type="Int32" />
+          <Property Name="ModelName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CustomerName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Table_InvoicePerticular">
+          <Key>
+            <PropertyRef Name="InvoicePerticularId" />
+          </Key>
+          <Property Name="InvoicePerticularId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="InvoicePerticularName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Table_LocationDetails">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CustomerID" Type="Int32" />
+          <Property Name="CustomerName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MachineNumber" Type="Int32" />
+          <Property Name="RoadCondition" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="InsideCityOutsideCity" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NearbyLodge" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NearbyPetrolBunk" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="HotelType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NearbyMedicalShop" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NearbyHospital" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NearbyMechanicShops" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="WhatToCarry" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TextArea" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="BestHotels" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClusterId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Table_MachineCustomerRequestsDetails">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MachineNumber" Type="Int32" />
+          <Property Name="MachineId" Type="Int32" />
+          <Property Name="CustomerId" Type="Int32" />
+          <Property Name="CustomerName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RequestFor" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RequestForId" Type="Int32" />
+          <Property Name="Remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="UniqueID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsMachineDeleted" Type="Boolean" />
+          <Property Name="Resolution" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TokenNo" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Table_MachineCustomerSansSDetails">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MachineNumber" Type="Int32" />
+          <Property Name="MachineId" Type="Int32" />
+          <Property Name="CustomerId" Type="Int32" />
+          <Property Name="CustomerName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SandS" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SandSId" Type="Int32" />
+          <Property Name="Remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="UniqueID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsMachineDeleted" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="Table_MachineFeatureDetails">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FeatureID" Type="Int32" />
+          <Property Name="FeatureName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MachineID" Type="Int32" />
+          <Property Name="MachineNumber" Type="Int32" />
+          <Property Name="CustomerID" Type="Int32" />
+          <Property Name="CustomerName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="InvoiceID" Type="Int32" />
+          <Property Name="InvoiceParticulars" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ModelID" Type="Int32" />
+          <Property Name="ModelName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="WarrantyFrom" Type="DateTime" Precision="3" />
+          <Property Name="WarrantyTill" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="FeatureDataID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsMachineDeleted" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="Table_MachineRegistration">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MachineNumber" Type="Int32" />
+          <Property Name="ModelId" Type="Int32" />
+          <Property Name="ModelName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CustomerId" Type="Int32" />
+          <Property Name="CustomerName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Features" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FeaturesId" Type="Int32" />
+          <Property Name="InvoiceNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="InvoiceDate" Type="DateTime" Precision="3" />
+          <Property Name="InvoiceAmount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="InvoiceFileBlob" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="InvoicePerticularId" Type="Int32" />
+          <Property Name="InvoicePerticular" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="WarrantyFrom" Type="DateTime" Precision="3" />
+          <Property Name="WarrantyTill" Type="DateTime" Precision="3" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsMachineDeleted" Type="Boolean" />
+          <Property Name="ContactDataID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FeatureDetailsID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DueAmount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="IsPaid" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="Table_Model">
+          <Key>
+            <PropertyRef Name="ModelId" />
+          </Key>
+          <Property Name="ModelId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ModelName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Table_Priority">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PriorityID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Table_Region">
+          <Key>
+            <PropertyRef Name="RegionId" />
+          </Key>
+          <Property Name="RegionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RegionName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Table_Requests">
+          <Key>
+            <PropertyRef Name="RequestsId" />
+          </Key>
+          <Property Name="RequestsId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RequestsName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="Priority" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Table_RequestsFormData">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MachineNumber" Type="Int32" />
+          <Property Name="MachineId" Type="Int32" />
+          <Property Name="CustomerId" Type="Int32" />
+          <Property Name="CustomerName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RequestFor" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RequestForId" Type="Int32" />
+          <Property Name="SandS" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SandSId" Type="Int32" />
+          <Property Name="Remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsDone" Type="Boolean" />
+          <Property Name="CreatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="IsMachineDeleted" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="Table_RoleMaster">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Table_Route">
+          <Key>
+            <PropertyRef Name="RouteId" />
+          </Key>
+          <Property Name="RouteId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RouteName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Table_Sands">
+          <Key>
+            <PropertyRef Name="SandsId" />
+          </Key>
+          <Property Name="SandsId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SandsName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Table_TravelBudget">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MachineNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CustomerName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Purpose" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClusterLocation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CNG" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Mileage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EstInterDistance" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EstCompanyDistance" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ActualODOReading" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EstTravelTime" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EstTimeForJob" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SchdETD" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ActualTime" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CNGFilledPreviously" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UserName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="TripId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TravelId" Type="Int32" />
+          <Property Name="UserId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Table_UserRegistration">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ConfirmPassword" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="RoleId" Type="Int32" />
+          <Property Name="RoleName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Table_Zone">
+          <Key>
+            <PropertyRef Name="ZoneId" />
+          </Key>
+          <Property Name="ZoneId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ZoneName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityContainer Name="CustomerManagerEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Table_AttendType" EntityType="Self.Table_AttendType" />
+          <EntitySet Name="Table_Cluster" EntityType="Self.Table_Cluster" />
+          <EntitySet Name="Table_Consumables" EntityType="Self.Table_Consumables" />
+          <EntitySet Name="Table_Contactdetails" EntityType="Self.Table_Contactdetails" />
+          <EntitySet Name="Table_Country" EntityType="Self.Table_Country" />
+          <EntitySet Name="Table_CustomerRegistartion" EntityType="Self.Table_CustomerRegistartion" />
+          <EntitySet Name="Table_Faults" EntityType="Self.Table_Faults" />
+          <EntitySet Name="Table_Features" EntityType="Self.Table_Features" />
+          <EntitySet Name="Table_FollowUpDetails" EntityType="Self.Table_FollowUpDetails" />
+          <EntitySet Name="Table_InteractionsData" EntityType="Self.Table_InteractionsData" />
+          <EntitySet Name="Table_InvoiceDocuments" EntityType="Self.Table_InvoiceDocuments" />
+          <EntitySet Name="Table_InvoicePerticular" EntityType="Self.Table_InvoicePerticular" />
+          <EntitySet Name="Table_LocationDetails" EntityType="Self.Table_LocationDetails" />
+          <EntitySet Name="Table_MachineCustomerRequestsDetails" EntityType="Self.Table_MachineCustomerRequestsDetails" />
+          <EntitySet Name="Table_MachineCustomerSansSDetails" EntityType="Self.Table_MachineCustomerSansSDetails" />
+          <EntitySet Name="Table_MachineFeatureDetails" EntityType="Self.Table_MachineFeatureDetails" />
+          <EntitySet Name="Table_MachineRegistration" EntityType="Self.Table_MachineRegistration" />
+          <EntitySet Name="Table_Model" EntityType="Self.Table_Model" />
+          <EntitySet Name="Table_Priority" EntityType="Self.Table_Priority" />
+          <EntitySet Name="Table_Region" EntityType="Self.Table_Region" />
+          <EntitySet Name="Table_Requests" EntityType="Self.Table_Requests" />
+          <EntitySet Name="Table_RequestsFormData" EntityType="Self.Table_RequestsFormData" />
+          <EntitySet Name="Table_RoleMaster" EntityType="Self.Table_RoleMaster" />
+          <EntitySet Name="Table_Route" EntityType="Self.Table_Route" />
+          <EntitySet Name="Table_Sands" EntityType="Self.Table_Sands" />
+          <EntitySet Name="Table_TravelBudget" EntityType="Self.Table_TravelBudget" />
+          <EntitySet Name="Table_UserRegistration" EntityType="Self.Table_UserRegistration" />
+          <EntitySet Name="Table_Zone" EntityType="Self.Table_Zone" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CustomerManagerModelStoreContainer" CdmEntityContainer="CustomerManagerEntities">
+          <EntitySetMapping Name="Table_AttendType">
+            <EntityTypeMapping TypeName="CustomerManagerModel.Table_AttendType">
+              <MappingFragment StoreEntitySet="Table_AttendType">
+                <ScalarProperty Name="AttendTypeId" ColumnName="AttendTypeId" />
+                <ScalarProperty Name="AttendTypeName" ColumnName="AttendTypeName" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Table_Cluster">
+            <EntityTypeMapping TypeName="CustomerManagerModel.Table_Cluster">
+              <MappingFragment StoreEntitySet="Table_Cluster">
+                <ScalarProperty Name="ClusterId" ColumnName="ClusterId" />
+                <ScalarProperty Name="ClusterName" ColumnName="ClusterName" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Table_Consumables">
+            <EntityTypeMapping TypeName="CustomerManagerModel.Table_Consumables">
+              <MappingFragment StoreEntitySet="Table_Consumables">
+                <ScalarProperty Name="ConsumablesId" ColumnName="ConsumablesId" />
+                <ScalarProperty Name="ConsumablesName" ColumnName="ConsumablesName" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Table_Contactdetails">
+            <EntityTypeMapping TypeName="CustomerManagerModel.Table_Contactdetails">
+              <MappingFragment StoreEntitySet="Table_Contactdetails">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Salute" ColumnName="Salute" />
+                <ScalarProperty Name="ContactName" ColumnName="ContactName" />
+                <ScalarProperty Name="Designation" ColumnName="Designation" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="MachineNumber" ColumnName="MachineNumber" />
+                <ScalarProperty Name="MachineId" ColumnName="MachineId" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="ContactDetailsID" ColumnName="ContactDetailsID" />
+                <ScalarProperty Name="ModelID" ColumnName="ModelID" />
+                <ScalarProperty Name="IsMachineDeleted" ColumnName="IsMachineDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Table_Country">
+            <EntityTypeMapping TypeName="CustomerManagerModel.Table_Country">
+              <MappingFragment StoreEntitySet="Table_Country">
+                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+                <ScalarProperty Name="CountryName" ColumnName="CountryName" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Table_CustomerRegistartion">
+            <EntityTypeMapping TypeName="CustomerManagerModel.Table_CustomerRegistartion">
+              <MappingFragment StoreEntitySet="Table_CustomerRegistartion">
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="Unit" ColumnName="Unit" />
+                <ScalarProperty Name="AddressOne" ColumnName="AddressOne" />
+                <ScalarProperty Name="AddressTwo" ColumnName="AddressTwo" />
+                <ScalarProperty Name="AddressThree" ColumnName="AddressThree" />
+                <ScalarProperty Name="Pincode" ColumnName="Pincode" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="GSTIN" ColumnName="GSTIN" />
+                <ScalarProperty Name="Cluster" ColumnName="Cluster" />
+                <ScalarProperty Name="RouteNumber" ColumnName="RouteNumber" />
+                <ScalarProperty Name="RouteId" ColumnName="RouteId" />
+                <ScalarProperty Name="ClusterId" ColumnName="ClusterId" />
+                <ScalarProperty Name="Region" ColumnName="Region" />
+                <ScalarProperty Name="RegionId" ColumnName="RegionId" />
+                <ScalarProperty Name="Zone" ColumnName="Zone" />
+                <ScalarProperty Name="ZoneId" ColumnName="ZoneId" />
+                <ScalarProperty Name="WeeklyOff" ColumnName="WeeklyOff" />
+                <ScalarProperty Name="WorkingStart" ColumnName="WorkingStart" />
+                <ScalarProperty Name="WorkingEnd" ColumnName="WorkingEnd" />
+                <ScalarProperty Name="SecurityFormalities" ColumnName="SecurityFormalities" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CompanyOldName" ColumnName="CompanyOldName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Table_Faults">
+            <EntityTypeMapping TypeName="CustomerManagerModel.Table_Faults">
+              <MappingFragment StoreEntitySet="Table_Faults">
+                <ScalarProperty Name="FaultsId" ColumnName="FaultsId" />
+                <ScalarProperty Name="FaultsName" ColumnName="FaultsName" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Table_Features">
+            <EntityTypeMapping TypeName="CustomerManagerModel.Table_Features">
+              <MappingFragment StoreEntitySet="Table_Features">
+                <ScalarProperty Name="FeaturesId" ColumnName="FeaturesId" />
+                <ScalarProperty Name="FeaturesName" ColumnName="FeaturesName" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Table_FollowUpDetails">
+            <EntityTypeMapping TypeName="CustomerManagerModel.Table_FollowUpDetails">
+              <MappingFragment StoreEntitySet="Table_FollowUpDetails">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
+                <ScalarProperty Name="MachineNumber" ColumnName="MachineNumber" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+                <ScalarProperty Name="ModelID" ColumnName="ModelID" />
+                <ScalarProperty Name="ModelName" ColumnName="ModelName" />
+                <ScalarProperty Name="InvoiceNumber" ColumnName="InvoiceNumber" />
+                <ScalarProperty Name="InvoiceAmount" ColumnName="InvoiceAmount" />
+                <ScalarProperty Name="DueAmount" ColumnName="DueAmount" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="ContactPerson" ColumnName="ContactPerson" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="OurPerson" ColumnName="OurPerson" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="PaymentsList" ColumnName="PaymentsList" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Table_InteractionsData">
+            <EntityTypeMapping TypeName="CustomerManagerModel.Table_InteractionsData">
+              <MappingFragment StoreEntitySet="Table_InteractionsData">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CutomerId" ColumnName="CutomerId" />
+                <ScalarProperty Name="CutomerName" ColumnName="CutomerName" />
+                <ScalarProperty Name="MachineId" ColumnName="MachineId" />
+                <ScalarProperty Name="MachineNumber" ColumnName="MachineNumber" />
+                <ScalarProperty Name="ModelId" ColumnName="ModelId" />
+                <ScalarProperty Name="ModelName" ColumnName="ModelName" />
+                <ScalarProperty Name="RegionId" ColumnName="RegionId" />
+                <ScalarProperty Name="RegionName" ColumnName="RegionName" />
+                <ScalarProperty Name="ZoneId" ColumnName="ZoneId" />
+                <ScalarProperty Name="ZoneName" ColumnName="ZoneName" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="AttendedByUserId" ColumnName="AttendedByUserId" />
+                <ScalarProperty Name="AttendedByUserName" ColumnName="AttendedByUserName" />
+                <ScalarProperty Name="AttendedHowId" ColumnName="AttendedHowId" />
+                <ScalarProperty Name="AttendedHowName" ColumnName="AttendedHowName" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="RequestId" ColumnName="RequestId" />
+                <ScalarProperty Name="DateOfInteraction" ColumnName="DateOfInteraction" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Table_InvoiceDocuments">
+            <EntityTypeMapping TypeName="CustomerManagerModel.Table_InvoiceDocuments">
+              <MappingFragment StoreEntitySet="Table_InvoiceDocuments">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="MachineNumber" ColumnName="MachineNumber" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="InvoiceName" ColumnName="InvoiceName" />
+                <ScalarProperty Name="BlobLink" ColumnName="BlobLink" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="InvoiceNumber" ColumnName="InvoiceNumber" />
+                <ScalarProperty Name="IsMachineDeleted" ColumnName="IsMachineDeleted" />
+                <ScalarProperty Name="InvoiceAmount" ColumnName="InvoiceAmount" />
+                <ScalarProperty Name="DueAmount" ColumnName="DueAmount" />
+                <ScalarProperty Name="IsPaid" ColumnName="IsPaid" />
+                <ScalarProperty Name="ModelId" ColumnName="ModelId" />
+                <ScalarProperty Name="ModelName" ColumnName="ModelName" />
+                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Table_InvoicePerticular">
+            <EntityTypeMapping TypeName="CustomerManagerModel.Table_InvoicePerticular">
+              <MappingFragment StoreEntitySet="Table_InvoicePerticular">
+                <ScalarProperty Name="InvoicePerticularId" ColumnName="InvoicePerticularId" />
+                <ScalarProperty Name="InvoicePerticularName" ColumnName="InvoicePerticularName" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Table_LocationDetails">
+            <EntityTypeMapping TypeName="CustomerManagerModel.Table_LocationDetails">
+              <MappingFragment StoreEntitySet="Table_LocationDetails">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+                <ScalarProperty Name="MachineNumber" ColumnName="MachineNumber" />
+                <ScalarProperty Name="RoadCondition" ColumnName="RoadCondition" />
+                <ScalarProperty Name="InsideCityOutsideCity" ColumnName="InsideCityOutsideCity" />
+                <ScalarProperty Name="NearbyLodge" ColumnName="NearbyLodge" />
+                <ScalarProperty Name="NearbyPetrolBunk" ColumnName="NearbyPetrolBunk" />
+                <ScalarProperty Name="HotelType" ColumnName="HotelType" />
+                <ScalarProperty Name="NearbyMedicalShop" ColumnName="NearbyMedicalShop" />
+                <ScalarProperty Name="NearbyHospital" ColumnName="NearbyHospital" />
+                <ScalarProperty Name="NearbyMechanicShops" ColumnName="NearbyMechanicShops" />
+                <ScalarProperty Name="WhatToCarry" ColumnName="WhatToCarry" />
+                <ScalarProperty Name="TextArea" ColumnName="TextArea" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="BestHotels" ColumnName="BestHotels" />
+                <ScalarProperty Name="ClusterId" ColumnName="ClusterId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Table_MachineCustomerRequestsDetails">
+            <EntityTypeMapping TypeName="CustomerManagerModel.Table_MachineCustomerRequestsDetails">
+              <MappingFragment StoreEntitySet="Table_MachineCustomerRequestsDetails">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="MachineNumber" ColumnName="MachineNumber" />
+                <ScalarProperty Name="MachineId" ColumnName="MachineId" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+                <ScalarProperty Name="RequestFor" ColumnName="RequestFor" />
+                <ScalarProperty Name="RequestForId" ColumnName="RequestForId" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="UniqueID" ColumnName="UniqueID" />
+                <ScalarProperty Name="IsMachineDeleted" ColumnName="IsMachineDeleted" />
+                <ScalarProperty Name="Resolution" ColumnName="Resolution" />
+                <ScalarProperty Name="TokenNo" ColumnName="TokenNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Table_MachineCustomerSansSDetails">
+            <EntityTypeMapping TypeName="CustomerManagerModel.Table_MachineCustomerSansSDetails">
+              <MappingFragment StoreEntitySet="Table_MachineCustomerSansSDetails">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="MachineNumber" ColumnName="MachineNumber" />
+                <ScalarProperty Name="MachineId" ColumnName="MachineId" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+                <ScalarProperty Name="SandS" ColumnName="SandS" />
+                <ScalarProperty Name="SandSId" ColumnName="SandSId" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="UniqueID" ColumnName="UniqueID" />
+                <ScalarProperty Name="IsMachineDeleted" ColumnName="IsMachineDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Table_MachineFeatureDetails">
+            <EntityTypeMapping TypeName="CustomerManagerModel.Table_MachineFeatureDetails">
+              <MappingFragment StoreEntitySet="Table_MachineFeatureDetails">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="FeatureID" ColumnName="FeatureID" />
+                <ScalarProperty Name="FeatureName" ColumnName="FeatureName" />
+                <ScalarProperty Name="MachineID" ColumnName="MachineID" />
+                <ScalarProperty Name="MachineNumber" ColumnName="MachineNumber" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+                <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
+                <ScalarProperty Name="InvoiceParticulars" ColumnName="InvoiceParticulars" />
+                <ScalarProperty Name="ModelID" ColumnName="ModelID" />
+                <ScalarProperty Name="ModelName" ColumnName="ModelName" />
+                <ScalarProperty Name="WarrantyFrom" ColumnName="WarrantyFrom" />
+                <ScalarProperty Name="WarrantyTill" ColumnName="WarrantyTill" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="FeatureDataID" ColumnName="FeatureDataID" />
+                <ScalarProperty Name="IsMachineDeleted" ColumnName="IsMachineDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Table_MachineRegistration">
+            <EntityTypeMapping TypeName="CustomerManagerModel.Table_MachineRegistration">
+              <MappingFragment StoreEntitySet="Table_MachineRegistration">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="MachineNumber" ColumnName="MachineNumber" />
+                <ScalarProperty Name="ModelId" ColumnName="ModelId" />
+                <ScalarProperty Name="ModelName" ColumnName="ModelName" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+                <ScalarProperty Name="Features" ColumnName="Features" />
+                <ScalarProperty Name="FeaturesId" ColumnName="FeaturesId" />
+                <ScalarProperty Name="InvoiceNumber" ColumnName="InvoiceNumber" />
+                <ScalarProperty Name="InvoiceDate" ColumnName="InvoiceDate" />
+                <ScalarProperty Name="InvoiceAmount" ColumnName="InvoiceAmount" />
+                <ScalarProperty Name="InvoiceFileBlob" ColumnName="InvoiceFileBlob" />
+                <ScalarProperty Name="InvoicePerticularId" ColumnName="InvoicePerticularId" />
+                <ScalarProperty Name="InvoicePerticular" ColumnName="InvoicePerticular" />
+                <ScalarProperty Name="WarrantyFrom" ColumnName="WarrantyFrom" />
+                <ScalarProperty Name="WarrantyTill" ColumnName="WarrantyTill" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsMachineDeleted" ColumnName="IsMachineDeleted" />
+                <ScalarProperty Name="ContactDataID" ColumnName="ContactDataID" />
+                <ScalarProperty Name="FeatureDetailsID" ColumnName="FeatureDetailsID" />
+                <ScalarProperty Name="DueAmount" ColumnName="DueAmount" />
+                <ScalarProperty Name="IsPaid" ColumnName="IsPaid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Table_Model">
+            <EntityTypeMapping TypeName="CustomerManagerModel.Table_Model">
+              <MappingFragment StoreEntitySet="Table_Model">
+                <ScalarProperty Name="ModelId" ColumnName="ModelId" />
+                <ScalarProperty Name="ModelName" ColumnName="ModelName" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Table_Priority">
+            <EntityTypeMapping TypeName="CustomerManagerModel.Table_Priority">
+              <MappingFragment StoreEntitySet="Table_Priority">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="PriorityID" ColumnName="PriorityID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Table_Region">
+            <EntityTypeMapping TypeName="CustomerManagerModel.Table_Region">
+              <MappingFragment StoreEntitySet="Table_Region">
+                <ScalarProperty Name="RegionId" ColumnName="RegionId" />
+                <ScalarProperty Name="RegionName" ColumnName="RegionName" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Table_Requests">
+            <EntityTypeMapping TypeName="CustomerManagerModel.Table_Requests">
+              <MappingFragment StoreEntitySet="Table_Requests">
+                <ScalarProperty Name="RequestsId" ColumnName="RequestsId" />
+                <ScalarProperty Name="RequestsName" ColumnName="RequestsName" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="Priority" ColumnName="Priority" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Table_RequestsFormData">
+            <EntityTypeMapping TypeName="CustomerManagerModel.Table_RequestsFormData">
+              <MappingFragment StoreEntitySet="Table_RequestsFormData">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="MachineNumber" ColumnName="MachineNumber" />
+                <ScalarProperty Name="MachineId" ColumnName="MachineId" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+                <ScalarProperty Name="RequestFor" ColumnName="RequestFor" />
+                <ScalarProperty Name="RequestForId" ColumnName="RequestForId" />
+                <ScalarProperty Name="SandS" ColumnName="SandS" />
+                <ScalarProperty Name="SandSId" ColumnName="SandSId" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="IsDone" ColumnName="IsDone" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="IsMachineDeleted" ColumnName="IsMachineDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Table_RoleMaster">
+            <EntityTypeMapping TypeName="CustomerManagerModel.Table_RoleMaster">
+              <MappingFragment StoreEntitySet="Table_RoleMaster">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Table_Route">
+            <EntityTypeMapping TypeName="CustomerManagerModel.Table_Route">
+              <MappingFragment StoreEntitySet="Table_Route">
+                <ScalarProperty Name="RouteId" ColumnName="RouteId" />
+                <ScalarProperty Name="RouteName" ColumnName="RouteName" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Table_Sands">
+            <EntityTypeMapping TypeName="CustomerManagerModel.Table_Sands">
+              <MappingFragment StoreEntitySet="Table_Sands">
+                <ScalarProperty Name="SandsId" ColumnName="SandsId" />
+                <ScalarProperty Name="SandsName" ColumnName="SandsName" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Table_TravelBudget">
+            <EntityTypeMapping TypeName="CustomerManagerModel.Table_TravelBudget">
+              <MappingFragment StoreEntitySet="Table_TravelBudget">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="MachineNumber" ColumnName="MachineNumber" />
+                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+                <ScalarProperty Name="Purpose" ColumnName="Purpose" />
+                <ScalarProperty Name="ClusterLocation" ColumnName="ClusterLocation" />
+                <ScalarProperty Name="CNG" ColumnName="CNG" />
+                <ScalarProperty Name="Mileage" ColumnName="Mileage" />
+                <ScalarProperty Name="EstInterDistance" ColumnName="EstInterDistance" />
+                <ScalarProperty Name="EstCompanyDistance" ColumnName="EstCompanyDistance" />
+                <ScalarProperty Name="ActualODOReading" ColumnName="ActualODOReading" />
+                <ScalarProperty Name="EstTravelTime" ColumnName="EstTravelTime" />
+                <ScalarProperty Name="EstTimeForJob" ColumnName="EstTimeForJob" />
+                <ScalarProperty Name="SchdETD" ColumnName="SchdETD" />
+                <ScalarProperty Name="ActualTime" ColumnName="ActualTime" />
+                <ScalarProperty Name="CNGFilledPreviously" ColumnName="CNGFilledPreviously" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="TripId" ColumnName="TripId" />
+                <ScalarProperty Name="TravelId" ColumnName="TravelId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Table_UserRegistration">
+            <EntityTypeMapping TypeName="CustomerManagerModel.Table_UserRegistration">
+              <MappingFragment StoreEntitySet="Table_UserRegistration">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="ConfirmPassword" ColumnName="ConfirmPassword" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Table_Zone">
+            <EntityTypeMapping TypeName="CustomerManagerModel.Table_Zone">
+              <MappingFragment StoreEntitySet="Table_Zone">
+                <ScalarProperty Name="ZoneId" ColumnName="ZoneId" />
+                <ScalarProperty Name="ZoneName" ColumnName="ZoneName" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
