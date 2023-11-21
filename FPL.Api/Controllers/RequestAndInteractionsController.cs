@@ -125,7 +125,7 @@ namespace FPL.Api.Controllers
                     MachineNumber = machineID,
                     Remarks = remarks,
                     RequestFor = string.Concat(machineNumber.Concat(remarks).Concat(customerId)),
-                    //RequestForId = data1.RequestForId,
+                    RequestForId = selectedRequestFor[0].value,
                     SandS = string.Concat(machineNumber.Concat(remarks).Concat(customerId)),
                     CreatedOn = DateTime.Now,
                     CreatedBy = createdBy
@@ -618,132 +618,186 @@ namespace FPL.Api.Controllers
         //    }
         //}
 
+        //[HttpGet]
+        //public async Task<IHttpActionResult> GetPendingRequestsforWorkFrontZonewise([FromUri(Name = "id")] int id)
+        //{
+        //    try
+        //    {
+
+        //        string output = "";
+        //        string requestforresult = "";
+        //        string requestsandsresult = "";
+        //        var Requests = db.Table_RequestsFormData.Where(c => c.IsDone == false).ToList();
+        //        var datalist = new List<allrequestdatamodel>();
+
+
+
+        //        if (Requests != null)
+        //        {
+        //            for (var i = 0; i < Requests.Count; i++)
+        //            {
+        //                var custid = Requests[i].CustomerId;
+        //                var CompanyDataa = await Task.Run(() => db.Table_CustomerRegistartion.Where(c => c.CustomerID == custid && c.ZoneId == id).Select(c => c).FirstOrDefault());
+
+        //                if (CompanyDataa != null)
+        //                {
+        //                    var MachineDataa = await Task.Run(() => db.Table_MachineRegistration.Where(c => c.CustomerId == CompanyDataa.CustomerID).Select(c => c).FirstOrDefault());
+        //                    var mn = Requests[i].MachineNumber;
+        //                    var cid = Requests[i].CustomerId;
+
+        //                    var uniquerequestfor = Requests[i].RequestFor;
+        //                    var uniquesands = Requests[i].SandS;
+
+        //                    var MachineData = await Task.Run(() => db.Table_MachineRegistration.Where(c => c.MachineNumber == mn && c.MachineNumber == MachineDataa.MachineNumber).Select(c => c).FirstOrDefault());
+
+        //                    var CompanyData = await Task.Run(() => db.Table_CustomerRegistartion.Where(c => c.CustomerID == cid && c.CustomerID == CompanyDataa.CustomerID).Select(c => c).FirstOrDefault());
+
+        //                    var requestfordata = await Task.Run(() => db.Table_MachineCustomerRequestsDetails.Where(c => c.MachineNumber == MachineData.MachineNumber && c.CustomerId == CompanyData.CustomerID && c.CustomerName == CompanyData.CompanyName).Select(c => c.RequestFor).ToList());
+
+        //                    var sanddsdata = await Task.Run(() => db.Table_MachineCustomerSansSDetails.Where(c => c.MachineNumber == MachineData.MachineNumber && c.CustomerId == CompanyData.CustomerID && c.CustomerName == CompanyData.CompanyName).Select(c => c.SandS).ToList());
+
+        //                    for (int r = 0; r < requestfordata.Count; r++)
+
+        //                    {
+        //                        var requestNamee = requestfordata[r];
+        //                        var requestfordataa = await Task.Run(() => db.Table_Requests.Where(c => c.RequestsName == requestNamee).Select(c => c.Priority).FirstOrDefault());
+
+        //                        if (r == 0)
+        //                        {
+        //                            requestforresult = requestfordataa.ToString();
+        //                        }
+        //                        else
+        //                        {
+        //                            var requestNameee = requestfordata[r];
+        //                            var requestfordataaa = await Task.Run(() => db.Table_Requests.Where(c => c.RequestsName == requestNamee).Select(c => c.Priority).FirstOrDefault());
+        //                            requestforresult = requestfordataaa.ToString();
+        //                        }
+
+        //                    }
+
+        //                    for (int s = 0; s < sanddsdata.Count; s++)
+        //                    {
+        //                        if (s == 0)
+        //                        {
+        //                            requestsandsresult = sanddsdata[s].ToString();
+        //                        }
+        //                        else
+        //                        {
+        //                            requestsandsresult = requestsandsresult + " / " + requestfordata[s];
+        //                        }
+
+        //                    }
+
+        //                    allrequestdatamodel data = new allrequestdatamodel()
+        //                    {
+        //                        CompanyName = CompanyData.CompanyName,
+        //                        CustomerID = CompanyData.CustomerID,
+        //                        MachineNumber = MachineData.MachineNumber,
+        //                        ModelName = MachineData.ModelName,
+        //                        ModelId = MachineData.ModelId,
+        //                        Remarks = Requests[i].Remarks,
+        //                        Region = CompanyData.Region,
+        //                        Zone = CompanyData.Zone,
+        //                        Cluster = CompanyData.Cluster,
+        //                        ContactData = contact,
+        //                        CreatedBy = Requests[i].CreatedBy,
+        //                        DateString = output,
+        //                        IsDone = Requests[i].IsDone,
+        //                        RouteId = CompanyData.RouteId,
+        //                        RequestId = Requests[i].id,
+        //                        RequestFor = requestforresult,
+        //                        SandS = requestsandsresult
+
+        //                    };
+        //                    datalist.Add(data);
+        //                }
+                        
+                      
+        //            }
+
+        //            return Ok(datalist);
+        //        }
+        //        else
+        //        {
+        //            allrequestdatamodel data = new allrequestdatamodel()
+        //            {
+        //                CompanyName = null,
+        //                CustomerID = 0,
+        //                MachineNumber = null,
+        //                ModelName = null,
+        //                ModelId = null,
+        //                Remarks = null,
+        //                Region = null,
+        //                Zone = null,
+        //                Cluster = null,
+        //                ContactData = null,
+        //                CreatedBy = null,
+        //                DateString = null,
+        //                IsDone = null,
+        //                RouteId = null,
+        //                RequestId = 0,
+        //                RequestFor = null,
+        //                SandS = null
+
+        //            };
+        //            datalist.Add(data);
+
+        //            return Ok(new List<allrequestdatamodel>());
+        //        }
+        //    }
+        //    catch (Exception e)
+        //    {
+
+        //        throw e;
+        //    }
+        //}
+
+
         [HttpGet]
         public async Task<IHttpActionResult> GetPendingRequestsforWorkFrontZonewise([FromUri(Name = "id")] int id)
         {
             try
             {
-
-                string output = "";
-                string requestforresult = "";
-                string requestsandsresult = "";
-                var Requests = db.Table_RequestsFormData.Where(c => c.IsDone == false).ToList();
                 var datalist = new List<allrequestdatamodel>();
-
-
-
+                var Requests = db.Table_RequestsFormData.Where(c => c.IsDone == false).ToList();
                 if (Requests != null)
                 {
                     for (var i = 0; i < Requests.Count; i++)
                     {
-                        var custid = Requests[i].CustomerId;
-                        var CompanyDataa = await Task.Run(() => db.Table_CustomerRegistartion.Where(c => c.CustomerID == custid && c.ZoneId == id).Select(c => c).FirstOrDefault());
-
-                        if (CompanyDataa != null)
+                        var customerId = Requests[i].CustomerId;
+                        var machineNumber = Requests[i].MachineNumber;
+                        var reqForId = Requests[i].RequestForId;
+                        var customerData = db.Table_CustomerRegistartion.Where(c => c.CustomerID == customerId).FirstOrDefault();
+                        var machineData = db.Table_MachineRegistration.Where(c => c.MachineNumber == machineNumber && c.CustomerId == customerId).FirstOrDefault();
+                        var requestData = db.Table_Requests.Where(c => c.RequestsId == reqForId).FirstOrDefault();
+                        var contactData = db.Table_Contactdetails.Where(c => c.CustomerId == customerId).FirstOrDefault();
+                        var requestDatafull = db.Table_MachineCustomerRequestsDetails.Where(c => c.MachineNumber == machineNumber && c.CustomerId == customerId).FirstOrDefault();
+                        allrequestdatamodel data = new allrequestdatamodel()
                         {
-                            var MachineDataa = await Task.Run(() => db.Table_MachineRegistration.Where(c => c.CustomerId == CompanyDataa.CustomerID).Select(c => c).FirstOrDefault());
-                            var mn = Requests[i].MachineNumber;
-                            var cid = Requests[i].CustomerId;
+                            CompanyName = customerData.CompanyName,
+                            CustomerID = customerData.CustomerID,
+                            MachineNumber = machineData.MachineNumber,
+                            ModelName = machineData.ModelName,
+                            ModelId = machineData.ModelId,
+                            Remarks = Requests[i].Remarks,
+                            Region = customerData.Region,
+                            Zone = customerData.Zone,
+                            Cluster = customerData.Cluster,
+                            ContactDatastring = contactData.Salute + " " + contactData.ContactName + "(" + contactData.Mobile + "," + contactData.Email + ")",
+                            CreatedBy = Requests[i].CreatedBy,
+                            date = Requests[i].CreatedOn,
+                            IsDone = Requests[i].IsDone,
+                            RouteId = customerData.RouteId,
+                            RequestId = 0,
+                            RequestFor = requestData.RequestsName,
+                            Priority = requestData.Priority,
+                            SandS = null
+                        };
+                        datalist.Add(data);
 
-                            var uniquerequestfor = Requests[i].RequestFor;
-                            var uniquesands = Requests[i].SandS;
-
-                            var MachineData = await Task.Run(() => db.Table_MachineRegistration.Where(c => c.MachineNumber == mn && c.MachineNumber == MachineDataa.MachineNumber).Select(c => c).FirstOrDefault());
-
-                            var CompanyData = await Task.Run(() => db.Table_CustomerRegistartion.Where(c => c.CustomerID == cid && c.CustomerID == CompanyDataa.CustomerID).Select(c => c).FirstOrDefault());
-
-                            var requestfordata = await Task.Run(() => db.Table_MachineCustomerRequestsDetails.Where(c => c.MachineNumber == MachineData.MachineNumber && c.CustomerId == CompanyData.CustomerID && c.CustomerName == CompanyData.CompanyName).Select(c => c.RequestFor).ToList());
-
-                            var sanddsdata = await Task.Run(() => db.Table_MachineCustomerSansSDetails.Where(c => c.MachineNumber == MachineData.MachineNumber && c.CustomerId == CompanyData.CustomerID && c.CustomerName == CompanyData.CompanyName).Select(c => c.SandS).ToList());
-
-                            for (int r = 0; r < requestfordata.Count; r++)
-
-                            {
-                                var requestNamee = requestfordata[r];
-                                var requestfordataa = await Task.Run(() => db.Table_Requests.Where(c => c.RequestsName == requestNamee).Select(c => c.Priority).FirstOrDefault());
-
-                                if (r == 0)
-                                {
-                                    requestforresult = requestfordataa.ToString();
-                                }
-                                else
-                                {
-                                    var requestNameee = requestfordata[r];
-                                    var requestfordataaa = await Task.Run(() => db.Table_Requests.Where(c => c.RequestsName == requestNamee).Select(c => c.Priority).FirstOrDefault());
-                                    requestforresult = requestforresult.ToString() + " , " + requestfordataaa.ToString();
-                                }
-
-                            }
-
-                            for (int s = 0; s < sanddsdata.Count; s++)
-                            {
-                                if (s == 0)
-                                {
-                                    requestsandsresult = sanddsdata[s].ToString();
-                                }
-                                else
-                                {
-                                    requestsandsresult = requestsandsresult + " / " + requestfordata[s];
-                                }
-
-                            }
-
-                            allrequestdatamodel data = new allrequestdatamodel()
-                            {
-                                CompanyName = CompanyData.CompanyName,
-                                CustomerID = CompanyData.CustomerID,
-                                MachineNumber = MachineData.MachineNumber,
-                                ModelName = MachineData.ModelName,
-                                ModelId = MachineData.ModelId,
-                                Remarks = Requests[i].Remarks,
-                                Region = CompanyData.Region,
-                                Zone = CompanyData.Zone,
-                                Cluster = CompanyData.Cluster,
-                                ContactData = contact,
-                                CreatedBy = Requests[i].CreatedBy,
-                                DateString = output,
-                                IsDone = Requests[i].IsDone,
-                                RouteId = CompanyData.RouteId,
-                                RequestId = Requests[i].id,
-                                RequestFor = requestforresult,
-                                SandS = requestsandsresult
-
-                            };
-                            datalist.Add(data);
-                        }
-                        
-                      
                     }
-
-                    return Ok(datalist);
                 }
-                else
-                {
-                    allrequestdatamodel data = new allrequestdatamodel()
-                    {
-                        CompanyName = null,
-                        CustomerID = 0,
-                        MachineNumber = null,
-                        ModelName = null,
-                        ModelId = null,
-                        Remarks = null,
-                        Region = null,
-                        Zone = null,
-                        Cluster = null,
-                        ContactData = null,
-                        CreatedBy = null,
-                        DateString = null,
-                        IsDone = null,
-                        RouteId = null,
-                        RequestId = 0,
-                        RequestFor = null,
-                        SandS = null
-
-                    };
-                    datalist.Add(data);
-
-                    return Ok(new List<allrequestdatamodel>());
-                }
+                return Ok(datalist);
             }
             catch (Exception e)
             {
@@ -751,7 +805,8 @@ namespace FPL.Api.Controllers
                 throw e;
             }
         }
-        [HttpGet]
+
+            [HttpGet]
         public async Task<IHttpActionResult> GetAllInteractions()
         {
             var result = await Task.Run(() => db.Table_InteractionsData.ToList());
@@ -1055,8 +1110,12 @@ namespace FPL.Api.Controllers
         }
         public class allrequestdatamodel
         {
+            public string Priority { get; set; }
+            public DateTime? date { get; set; }
             public int RequestId { get; set; }
+            public string ContactDatastring { get; set; }
             public List<ContactData> ContactData { get; set; }
+
             public Nullable<int> MachineNumber { get; set; }
             public Nullable<int> MachineId { get; set; }
             public Nullable<int> CustomerId { get; set; }
