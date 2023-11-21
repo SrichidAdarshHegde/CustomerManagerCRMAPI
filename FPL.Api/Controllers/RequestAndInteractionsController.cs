@@ -772,28 +772,32 @@ namespace FPL.Api.Controllers
                         var requestData = db.Table_Requests.Where(c => c.RequestsId == reqForId).FirstOrDefault();
                         var contactData = db.Table_Contactdetails.Where(c => c.CustomerId == customerId).FirstOrDefault();
                         var requestDatafull = db.Table_MachineCustomerRequestsDetails.Where(c => c.MachineNumber == machineNumber && c.CustomerId == customerId).FirstOrDefault();
-                        allrequestdatamodel data = new allrequestdatamodel()
+                        if (customerData.ZoneId == id)
                         {
-                            CompanyName = customerData.CompanyName,
-                            CustomerID = customerData.CustomerID,
-                            MachineNumber = machineData.MachineNumber,
-                            ModelName = machineData.ModelName,
-                            ModelId = machineData.ModelId,
-                            Remarks = Requests[i].Remarks,
-                            Region = customerData.Region,
-                            Zone = customerData.Zone,
-                            Cluster = customerData.Cluster,
-                            ContactDatastring = contactData.Salute + " " + contactData.ContactName + "(" + contactData.Mobile + "," + contactData.Email + ")",
-                            CreatedBy = Requests[i].CreatedBy,
-                            date = Requests[i].CreatedOn,
-                            IsDone = Requests[i].IsDone,
-                            RouteId = customerData.RouteId,
-                            RequestId = 0,
-                            RequestFor = requestData.RequestsName,
-                            Priority = requestData.Priority,
-                            SandS = null
-                        };
-                        datalist.Add(data);
+                            allrequestdatamodel data = new allrequestdatamodel()
+                            {
+                                CompanyName = customerData.CompanyName,
+                                CustomerID = customerData.CustomerID,
+                                MachineNumber = machineData.MachineNumber,
+                                ModelName = machineData.ModelName,
+                                ModelId = machineData.ModelId,
+                                Remarks = Requests[i].Remarks,
+                                Region = customerData.Region,
+                                Zone = customerData.Zone,
+                                Cluster = customerData.Cluster,
+                                ContactDatastring = contactData.Salute + " " + contactData.ContactName + "(" + contactData.Mobile + "," + contactData.Email + ")",
+                                CreatedBy = Requests[i].CreatedBy,
+                                date = Requests[i].CreatedOn,
+                                IsDone = Requests[i].IsDone,
+                                RouteId = customerData.RouteId,
+                                RequestId = 0,
+                                RequestFor = requestData.RequestsName,
+                                Priority = requestData.Priority,
+                                SandS = null
+                            };
+                            datalist.Add(data);
+                        }
+                        
 
                     }
                 }
