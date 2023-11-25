@@ -1,4 +1,5 @@
 ﻿using FPL.Dal.DataModel;
+using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
 using System.Web.Http.Description;
+using HttpContext = System.Web.HttpContext;
 
 namespace FPL.Api.Controllers
 {
@@ -61,7 +63,7 @@ namespace FPL.Api.Controllers
                     Table_MachineCustomerRequestsDetails data2 = new Table_MachineCustomerRequestsDetails()
                     {
                         MachineNumber = Convert.ToInt32(machineNumber),
-                        TravelID = Convert.ToInt32(ticketNo),
+                        TokenID = Convert.ToInt32(ticketNo),
                         MachineId = macid,
                         CustomerId = Convert.ToInt32(customerId),
                         CustomerName = customername,
@@ -120,7 +122,7 @@ namespace FPL.Api.Controllers
                 {
                     CustomerId = Convert.ToInt32(customerId),
                     CustomerName = customername,
-                    TravelID = Convert.ToInt32(ticketNo),
+                    TokenID = Convert.ToInt32(ticketNo),
                     IsDone = false,
                     MachineId = macid,
                     MachineNumber = machineID,
@@ -794,7 +796,8 @@ namespace FPL.Api.Controllers
                                 RequestId = 0,
                                 RequestFor = requestData.RequestsName,
                                 Priority = requestData.Priority,
-                                SandS = null
+                                SandS = null,
+                                TokenID = requestDatafull.TokenID
                             };
                             datalist.Add(data);
                         }
@@ -1171,6 +1174,7 @@ namespace FPL.Api.Controllers
             public Nullable<int> SandSId { get; set; }
             public string Remarks { get; set; }
             public Nullable<bool> IsDone { get; set; }
+            public Nullable<int> TokenID { get; set; }
         }
 
 
