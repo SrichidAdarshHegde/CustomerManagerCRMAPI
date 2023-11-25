@@ -61,7 +61,7 @@ namespace FPL.Api.Controllers
                     Table_MachineCustomerRequestsDetails data2 = new Table_MachineCustomerRequestsDetails()
                     {
                         MachineNumber = Convert.ToInt32(machineNumber),
-                        TokenNo = Convert.ToInt32(ticketNo),
+                        TravelID = Convert.ToInt32(ticketNo),
                         MachineId = macid,
                         CustomerId = Convert.ToInt32(customerId),
                         CustomerName = customername,
@@ -120,6 +120,7 @@ namespace FPL.Api.Controllers
                 {
                     CustomerId = Convert.ToInt32(customerId),
                     CustomerName = customername,
+                    TravelID = Convert.ToInt32(ticketNo),
                     IsDone = false,
                     MachineId = macid,
                     MachineNumber = machineID,
