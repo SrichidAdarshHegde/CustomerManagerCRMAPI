@@ -62,10 +62,18 @@ namespace FPL.Api.Controllers
         [HttpGet]
         public async Task<IHttpActionResult> GetTravelBudgetbyUser([FromUri(Name = "id")] int id)
         {
-       
-            var result = await Task.Run(() => db.Table_TravelBudget.Where(c => c.UserId == id).ToList());
+            var result = await Task.Run(() =>
+                db.Table_TravelBudget
+                    .Where(c => c.UserId == id)
+                    .GroupBy(c => c.TravelId)  // Group by TravelId
+                    .Select(group => group.FirstOrDefault())  // Select the first element from each group (unique rows)
+                    .ToList()
+            );
+
             return Ok(result);
         }
+
+
 
         [HttpGet]
         public async Task<IHttpActionResult> GetTravelBudgetbyTravelId([FromUri(Name = "id")] int id)
@@ -102,5 +110,6 @@ namespace FPL.Api.Controllers
         public string TripId { get; set; }
         public Nullable<int> TravelId { get; set; }
         public Nullable<int> UserId { get; set; }
+        public Nullable<System.DateTime> Totaltime { get; set; }
     }
 }
