@@ -31,6 +31,7 @@ namespace FPL.Api.Controllers
                     EstTravelTime = data.EstTravelTime,
                     EstTimeForJob = data.EstTimeForJob,
                     SchdETD = data.SchdETD,
+                    Totaltime= data.Totaltime,
                     ActualTime = data.ActualTime,
                     CNGFilledPreviously = data.CNGFilledPreviously,
                     UserName = data.UserName,
@@ -99,6 +100,10 @@ namespace FPL.Api.Controllers
         public Nullable<System.DateTime> EstTimeForJob { get; set; }
         public Nullable<System.DateTime> SchdETD { get; set; }
         public Nullable<System.DateTime> ActualTime { get; set; }
+        public Nullable<System.DateTime> Totaltime { get; set; }
+
+
+
         public string CNGFilledPreviously { get; set; }
         public string UserName { get; set; }
         public Nullable<System.DateTime> CreatedOn { get; set; }

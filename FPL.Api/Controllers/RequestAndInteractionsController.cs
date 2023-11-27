@@ -278,9 +278,24 @@ namespace FPL.Api.Controllers
             var result = await Task.Run(() => db.Table_Cluster.ToList());
             return Ok(result);
         }
-
-
         [HttpGet]
+        public async Task<IHttpActionResult> GetPendingRequestsfordashboard()
+        {
+            try
+            {
+                string requestforresult = "";
+                string requestsandsresult = "";
+                var Requests = db.Table_RequestsFormData.Where(c => c.IsDone == false && c.IsMachineDeleted != true).ToList();
+                return Ok(Requests);
+            }
+            catch (Exception e)
+            {
+
+                throw e;
+            }
+        }
+
+            [HttpGet]
         public async Task<IHttpActionResult> GetPendingRequests()
         {
             try
