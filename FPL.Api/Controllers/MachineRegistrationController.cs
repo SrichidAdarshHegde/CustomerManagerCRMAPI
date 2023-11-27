@@ -183,8 +183,8 @@ namespace FPL.Api.Controllers
         [HttpGet]
         public async Task<IHttpActionResult> GetMachineInLocation([FromUri(Name = "id")] string id)
         {
-            int idd = Convert.ToInt32(id);
-            var result = await Task.Run(() => db.Table_MachineRegistration.Where(c => c.CustomerId == idd).ToList());
+           // int idd = Convert.ToInt32(id);
+            var result = await Task.Run(() => db.Table_MachineRegistration.Where(c => c.CustomerName == id).ToList());
             return Ok(result);
         }
 
@@ -465,6 +465,46 @@ namespace FPL.Api.Controllers
         {
             var result = db.Table_Contactdetails.Where(c => c.CustomerId == id).ToList();
             return Ok(result);
+        }
+
+        [HttpGet]
+        public async Task<IHttpActionResult> DeleteContactDetails([FromUri(Name = "id")] int id)
+        {
+            var data = await Task.Run(() => db.Table_Contactdetails.FindAsync(id));
+
+            await Task.Run(() => db.Table_Contactdetails.Remove(data));
+            await db.SaveChangesAsync();
+
+            return Ok("success");
+        }
+
+        [HttpPost]
+        public async Task<IHttpActionResult> UpdateContactDetails(Table_ContactdetailsDatamodel data1)
+        {
+
+            try
+            {
+                int ID = Convert.ToInt32(data1.Id);
+                var data = db.Table_Contactdetails.Where(c => c.Id == ID).FirstOrDefault();
+                data.ContactName = data1.ContactName;
+                data.Salute = data1.Salute;
+                data.Designation = data1.Designation;
+                data.Email = data1.Email;
+                data.Mobile = data1.Mobile;
+                data.CreatedBy = data1.CreatedBy;
+
+                await Task.Run(() => db.Entry(data).State = EntityState.Modified);
+                await db.SaveChangesAsync();
+
+                return Ok("success");
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+            }
         }
 
         [HttpGet]
