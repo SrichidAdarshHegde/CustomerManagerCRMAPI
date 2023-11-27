@@ -31,7 +31,7 @@ namespace FPL.Api.Controllers
                     EstTravelTime = data.EstTravelTime,
                     EstTimeForJob = data.EstTimeForJob,
                     SchdETD = data.SchdETD,
-                    //Totaltime= data.Totaltime,
+                    Totaltime= data.Totaltime,
                     ActualTime = data.ActualTime,
                     CNGFilledPreviously = data.CNGFilledPreviously,
                     UserName = data.UserName,
@@ -96,10 +96,10 @@ namespace FPL.Api.Controllers
         public string EstInterDistance { get; set; }
         public string EstCompanyDistance { get; set; }
         public string ActualODOReading { get; set; }
-        public string EstTravelTime { get; set; }
-        public string EstTimeForJob { get; set; }
-        public string SchdETD { get; set; }
-        public string ActualTime { get; set; }
+        public Nullable<System.DateTime> EstTravelTime { get; set; }
+        public Nullable<System.DateTime> EstTimeForJob { get; set; }
+        public Nullable<System.DateTime> SchdETD { get; set; }
+        public Nullable<System.DateTime> ActualTime { get; set; }
         public Nullable<System.DateTime> Totaltime { get; set; }
 
 
@@ -110,6 +110,5 @@ namespace FPL.Api.Controllers
         public string TripId { get; set; }
         public Nullable<int> TravelId { get; set; }
         public Nullable<int> UserId { get; set; }
-        //public string Totaltime { get; set; }
     }
 }
