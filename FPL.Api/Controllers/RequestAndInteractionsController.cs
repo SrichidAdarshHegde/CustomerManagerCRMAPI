@@ -63,7 +63,7 @@ namespace FPL.Api.Controllers
                     Table_MachineCustomerRequestsDetails data2 = new Table_MachineCustomerRequestsDetails()
                     {
                         MachineNumber = Convert.ToInt32(machineNumber),
-                        TokenID = Convert.ToInt32(ticketNo),
+                        TokenNo = Convert.ToInt32(ticketNo),
                         MachineId = macid,
                         CustomerId = Convert.ToInt32(customerId),
                         CustomerName = customername,
@@ -812,7 +812,7 @@ namespace FPL.Api.Controllers
                                 RequestFor = requestData.RequestsName,
                                 Priority = requestData.Priority,
                                 SandS = null,
-                                TokenID = requestDatafull.TokenID
+                                TokenID = requestDatafull.TokenNo
                             };
                             datalist.Add(data);
                         }
