@@ -147,16 +147,7 @@ namespace FPL.Api.Controllers
         }
 
 
-        [HttpGet]
-        public async Task<IHttpActionResult> DeleteCustomerData([FromUri(Name = "id")] int id)
-        {
-            var data = await Task.Run(() => db.Table_CustomerRegistartion.FindAsync(id));
-
-            await Task.Run(() => db.Table_CustomerRegistartion.Remove(data));
-            await db.SaveChangesAsync();
-
-            return Ok("success");
-        }
+        
 
         [HttpGet]
         public async Task<IHttpActionResult> GetPerticularCustomer([FromUri(Name = "id")] int id)
@@ -174,8 +165,27 @@ namespace FPL.Api.Controllers
 
 
 
+        [HttpGet]
+        public async Task<IHttpActionResult> DeleteCustomerData([FromUri(Name = "id")] int id)
+        {
+            var data = await Task.Run(() => db.Table_CustomerRegistartion.FindAsync(id));
 
+            await Task.Run(() => db.Table_CustomerRegistartion.Remove(data));
+            await db.SaveChangesAsync();
 
+            return Ok("success");
+        }
+
+        [HttpGet]
+        public async Task<IHttpActionResult> DeleteCustomerdetails([FromUri(Name = "id")] int id)
+        {
+            var data = await Task.Run(() => db.Table_Contactdetails.FindAsync(id));
+
+            await Task.Run(() => db.Table_Contactdetails.Remove(data));
+            await db.SaveChangesAsync();
+
+            return Ok("success");
+        }
 
 
 
