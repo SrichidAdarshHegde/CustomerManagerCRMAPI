@@ -305,8 +305,6 @@ namespace FPL.Api.Controllers
                 var Requests = db.Table_RequestsFormData.Where(c => c.IsDone == false && c.IsMachineDeleted != true).ToList();
                 var datalist = new List<allrequestdatamodel>();
 
-
-
                 for (var i = 0; i < Requests.Count; i++)
                 {
                     var mn = Requests[i].MachineNumber;
