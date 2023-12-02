@@ -393,8 +393,76 @@ namespace FPL.Api.Controllers
             }
         }
 
+        [HttpGet]
 
 
+     
+        public async Task<IHttpActionResult> GetDatewiserequest([FromUri(Name = "id")]string dates)
+        {
+            try
+            {
+                var dateArray = dates.Split(',');
+                DateTime fromDate = DateTime.Parse(dateArray[0], CultureInfo.CreateSpecificCulture("en-IN"));
+                DateTime toDate = DateTime.Parse(dateArray[1], CultureInfo.CreateSpecificCulture("en-IN"));
+                var requestData = await Task.Run(() => db.Table_RequestsFormData.Where(c => c.CreatedOn >= fromDate && c.CreatedOn <= toDate).ToList());
+
+                return Ok(requestData);
+            }
+            catch (Exception e)
+            {
+                return InternalServerError(e);
+            }
+        }
+        [HttpGet]
+        public async Task<IHttpActionResult> GetDatewiserequestinvoice([FromUri(Name = "id")] string dates)
+        {
+            try
+            {
+                var dateArray = dates.Split(',');
+                DateTime fromDate = DateTime.Parse(dateArray[0], CultureInfo.CreateSpecificCulture("en-IN"));
+                DateTime toDate = DateTime.Parse(dateArray[1], CultureInfo.CreateSpecificCulture("en-IN"));
+                var requestData = await Task.Run(() => db.Table_InvoicePerticular.Where(c => c.CreatedOn >= fromDate && c.CreatedOn <= toDate).ToList());
+
+                return Ok(requestData);
+            }
+            catch (Exception e)
+            {
+                return InternalServerError(e);
+            }
+        }
+
+        public async Task<IHttpActionResult> GetDatewiserequestInetraction([FromUri(Name = "id")] string dates)
+        {
+            try
+            {
+                var dateArray = dates.Split(',');
+                DateTime fromDate = DateTime.Parse(dateArray[0], CultureInfo.CreateSpecificCulture("en-IN"));
+                DateTime toDate = DateTime.Parse(dateArray[1], CultureInfo.CreateSpecificCulture("en-IN"));
+                var requestData = await Task.Run(() => db.Table_RequestsFormData.Where(c => c.CreatedOn >= fromDate && c.CreatedOn <= toDate).ToList());
+
+                return Ok(requestData);
+            }
+            catch (Exception e)
+            {
+                return InternalServerError(e);
+            }
+        }
+        public async Task<IHttpActionResult> GetDatewiserequestfollowupDate([FromUri(Name = "id")] string dates)
+        {
+            try
+            {
+                var dateArray = dates.Split(',');
+                DateTime fromDate = DateTime.Parse(dateArray[0], CultureInfo.CreateSpecificCulture("en-IN"));
+                DateTime toDate = DateTime.Parse(dateArray[1], CultureInfo.CreateSpecificCulture("en-IN"));
+                var requestData = await Task.Run(() => db.Table_FollowUpDetails.Where(c => c.CreatedOn >= fromDate && c.CreatedOn <= toDate).ToList());
+
+                return Ok(requestData);
+            }
+            catch (Exception e)
+            {
+                return InternalServerError(e);
+            }
+        }
         [HttpGet]
         public async Task<IHttpActionResult> GetPendingRequestsforWorkFront()
         {
