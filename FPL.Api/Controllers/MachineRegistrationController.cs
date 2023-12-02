@@ -507,13 +507,6 @@ namespace FPL.Api.Controllers
             }
         }
 
-        [HttpGet]
-        public async Task<IHttpActionResult> GetAllMachines()
-        {
-            var result = await Task.Run(() => db.Table_MachineRegistration.Where(c=>c.IsMachineDeleted!=true).ToList());
-            return Ok(result);
-        }
-
 
         [HttpPost]
         public async Task<IHttpActionResult> PostSaveUpdateMachinerRegistration(Table_MachineRegistration data1)
@@ -548,12 +541,114 @@ namespace FPL.Api.Controllers
             }
 
         }
+
+        //[HttpGet]
+        //public async Task<IHttpActionResult> GetAllMachines()
+        //{
+        //    var result = await Task.Run(() => db.Table_MachineRegistration.Where(c => c.IsMachineDeleted != true).ToList());
+        //    return Ok(result);
+        //}
         [HttpGet]
         public async Task<IHttpActionResult> GetPerticularMachines([FromUri(Name = "id")] int id)
         {
-            var result = await Task.Run(() => db.Table_MachineRegistration.Where(c => c.CustomerId == id && c.IsMachineDeleted!=true).ToList());
-            return Ok(result);
+            try
+            {
+                var result = await Task.Run(() => db.Table_MachineRegistration.Where(c => c.CustomerId == id && c.IsMachineDeleted != true).ToList());
+                var datalist = new List<AllCustomerMachineDetails>();
+                for (var i = 0; i < result.Count; i++)
+                {
+                    var cid = result[i].CustomerId;
+                    var mn = result[i].MachineNumber;
+
+                    var MachineData = await Task.Run(() => db.Table_MachineRegistration.Where(c => c.MachineNumber == mn).Select(c => c).FirstOrDefault());
+
+                    var customerData = await Task.Run(() => db.Table_CustomerRegistartion.Where(c => c.CustomerID == cid).Select(c => c).FirstOrDefault());
+
+                    AllCustomerMachineDetails data = new AllCustomerMachineDetails()
+                    {
+                        MachineNumber = MachineData.MachineNumber,
+                        ModelId = MachineData.ModelId,
+                        ModelName = MachineData.ModelName,
+                        CustomerID = customerData.CustomerID,
+                        CustomerName = customerData.CompanyName,
+                        Unit = customerData.Unit,
+                        AddressOne = customerData.AddressOne,
+                        AddressTwo = customerData.AddressTwo,
+                        AddressThree = customerData.AddressThree,
+                        City = customerData.City,
+                        State = customerData.State,
+                        Pincode = customerData.Pincode,
+                        GSTIN = customerData.GSTIN,
+                        Cluster = customerData.Cluster,
+                        RouteNumber = customerData.RouteNumber,
+                        Region = customerData.Region,
+                        Zone = customerData.Zone,
+                        CreatedBy = result[i].CreatedBy,
+                        CreatedOn = result[i].CreatedOn,
+                    };
+                    datalist.Add(data);
+                }
+                return Ok(datalist);
+            }
+            catch (Exception e)
+            {
+
+                throw e;
+            }
+            
         }
+
+        [HttpGet]
+        public async Task<IHttpActionResult> GetMachineCustomerDetails()
+        {
+            try
+            {
+                var result = await Task.Run(() => db.Table_MachineRegistration.Where(c => c.IsMachineDeleted != true).ToList());
+                var datalist = new List<AllCustomerMachineDetails>();
+                for (var i = 0; i < result.Count; i++)
+                {
+                    var cid = result[i].CustomerId;
+                    var mn = result[i].MachineNumber;
+
+                    var MachineData = await Task.Run(() => db.Table_MachineRegistration.Where(c => c.MachineNumber == mn).Select(c => c).FirstOrDefault());
+
+                    var customerData = await Task.Run(() => db.Table_CustomerRegistartion.Where(c => c.CustomerID == cid).Select(c => c).FirstOrDefault());
+
+                    AllCustomerMachineDetails data = new AllCustomerMachineDetails()
+                    {
+                        MachineNumber = MachineData.MachineNumber,
+                        ModelId = MachineData.ModelId,
+                        ModelName = MachineData.ModelName,
+                        CustomerID = customerData.CustomerID,
+                        CustomerName = customerData.CompanyName,
+                        Unit = customerData.Unit,
+                        AddressOne = customerData.AddressOne,
+                        AddressTwo = customerData.AddressTwo,
+                        AddressThree = customerData.AddressThree,
+                        City = customerData.City,
+                        State = customerData.State,
+                        Pincode = customerData.Pincode,
+                        GSTIN = customerData.GSTIN,
+                        Cluster = customerData.Cluster,
+                        RouteNumber = customerData.RouteNumber,
+                        Region = customerData.Region,
+                        Zone = customerData.Zone,
+                        CreatedBy = result[i].CreatedBy,
+                        CreatedOn = result[i].CreatedOn,
+                    };
+                    datalist.Add(data);
+                }
+
+                return Ok(datalist);
+            }
+
+             catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+
         [HttpPost]
         //[Route("api/FileUpload/PostUploadSpecimensignature/{id}")]
         public async Task<IHttpActionResult> UploadInvoice()
@@ -635,12 +730,42 @@ namespace FPL.Api.Controllers
             return Ok("success");
         }
 
+        public partial class AllCustomerMachineDetails
+        {
+            public int Id { get; set; }
+            public Nullable<int> MachineNumber { get; set; }
+            public Nullable<int> ModelId { get; set; }
+            public string ModelName { get; set; }
+            public Nullable<int> CustomerId { get; set; }
+            public string CustomerName { get; set; }
+            public int CustomerID { get; set; }
+            public string CompanyName { get; set; }
+            public string Unit { get; set; }
+            public string AddressOne { get; set; }
+            public string AddressTwo { get; set; }
+            public string AddressThree { get; set; }
+            public string Pincode { get; set; }
+            public string City { get; set; }
+            public string State { get; set; }
+            public string Country { get; set; }
+            public string GSTIN { get; set; }
+            public string Cluster { get; set; }
+            public string RouteNumber { get; set; }
+            public Nullable<int> RouteId { get; set; }
+            public Nullable<int> ClusterId { get; set; }
+            public string Region { get; set; }
+            public Nullable<int> RegionId { get; set; }
+            public string Zone { get; set; }
+            public Nullable<int> ZoneId { get; set; }
+            public string WeeklyOff { get; set; }
+            public string WorkingStart { get; set; }
+            public string WorkingEnd { get; set; }
+            public string SecurityFormalities { get; set; }
+            public string CreatedBy { get; set; }
+            public Nullable<System.DateTime> CreatedOn { get; set; }
+            public string CompanyOldName { get; set; }
 
-
-
-
-
-
+        }
         public partial class Table_MachineRegistrationDataModel
         {
             public int Id { get; set; }
@@ -662,7 +787,6 @@ namespace FPL.Api.Controllers
             public Nullable<System.DateTime> CreatedOn { get; set; }
             public string CreatedBy { get; set; }
         }
-
 
         public partial class Table_ContactdetailsDatamodel
         {
