@@ -147,10 +147,15 @@ namespace FPL.Api.Controllers
         }
 
 
-        
+        [HttpGet]
+        public async Task<IHttpActionResult> GetPerticularCustomer([FromUri(Name = "id")] int id)
+        {
+            var result = await Task.Run(() => db.Table_CustomerRegistartion.Where(c => c.CustomerID == id).Select(c => c).ToList());
+            return Ok(result);
+        }
 
         [HttpGet]
-        public async Task<IHttpActionResult> GetPerticularCustomer([FromUri(Name = "id")] string id)
+        public async Task<IHttpActionResult> GetPerticularCust([FromUri(Name = "id")] string id)
         {
             var result = await Task.Run(() => db.Table_CustomerRegistartion.Where(c => c.CompanyName == id).Select(c => c).ToList());
             return Ok(result);
