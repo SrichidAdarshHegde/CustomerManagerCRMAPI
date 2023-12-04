@@ -410,94 +410,75 @@ namespace FPL.Api.Controllers
         {
             try
             {
-                string requestforresult = "";
-                string requestsandsresult = "";
-                var Requests = db.Table_RequestsFormData.Where(c => c.IsDone == false && c.IsMachineDeleted != true).ToList();
-                var datalist = new List<allrequestdatamodel>();
+                var requests = db.Table_RequestsFormData
+                    .Where(c => c.IsDone == false && c.IsMachineDeleted != true)
+                    .ToList();
 
-                for (var i = 0; i < Requests.Count; i++)
+                var dataList = new List<allrequestdatamodel>();
+
+                foreach (var request in requests)
                 {
-                    var mn = Requests[i].MachineNumber;
-                    var cid = Requests[i].CustomerId;
+                    var machineData = await db.Table_MachineRegistration
+                        .Where(c => c.MachineNumber == request.MachineNumber)
+                        .FirstOrDefaultAsync();
 
-                    var uniquerequestfor = Requests[i].RequestFor;
-                    var uniquesands = Requests[i].SandS;
+                    var companyData = await db.Table_CustomerRegistartion
+                        .Where(c => c.CustomerID == request.CustomerId)
+                        .FirstOrDefaultAsync();
 
-                    var MachineData = await Task.Run(() => db.Table_MachineRegistration.Where(c => c.MachineNumber == mn).Select(c => c).FirstOrDefault());
-                    var CompanyData = await Task.Run(() => db.Table_CustomerRegistartion.Where(c => c.CustomerID == cid).Select(c => c).FirstOrDefault());
-                    var CuntactDataData = await Task.Run(() => db.Table_Contactdetails.Where(c => c.MachineId == mn).Select(c => c).ToList());
+                    var contactData = await db.Table_Contactdetails
+                        .Where(c => c.MachineId == request.MachineNumber)
+                        .Select(c => new ContactData
+                        {
+                            ContactName = c.ContactName,
+                            Designation = c.Designation,
+                            Email = c.Email,
+                            Mobile = c.Mobile,
+                            Salute = c.Salute
+                        })
+                        .ToListAsync();
 
-                    var requestfordata = await Task.Run(() => db.Table_MachineCustomerRequestsDetails.Where(c => c.UniqueID == uniquerequestfor).Select(c => c.RequestFor).ToList());
+                    var requestForData = await db.Table_MachineCustomerRequestsDetails
+                        .Where(c => c.UniqueID == request.RequestFor)
+                        .Select(c => c.RequestFor)
+                        .ToListAsync();
 
-                    var sanddsdata = await Task.Run(() => db.Table_MachineCustomerSansSDetails.Where(c => c.UniqueID == uniquesands).Select(c => c.SandS).ToList());
+                    var sandSData = await db.Table_MachineCustomerSansSDetails
+                        .Where(c => c.UniqueID == request.SandS)
+                        .Select(c => c.SandS)
+                        .ToListAsync();
 
-                    for (int r = 0; r < requestfordata.Count; r++)
+                    var requestForResult = string.Join(" , ", requestForData);
+                    var sandSResult = string.Join(" , ", sandSData);
 
+                    var data = new allrequestdatamodel
                     {
-                        if (r == 0)
-                        {
-                            requestforresult = requestfordata[r].ToString();
-                        }
-                        else
-                        {
-                            requestforresult = requestforresult + " , " + requestfordata[r];
-                        }
-
-                    }
-
-                    for (int s = 0; s < sanddsdata.Count; s++)
-                    {
-                        if (s == 0)
-                        {
-                            requestsandsresult = sanddsdata[s].ToString();
-                        }
-                        else
-                        {
-                            requestsandsresult = requestsandsresult + " , " + requestfordata[s];
-                        }
-
-                    }
-
-                    for (var j = 0; j < CuntactDataData.Count; j++)
-                    {
-                        ContactData cdata = new ContactData()
-                        {
-                            ContactName = CuntactDataData[j].ContactName,
-                            Designation = CuntactDataData[j].Designation,
-                            Email = CuntactDataData[j].Email,
-                            Mobile = CuntactDataData[j].Mobile,
-                            Salute = CuntactDataData[j].Salute
-                        };
-                        contact.Add(cdata);
-
-                    }
-                    allrequestdatamodel data = new allrequestdatamodel()
-                    {
-                        CompanyName = CompanyData.CompanyName,
-                        CustomerID = CompanyData.CustomerID,
-                        MachineNumber = MachineData.MachineNumber,
-                        ModelName = MachineData.ModelName,
-                        ModelId = MachineData.ModelId,
-                        Remarks = Requests[i].Remarks,
-                        Region = CompanyData.Region,
-                        Zone = CompanyData.Zone,
-                        ContactData = contact,
-                        CreatedBy = Requests[i].CreatedBy,
-                        CreatedOn = Requests[i].CreatedOn,
-                        IsDone = Requests[i].IsDone,
-                        RequestId = Requests[i].id,
-                        RequestFor = requestforresult,
-                        SandS = requestsandsresult
-
+                        CompanyName = companyData.CompanyName,
+                        CustomerID = companyData.CustomerID,
+                        MachineNumber = machineData.MachineNumber,
+                        ModelName = machineData.ModelName,
+                        ModelId = machineData.ModelId,
+                        Remarks = request.Remarks,
+                        Region = companyData.Region,
+                        Zone = companyData.Zone,
+                        ContactData = contactData,
+                        CreatedBy = request.CreatedBy,
+                        CreatedOn = request.CreatedOn,
+                        IsDone = request.IsDone,
+                        RequestId = request.id,
+                        RequestFor = requestForResult,
+                        SandS = sandSResult
                     };
-                    datalist.Add(data);
+
+                    dataList.Add(data);
                 }
-                return Ok(datalist);
+
+                return Ok(dataList);
             }
             catch (Exception e)
             {
-
-                throw e;
+                // Log the exception or handle it as needed
+                return InternalServerError();
             }
         }
 
