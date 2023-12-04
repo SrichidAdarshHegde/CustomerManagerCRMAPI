@@ -410,25 +410,17 @@ namespace FPL.Api.Controllers
         {
             try
             {
-                var requests = db.Table_RequestsFormData
-                    .Where(c => c.IsDone == false && c.IsMachineDeleted != true)
-                    .ToList();
+                var requests = db.Table_RequestsFormData .Where(c => c.IsDone == false && c.IsMachineDeleted != true).ToList();
 
                 var dataList = new List<allrequestdatamodel>();
 
                 foreach (var request in requests)
                 {
-                    var machineData = await db.Table_MachineRegistration
-                        .Where(c => c.MachineNumber == request.MachineNumber)
-                        .FirstOrDefaultAsync();
+                    var machineData = await db.Table_MachineRegistration.Where(c => c.MachineNumber == request.MachineNumber).FirstOrDefaultAsync();
 
-                    var companyData = await db.Table_CustomerRegistartion
-                        .Where(c => c.CustomerID == request.CustomerId)
-                        .FirstOrDefaultAsync();
+                    var companyData = await db.Table_CustomerRegistartion.Where(c => c.CustomerID == request.CustomerId).FirstOrDefaultAsync();
 
-                    var contactData = await db.Table_Contactdetails
-                        .Where(c => c.MachineId == request.MachineNumber)
-                        .Select(c => new ContactData
+                    var contactData = await db.Table_Contactdetails.Where(c => c.MachineId == request.MachineNumber) .Select(c => new ContactData
                         {
                             ContactName = c.ContactName,
                             Designation = c.Designation,
@@ -438,15 +430,9 @@ namespace FPL.Api.Controllers
                         })
                         .ToListAsync();
 
-                    var requestForData = await db.Table_MachineCustomerRequestsDetails
-                        .Where(c => c.UniqueID == request.RequestFor)
-                        .Select(c => c.RequestFor)
-                        .ToListAsync();
+                    var requestForData = await db.Table_MachineCustomerRequestsDetails .Where(c => c.UniqueID == request.RequestFor) .Select(c => c.RequestFor) .ToListAsync();
 
-                    var sandSData = await db.Table_MachineCustomerSansSDetails
-                        .Where(c => c.UniqueID == request.SandS)
-                        .Select(c => c.SandS)
-                        .ToListAsync();
+                    var sandSData = await db.Table_MachineCustomerSansSDetails .Where(c => c.UniqueID == request.SandS).Select(c => c.SandS) .ToListAsync();
 
                     var requestForResult = string.Join(" , ", requestForData);
                     var sandSResult = string.Join(" , ", sandSData);
@@ -477,7 +463,7 @@ namespace FPL.Api.Controllers
             }
             catch (Exception e)
             {
-                // Log the exception or handle it as needed
+              
                 return InternalServerError();
             }
         }
