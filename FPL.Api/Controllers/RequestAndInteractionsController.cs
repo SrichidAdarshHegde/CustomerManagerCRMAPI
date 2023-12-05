@@ -808,7 +808,7 @@ namespace FPL.Api.Controllers
                                 date = Requests[i].CreatedOn,
                                 IsDone = Requests[i].IsDone,
                                 RouteId = customerData.RouteId,
-                                RequestId = Requests[i].id,
+                                RequestId = 0,
                                 RequestFor = requestData.RequestsName,
                                 Priority = requestData.Priority,
                                 SandS = null,
