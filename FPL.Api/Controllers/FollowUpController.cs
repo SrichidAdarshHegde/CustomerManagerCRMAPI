@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -28,9 +29,13 @@ namespace FPL.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<IHttpActionResult> GetPerticularFollowupComplete()
+        public async Task<IHttpActionResult> GetPerticularFollowupComplete([FromUri(Name = "id")] string date)
         {
-            var result = await Task.Run(() => db.Table_InvoiceDocuments.Where(c => c.IsPaid == true).ToList());
+            var dateArray = date.Split(',');
+            DateTime fromDate = DateTime.Parse(dateArray[0], CultureInfo.CreateSpecificCulture("en-IN"));
+            DateTime toDate = DateTime.Parse(dateArray[1], CultureInfo.CreateSpecificCulture("en-IN"));
+
+            var result = await Task.Run(() => db.Table_InvoiceDocuments.Where(c => c.IsPaid == true && c.CreatedOn >= fromDate && c.CreatedOn <= toDate).ToList());
             return Ok(result);
         }
 
@@ -43,9 +48,13 @@ namespace FPL.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<IHttpActionResult> GetFollowupList()
+        public async Task<IHttpActionResult> GetFollowupList([FromUri(Name = "id")] string date)
         {
-            var result = await Task.Run(() => db.Table_FollowUpDetails.ToList());
+            var dateArray = date.Split(',');
+            DateTime fromDate = DateTime.Parse(dateArray[0], CultureInfo.CreateSpecificCulture("en-IN"));
+            DateTime toDate = DateTime.Parse(dateArray[1], CultureInfo.CreateSpecificCulture("en-IN"));
+
+            var result = await Task.Run(() => db.Table_FollowUpDetails.Where(c => c.CreatedOn >= fromDate && c.CreatedOn <= toDate).ToList());
             return Ok(result);
         }
 

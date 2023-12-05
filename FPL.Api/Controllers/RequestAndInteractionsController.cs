@@ -27,117 +27,227 @@ namespace FPL.Api.Controllers
             try
             {
                 var httpRequest = HttpContext.Current.Request;
-                var machineNumber = httpRequest["MachineNumber"];
-
-                var customerId = httpRequest["CustomerId"];
-                var ticketNo = httpRequest["TokenNo"];
-
-                var requestfor = httpRequest["RequestFor"];
-                //JArray selectedFeatures = JArray.Parse(features);
-                List<RequestItem> selectedRequestFor = JsonConvert.DeserializeObject<List<RequestItem>>(requestfor);
-
-                //    var featuresdd = JsonConvert.DeserializeObject<FeaturesVM>(features);
-
-
-                //var sands = httpRequest["SandS"];
-                //JArray selectedFeatures = JArray.Parse(features);
-                //List<SandSItem> selectedSandS = JsonConvert.DeserializeObject<List<SandSItem>>(sands);
-
-                //    var featuresdd = JsonConvert.DeserializeObject<FeaturesVM>(features);
-                var customername = httpRequest["CustomerName"];
-                var remarks = httpRequest["Remarks"];
-                var resolution = httpRequest["Resolution"];
-
-
-
-                var createdBy = httpRequest["CreatedBy"];
-
-
-                int machineID = Convert.ToInt32(machineNumber);
-
-                var macid = db.Table_MachineRegistration.Where(c => c.MachineNumber == machineID).Select(c => c.Id).FirstOrDefault();
-
-
-                for (int i = 0; i < selectedRequestFor.Count; i++)
+                var mn = httpRequest["MachineNumber"];
+                if (mn == "undefined" || mn == null || mn == "")
                 {
-                    Table_MachineCustomerRequestsDetails data2 = new Table_MachineCustomerRequestsDetails()
+                    //var httpRequest = HttpContext.Current.Request;
+                    var customerId = httpRequest["CustomerId"];
+                    var ticketNo = httpRequest["TokenNo"];
+
+                    var requestfor = httpRequest["RequestFor"];
+                    //JArray selectedFeatures = JArray.Parse(features);
+                    List<RequestItem> selectedRequestFor = JsonConvert.DeserializeObject<List<RequestItem>>(requestfor);
+
+                    //    var featuresdd = JsonConvert.DeserializeObject<FeaturesVM>(features);
+
+
+                    //var sands = httpRequest["SandS"];
+                    //JArray selectedFeatures = JArray.Parse(features);
+                    //List<SandSItem> selectedSandS = JsonConvert.DeserializeObject<List<SandSItem>>(sands);
+
+                    //    var featuresdd = JsonConvert.DeserializeObject<FeaturesVM>(features);
+                    var customername = httpRequest["CustomerName"];
+                    var remarks = httpRequest["Remarks"];
+                    var resolution = httpRequest["Resolution"];
+
+
+
+                    var createdBy = httpRequest["CreatedBy"];
+
+                    for (int i = 0; i < selectedRequestFor.Count; i++)
                     {
-                        MachineNumber = Convert.ToInt32(machineNumber),
-                        TokenNo = Convert.ToInt32(ticketNo),
-                        MachineId = macid,
+                        Table_MachineCustomerRequestsDetails data2 = new Table_MachineCustomerRequestsDetails()
+                        {
+                           
+                            TokenNo = Convert.ToInt32(ticketNo),
+      
+                            CustomerId = Convert.ToInt32(customerId),
+                            CustomerName = customername,
+                            RequestFor = selectedRequestFor[i].label,
+                            RequestForId = selectedRequestFor[i].value,
+                            Remarks = remarks,
+                            Resolution = resolution,
+                            CreatedBy = createdBy,
+                            
+                            CreatedOn = DateTime.Now,
+
+
+
+                        };
+                        if (data2 != null)
+                        {
+                            await Task.Run(() => db.Table_MachineCustomerRequestsDetails.Add(data2));
+                            int status = await db.SaveChangesAsync();
+
+                        }
+                        else
+                        {
+                            continue;
+                        }
+                    }
+                    //for (int i = 0; i < selectedSandS.Count; i++)
+                    //{
+                    //    Table_MachineCustomerSansSDetails data3 = new Table_MachineCustomerSansSDetails()
+                    //    {
+                    //        MachineNumber = Convert.ToInt32(machineNumber),
+                    //        MachineId = macid,
+                    //        CustomerId = Convert.ToInt32(customerId),
+                    //        CustomerName = customername,
+                    //        SandS = selectedRequestFor[i].label,
+                    //        SandSId = selectedRequestFor[i].value,
+                    //        Remarks = remarks,
+                    //        CreatedBy = createdBy,
+                    //        UniqueID = string.Concat(machineNumber.Concat(remarks).Concat(customerId)),
+                    //        CreatedOn = DateTime.Now,
+
+
+
+                    //    };
+                    //    if (data3 != null)
+                    //    {
+                    //        await Task.Run(() => db.Table_MachineCustomerSansSDetails.Add(data3));
+                    //        int status = await db.SaveChangesAsync();
+
+                    //    }
+                    //    else
+                    //    {
+                    //        continue;
+                    //    }
+                    //}
+                    Table_RequestsFormData data = new Table_RequestsFormData()
+                    {
                         CustomerId = Convert.ToInt32(customerId),
                         CustomerName = customername,
-                        RequestFor = selectedRequestFor[i].label,
-                        RequestForId = selectedRequestFor[i].value,
+                        TokenID = Convert.ToInt32(ticketNo),
+                        IsDone = false,
                         Remarks = remarks,
-                        Resolution = resolution,
-                        CreatedBy = createdBy,
-                        UniqueID = string.Concat(machineNumber.Concat(remarks).Concat(customerId)),
+                        RequestForId = selectedRequestFor[0].value,
                         CreatedOn = DateTime.Now,
-
-
-
+                        CreatedBy = createdBy
                     };
-                    if (data2 != null)
-                    {
-                        await Task.Run(() => db.Table_MachineCustomerRequestsDetails.Add(data2));
-                        int status = await db.SaveChangesAsync();
 
-                    }
-                    else
-                    {
-                        continue;
-                    }
+                    await Task.Run(() => db.Table_RequestsFormData.Add(data));
+                    await db.SaveChangesAsync();
+
+                    return Ok("success");
                 }
-                //for (int i = 0; i < selectedSandS.Count; i++)
-                //{
-                //    Table_MachineCustomerSansSDetails data3 = new Table_MachineCustomerSansSDetails()
-                //    {
-                //        MachineNumber = Convert.ToInt32(machineNumber),
-                //        MachineId = macid,
-                //        CustomerId = Convert.ToInt32(customerId),
-                //        CustomerName = customername,
-                //        SandS = selectedRequestFor[i].label,
-                //        SandSId = selectedRequestFor[i].value,
-                //        Remarks = remarks,
-                //        CreatedBy = createdBy,
-                //        UniqueID = string.Concat(machineNumber.Concat(remarks).Concat(customerId)),
-                //        CreatedOn = DateTime.Now,
-
-
-
-                //    };
-                //    if (data3 != null)
-                //    {
-                //        await Task.Run(() => db.Table_MachineCustomerSansSDetails.Add(data3));
-                //        int status = await db.SaveChangesAsync();
-
-                //    }
-                //    else
-                //    {
-                //        continue;
-                //    }
-                //}
-                Table_RequestsFormData data = new Table_RequestsFormData()
+                else
                 {
-                    CustomerId = Convert.ToInt32(customerId),
-                    CustomerName = customername,
-                    TokenID = Convert.ToInt32(ticketNo),
-                    IsDone = false,
-                    MachineId = macid,
-                    MachineNumber = machineID,
-                    Remarks = remarks,
-                    RequestFor = string.Concat(machineNumber.Concat(remarks).Concat(customerId)),
-                    RequestForId = selectedRequestFor[0].value,
-                    SandS = string.Concat(machineNumber.Concat(remarks).Concat(customerId)),
-                    CreatedOn = DateTime.Now,
-                    CreatedBy = createdBy
-                };
+                    //var httpRequest = HttpContext.Current.Request;
+                    var machineNumber = httpRequest["MachineNumber"];
 
-                await Task.Run(() => db.Table_RequestsFormData.Add(data));
-                await db.SaveChangesAsync();
+                    var customerId = httpRequest["CustomerId"];
+                    var ticketNo = httpRequest["TokenNo"];
 
-                return Ok("success");
+                    var requestfor = httpRequest["RequestFor"];
+                    //JArray selectedFeatures = JArray.Parse(features);
+                    List<RequestItem> selectedRequestFor = JsonConvert.DeserializeObject<List<RequestItem>>(requestfor);
+
+                    //    var featuresdd = JsonConvert.DeserializeObject<FeaturesVM>(features);
+
+
+                    //var sands = httpRequest["SandS"];
+                    //JArray selectedFeatures = JArray.Parse(features);
+                    //List<SandSItem> selectedSandS = JsonConvert.DeserializeObject<List<SandSItem>>(sands);
+
+                    //    var featuresdd = JsonConvert.DeserializeObject<FeaturesVM>(features);
+                    var customername = httpRequest["CustomerName"];
+                    var remarks = httpRequest["Remarks"];
+                    var resolution = httpRequest["Resolution"];
+
+
+
+                    var createdBy = httpRequest["CreatedBy"];
+
+
+                    int machineID = Convert.ToInt32(machineNumber);
+
+                    var macid = db.Table_MachineRegistration.Where(c => c.MachineNumber == machineID).Select(c => c.Id).FirstOrDefault();
+
+
+                    for (int i = 0; i < selectedRequestFor.Count; i++)
+                    {
+                        Table_MachineCustomerRequestsDetails data2 = new Table_MachineCustomerRequestsDetails()
+                        {
+                            MachineNumber = Convert.ToInt32(machineNumber),
+                            TokenNo = Convert.ToInt32(ticketNo),
+                            MachineId = macid,
+                            CustomerId = Convert.ToInt32(customerId),
+                            CustomerName = customername,
+                            RequestFor = selectedRequestFor[i].label,
+                            RequestForId = selectedRequestFor[i].value,
+                            Remarks = remarks,
+                            Resolution = resolution,
+                            CreatedBy = createdBy,
+                            UniqueID = string.Concat(machineNumber.Concat(remarks).Concat(customerId)),
+                            CreatedOn = DateTime.Now,
+
+
+
+                        };
+                        if (data2 != null)
+                        {
+                            await Task.Run(() => db.Table_MachineCustomerRequestsDetails.Add(data2));
+                            int status = await db.SaveChangesAsync();
+
+                        }
+                        else
+                        {
+                            continue;
+                        }
+                    }
+                    //for (int i = 0; i < selectedSandS.Count; i++)
+                    //{
+                    //    Table_MachineCustomerSansSDetails data3 = new Table_MachineCustomerSansSDetails()
+                    //    {
+                    //        MachineNumber = Convert.ToInt32(machineNumber),
+                    //        MachineId = macid,
+                    //        CustomerId = Convert.ToInt32(customerId),
+                    //        CustomerName = customername,
+                    //        SandS = selectedRequestFor[i].label,
+                    //        SandSId = selectedRequestFor[i].value,
+                    //        Remarks = remarks,
+                    //        CreatedBy = createdBy,
+                    //        UniqueID = string.Concat(machineNumber.Concat(remarks).Concat(customerId)),
+                    //        CreatedOn = DateTime.Now,
+
+
+
+                    //    };
+                    //    if (data3 != null)
+                    //    {
+                    //        await Task.Run(() => db.Table_MachineCustomerSansSDetails.Add(data3));
+                    //        int status = await db.SaveChangesAsync();
+
+                    //    }
+                    //    else
+                    //    {
+                    //        continue;
+                    //    }
+                    //}
+                    Table_RequestsFormData data = new Table_RequestsFormData()
+                    {
+                        CustomerId = Convert.ToInt32(customerId),
+                        CustomerName = customername,
+                        TokenID = Convert.ToInt32(ticketNo),
+                        IsDone = false,
+                        MachineId = macid,
+                        MachineNumber = machineID,
+                        Remarks = remarks,
+                        RequestFor = string.Concat(machineNumber.Concat(remarks).Concat(customerId)),
+                        RequestForId = selectedRequestFor[0].value,
+                        SandS = string.Concat(machineNumber.Concat(remarks).Concat(customerId)),
+                        CreatedOn = DateTime.Now,
+                        CreatedBy = createdBy
+                    };
+
+                    await Task.Run(() => db.Table_RequestsFormData.Add(data));
+                    await db.SaveChangesAsync();
+
+                    return Ok("success");
+                }
+
+                
             }
             catch (Exception e)
             {
@@ -300,101 +410,134 @@ namespace FPL.Api.Controllers
         {
             try
             {
-                string requestforresult = "";
-                string requestsandsresult = "";
-                var Requests = db.Table_RequestsFormData.Where(c => c.IsDone == false && c.IsMachineDeleted != true).ToList();
-                var datalist = new List<allrequestdatamodel>();
+                var requests = db.Table_RequestsFormData .Where(c => c.IsDone == false && c.IsMachineDeleted != true).ToList();
 
+                var dataList = new List<allrequestdatamodel>();
 
-
-                for (var i = 0; i < Requests.Count; i++)
+                foreach (var request in requests)
                 {
-                    var mn = Requests[i].MachineNumber;
-                    var cid = Requests[i].CustomerId;
+                    var machineData = await db.Table_MachineRegistration.Where(c => c.MachineNumber == request.MachineNumber).FirstOrDefaultAsync();
 
-                    var uniquerequestfor = Requests[i].RequestFor;
-                    var uniquesands = Requests[i].SandS;
+                    var companyData = await db.Table_CustomerRegistartion.Where(c => c.CustomerID == request.CustomerId).FirstOrDefaultAsync();
 
-                    var MachineData = await Task.Run(() => db.Table_MachineRegistration.Where(c => c.MachineNumber == mn).Select(c => c).FirstOrDefault());
-                    var CompanyData = await Task.Run(() => db.Table_CustomerRegistartion.Where(c => c.CustomerID == cid).Select(c => c).FirstOrDefault());
-                    var CuntactDataData = await Task.Run(() => db.Table_Contactdetails.Where(c => c.MachineId == mn).Select(c => c).ToList());
+                    var contactData = await db.Table_Contactdetails.Where(c => c.MachineId == request.MachineNumber) .Select(c => new ContactData
+                        {
+                            ContactName = c.ContactName,
+                            Designation = c.Designation,
+                            Email = c.Email,
+                            Mobile = c.Mobile,
+                            Salute = c.Salute
+                        })
+                        .ToListAsync();
 
-                    var requestfordata = await Task.Run(() => db.Table_MachineCustomerRequestsDetails.Where(c => c.UniqueID == uniquerequestfor).Select(c => c.RequestFor).ToList());
+                    var requestForData = await db.Table_MachineCustomerRequestsDetails .Where(c => c.UniqueID == request.RequestFor) .Select(c => c.RequestFor) .ToListAsync();
 
-                    var sanddsdata = await Task.Run(() => db.Table_MachineCustomerSansSDetails.Where(c => c.UniqueID == uniquesands).Select(c => c.SandS).ToList());
+                    var sandSData = await db.Table_MachineCustomerSansSDetails .Where(c => c.UniqueID == request.SandS).Select(c => c.SandS) .ToListAsync();
 
-                    for (int r = 0; r < requestfordata.Count; r++)
+                    var requestForResult = string.Join(" , ", requestForData);
+                    var sandSResult = string.Join(" , ", sandSData);
 
+                    var data = new allrequestdatamodel
                     {
-                        if (r == 0)
-                        {
-                            requestforresult = requestfordata[r].ToString();
-                        }
-                        else
-                        {
-                            requestforresult = requestforresult + " , " + requestfordata[r];
-                        }
-
-                    }
-
-                    for (int s = 0; s < sanddsdata.Count; s++)
-                    {
-                        if (s == 0)
-                        {
-                            requestsandsresult = sanddsdata[s].ToString();
-                        }
-                        else
-                        {
-                            requestsandsresult = requestsandsresult + " , " + requestfordata[s];
-                        }
-
-                    }
-
-                    for (var j = 0; j < CuntactDataData.Count; j++)
-                    {
-                        ContactData cdata = new ContactData()
-                        {
-                            ContactName = CuntactDataData[j].ContactName,
-                            Designation = CuntactDataData[j].Designation,
-                            Email = CuntactDataData[j].Email,
-                            Mobile = CuntactDataData[j].Mobile,
-                            Salute = CuntactDataData[j].Salute
-                        };
-                        contact.Add(cdata);
-
-                    }
-                    allrequestdatamodel data = new allrequestdatamodel()
-                    {
-                        CompanyName = CompanyData.CompanyName,
-                        CustomerID = CompanyData.CustomerID,
-                        MachineNumber = MachineData.MachineNumber,
-                        ModelName = MachineData.ModelName,
-                        ModelId = MachineData.ModelId,
-                        Remarks = Requests[i].Remarks,
-                        Region = CompanyData.Region,
-                        Zone = CompanyData.Zone,
-                        ContactData = contact,
-                        CreatedBy = Requests[i].CreatedBy,
-                        CreatedOn = Requests[i].CreatedOn,
-                        IsDone = Requests[i].IsDone,
-                        RequestId = Requests[i].id,
-                        RequestFor = requestforresult,
-                        SandS = requestsandsresult
-
+                        CompanyName = companyData.CompanyName,
+                        CustomerID = companyData.CustomerID,
+                        MachineNumber = machineData.MachineNumber,
+                        ModelName = machineData.ModelName,
+                        ModelId = machineData.ModelId,
+                        Remarks = request.Remarks,
+                        Region = companyData.Region,
+                        Zone = companyData.Zone,
+                        ContactData = contactData,
+                        CreatedBy = request.CreatedBy,
+                        CreatedOn = request.CreatedOn,
+                        IsDone = request.IsDone,
+                        RequestId = request.id,
+                        RequestFor = requestForResult,
+                        SandS = sandSResult
                     };
-                    datalist.Add(data);
+
+                    dataList.Add(data);
                 }
-                return Ok(datalist);
+
+                return Ok(dataList);
             }
             catch (Exception e)
             {
-
-                throw e;
+              
+                return InternalServerError();
             }
         }
 
+        [HttpGet]
 
 
+     
+        public async Task<IHttpActionResult> GetDatewiserequest([FromUri(Name = "id")]string dates)
+        {
+            try
+            {
+                var dateArray = dates.Split(',');
+                DateTime fromDate = DateTime.Parse(dateArray[0], CultureInfo.CreateSpecificCulture("en-IN"));
+                DateTime toDate = DateTime.Parse(dateArray[1], CultureInfo.CreateSpecificCulture("en-IN"));
+                var requestData = await Task.Run(() => db.Table_RequestsFormData.Where(c => c.CreatedOn >= fromDate && c.CreatedOn <= toDate).ToList());
+
+                return Ok(requestData);
+            }
+            catch (Exception e)
+            {
+                return InternalServerError(e);
+            }
+        }
+        [HttpGet]
+        public async Task<IHttpActionResult> GetDatewiserequestinvoice([FromUri(Name = "id")] string dates)
+        {
+            try
+            {
+                var dateArray = dates.Split(',');
+                DateTime fromDate = DateTime.Parse(dateArray[0], CultureInfo.CreateSpecificCulture("en-IN"));
+                DateTime toDate = DateTime.Parse(dateArray[1], CultureInfo.CreateSpecificCulture("en-IN"));
+                var requestData = await Task.Run(() => db.Table_InvoicePerticular.Where(c => c.CreatedOn >= fromDate && c.CreatedOn <= toDate).ToList());
+
+                return Ok(requestData);
+            }
+            catch (Exception e)
+            {
+                return InternalServerError(e);
+            }
+        }
+
+        public async Task<IHttpActionResult> GetDatewiserequestInetraction([FromUri(Name = "id")] string dates)
+        {
+            try
+            {
+                var dateArray = dates.Split(',');
+                DateTime fromDate = DateTime.Parse(dateArray[0], CultureInfo.CreateSpecificCulture("en-IN"));
+                DateTime toDate = DateTime.Parse(dateArray[1], CultureInfo.CreateSpecificCulture("en-IN"));
+                var requestData = await Task.Run(() => db.Table_RequestsFormData.Where(c => c.CreatedOn >= fromDate && c.CreatedOn <= toDate).ToList());
+
+                return Ok(requestData);
+            }
+            catch (Exception e)
+            {
+                return InternalServerError(e);
+            }
+        }
+        public async Task<IHttpActionResult> GetDatewiserequestfollowupDate([FromUri(Name = "id")] string dates)
+        {
+            try
+            {
+                var dateArray = dates.Split(',');
+                DateTime fromDate = DateTime.Parse(dateArray[0], CultureInfo.CreateSpecificCulture("en-IN"));
+                DateTime toDate = DateTime.Parse(dateArray[1], CultureInfo.CreateSpecificCulture("en-IN"));
+                var requestData = await Task.Run(() => db.Table_FollowUpDetails.Where(c => c.CreatedOn >= fromDate && c.CreatedOn <= toDate).ToList());
+
+                return Ok(requestData);
+            }
+            catch (Exception e)
+            {
+                return InternalServerError(e);
+            }
+        }
         [HttpGet]
         public async Task<IHttpActionResult> GetPendingRequestsforWorkFront()
         {
@@ -783,40 +926,80 @@ namespace FPL.Api.Controllers
                     for (var i = 0; i < Requests.Count; i++)
                     {
                         var customerId = Requests[i].CustomerId;
-                        var machineNumber = Requests[i].MachineNumber;
-                        var reqForId = Requests[i].RequestForId;
-                        var customerData = db.Table_CustomerRegistartion.Where(c => c.CustomerID == customerId).FirstOrDefault();
-                        var machineData = db.Table_MachineRegistration.Where(c => c.MachineNumber == machineNumber && c.CustomerId == customerId).FirstOrDefault();
-                        var requestData = db.Table_Requests.Where(c => c.RequestsId == reqForId).FirstOrDefault();
-                        var contactData = db.Table_Contactdetails.Where(c => c.CustomerId == customerId).FirstOrDefault();
-                        var requestDatafull = db.Table_MachineCustomerRequestsDetails.Where(c => c.MachineNumber == machineNumber && c.CustomerId == customerId).FirstOrDefault();
-                        if (customerData.ZoneId == id)
+                        var machineNumber = Convert.ToString(Requests[i].MachineNumber);
+                        if (machineNumber == "undefined" || machineNumber == null || machineNumber == "")
                         {
-                            allrequestdatamodel data = new allrequestdatamodel()
+                            var reqForId = Requests[i].RequestForId;
+                            var customerData = db.Table_CustomerRegistartion.Where(c => c.CustomerID == customerId).FirstOrDefault();
+                            //var machineData = db.Table_MachineRegistration.Where(c => c.MachineNumber == machineNumber && c.CustomerId == customerId).FirstOrDefault();
+                            var requestData = db.Table_Requests.Where(c => c.RequestsId == reqForId).FirstOrDefault();
+                            var contactData = db.Table_Contactdetails.Where(c => c.CustomerId == customerId).FirstOrDefault();
+                            var requestDatafull = db.Table_MachineCustomerRequestsDetails.Where(c => c.CustomerId == customerId).FirstOrDefault();
+                            if (customerData.ZoneId == id)
                             {
-                                CompanyName = customerData.CompanyName,
-                                CustomerID = customerData.CustomerID,
-                                MachineNumber = machineData.MachineNumber,
-                                ModelName = machineData.ModelName,
-                                ModelId = machineData.ModelId,
-                                Remarks = Requests[i].Remarks,
-                                Region = customerData.Region,
-                                Zone = customerData.Zone,
-                                Cluster = customerData.Cluster,
-                                ContactDatastring = contactData.Salute + " " + contactData.ContactName + "(" + contactData.Mobile + "," + contactData.Email + ")",
-                                CreatedBy = Requests[i].CreatedBy,
-                                date = Requests[i].CreatedOn,
-                                IsDone = Requests[i].IsDone,
-                                RouteId = customerData.RouteId,
-                                RequestId = 0,
-                                RequestFor = requestData.RequestsName,
-                                Priority = requestData.Priority,
-                                SandS = null,
-                                TokenID = requestDatafull.TokenNo
-                            };
-                            datalist.Add(data);
+                                allrequestdatamodel data = new allrequestdatamodel()
+                                {
+                                    CompanyName = customerData.CompanyName,
+                                    CustomerID = customerData.CustomerID,
+                                    //MachineNumber = machineData.MachineNumber,
+                                    //ModelName = machineData.ModelName,
+                                    //ModelId = machineData.ModelId,
+                                    Remarks = Requests[i].Remarks,
+                                    Region = customerData.Region,
+                                    Zone = customerData.Zone,
+                                    Cluster = customerData.Cluster,
+                                    //ContactDatastring = contactData.Salute + " " + contactData.ContactName + "(" + contactData.Mobile + "," + contactData.Email + ")",
+                                    CreatedBy = Requests[i].CreatedBy,
+                                    date = Requests[i].CreatedOn,
+                                    IsDone = Requests[i].IsDone,
+                                    RouteId = customerData.RouteId,
+                                    RequestId = Requests[i].id,
+                                    RequestFor = requestData.RequestsName,
+                                    Priority = requestData.Priority,
+                                    SandS = null,
+                                    TokenID = requestDatafull.TokenNo
+                                };
+                                datalist.Add(data);
+                            }
+
                         }
-                        
+                        else
+                        {
+                            var machineNum = Convert.ToInt32(Requests[i].MachineNumber);
+                            var reqForId = Requests[i].RequestForId;
+                            var customerData = db.Table_CustomerRegistartion.Where(c => c.CustomerID == customerId).FirstOrDefault();
+                            var machineData = db.Table_MachineRegistration.Where(c => c.MachineNumber == machineNum && c.CustomerId == customerId).FirstOrDefault();
+                            var requestData = db.Table_Requests.Where(c => c.RequestsId == reqForId).FirstOrDefault();
+                            var contactData = db.Table_Contactdetails.Where(c => c.CustomerId == customerId).FirstOrDefault();
+                            var requestDatafull = db.Table_MachineCustomerRequestsDetails.Where(c => c.MachineNumber == machineNum && c.CustomerId == customerId).FirstOrDefault();
+                            if (customerData.ZoneId == id)
+                            {
+                                allrequestdatamodel data = new allrequestdatamodel()
+                                {
+                                    CompanyName = customerData.CompanyName,
+                                    CustomerID = customerData.CustomerID,
+                                    MachineNumber = machineData.MachineNumber,
+                                    ModelName = machineData.ModelName,
+                                    ModelId = machineData.ModelId,
+                                    Remarks = Requests[i].Remarks,
+                                    Region = customerData.Region,
+                                    Zone = customerData.Zone,
+                                    Cluster = customerData.Cluster,
+                                    ContactDatastring = contactData.Salute + " " + contactData.ContactName + "(" + contactData.Mobile + "," + contactData.Email + ")",
+                                    CreatedBy = Requests[i].CreatedBy,
+                                    date = Requests[i].CreatedOn,
+                                    IsDone = Requests[i].IsDone,
+                                    RouteId = customerData.RouteId,
+                                    RequestId = Requests[i].id,
+                                    RequestFor = requestData.RequestsName,
+                                    Priority = requestData.Priority,
+                                    SandS = null,
+                                    TokenID = requestDatafull.TokenNo
+                                };
+                                datalist.Add(data);
+                            }
+
+                        }
 
                     }
                 }
