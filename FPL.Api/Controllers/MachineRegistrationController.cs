@@ -568,6 +568,13 @@ namespace FPL.Api.Controllers
 
             return Ok("success");
         }
+        [HttpGet]
+        public async Task<IHttpActionResult> GetCustomerContactDetailss(int id)
+        {
+            var result = db.Table_Contactdetails.Where(c => c.CustomerId == id).ToList();
+            return Ok(result);
+        }
+
 
         [HttpPost]
         public async Task<IHttpActionResult> UpdateContactDetails(Table_ContactdetailsDatamodel data1)
