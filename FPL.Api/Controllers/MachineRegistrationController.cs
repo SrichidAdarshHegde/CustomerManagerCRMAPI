@@ -554,7 +554,7 @@ namespace FPL.Api.Controllers
         [HttpGet]
         public async Task<IHttpActionResult> GetCustomerTickets([FromUri(Name = "id")] int id)
         {
-            var result = db.Table_RequestsFormData.Where(c => c.CustomerId == id).ToList();
+            var result = db.Table_RequestsFormData.Where(c => c.CustomerId == id && c.IsDone != true).ToList();
             return Ok(result);
         }
 

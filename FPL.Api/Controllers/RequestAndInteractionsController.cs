@@ -34,18 +34,19 @@ namespace FPL.Api.Controllers
                     var customerId = httpRequest["CustomerId"];
                     var ticketNo = httpRequest["TokenNo"];
                     var contactId = httpRequest["ContactId"];
+                    //var salute = httpRequest["Salute"];
+                    //var contactName = httpRequest["ContactName"];
+                    //var designation = httpRequest["Designation"];
+                    //var email = httpRequest["Email"];
+                    //var mobile = httpRequest["Mobile"];
 
                     var requestfor = httpRequest["RequestFor"];
-                    //JArray selectedFeatures = JArray.Parse(features);
                     List<RequestItem> selectedRequestFor = JsonConvert.DeserializeObject<List<RequestItem>>(requestfor);
-
+                    //JArray selectedFeatures = JArray.Parse(features);
                     //    var featuresdd = JsonConvert.DeserializeObject<FeaturesVM>(features);
-
-
                     //var sands = httpRequest["SandS"];
                     //JArray selectedFeatures = JArray.Parse(features);
                     //List<SandSItem> selectedSandS = JsonConvert.DeserializeObject<List<SandSItem>>(sands);
-
                     //    var featuresdd = JsonConvert.DeserializeObject<FeaturesVM>(features);
                     var customername = httpRequest["CustomerName"];
                     var remarks = httpRequest["Remarks"];
@@ -61,7 +62,6 @@ namespace FPL.Api.Controllers
                         {
                            
                             TokenNo = Convert.ToInt32(ticketNo),
-      
                             CustomerId = Convert.ToInt32(customerId),
                             CustomerName = customername,
                             RequestFor = selectedRequestFor[i].label,
@@ -163,8 +163,6 @@ namespace FPL.Api.Controllers
                     var customername = httpRequest["CustomerName"];
                     var remarks = httpRequest["Remarks"];
                     var resolution = httpRequest["Resolution"];
-
-
 
                     var createdBy = httpRequest["CreatedBy"];
 
@@ -954,7 +952,7 @@ namespace FPL.Api.Controllers
                             //var machineData = db.Table_MachineRegistration.Where(c => c.MachineNumber == machineNumber && c.CustomerId == customerId).FirstOrDefault();
                             var requestData = db.Table_Requests.Where(c => c.RequestsId == reqForId).FirstOrDefault();
                             var contactData = db.Table_Contactdetails.Where(c => c.CustomerId == customerId).FirstOrDefault();
-                            var requestDatafull = db.Table_MachineCustomerRequestsDetails.Where(c => c.CustomerId == customerId).FirstOrDefault();
+                            var requestDatafull = db.Table_MachineCustomerRequestsDetails.Where(c => c.CustomerId == customerId && c.RequestForId == reqForId).OrderByDescending(c => c.TokenNo).FirstOrDefault();
                             if (customerData.ZoneId == id)
                             {
                                 allrequestdatamodel data = new allrequestdatamodel()
@@ -991,7 +989,7 @@ namespace FPL.Api.Controllers
                             var machineData = db.Table_MachineRegistration.Where(c => c.MachineNumber == machineNum && c.CustomerId == customerId).FirstOrDefault();
                             var requestData = db.Table_Requests.Where(c => c.RequestsId == reqForId).FirstOrDefault();
                             var contactData = db.Table_Contactdetails.Where(c => c.CustomerId == customerId).FirstOrDefault();
-                            var requestDatafull = db.Table_MachineCustomerRequestsDetails.Where(c => c.MachineNumber == machineNum && c.CustomerId == customerId).FirstOrDefault();
+                            var requestDatafull = db.Table_MachineCustomerRequestsDetails.Where(c => c.MachineNumber == machineNum && c.CustomerId == customerId && c.RequestForId == reqForId).OrderByDescending(c => c.TokenNo).FirstOrDefault();
                             if (customerData.ZoneId == id)
                             {
                                 allrequestdatamodel data = new allrequestdatamodel()
