@@ -34,12 +34,7 @@ namespace FPL.Api.Controllers
                     var customerId = httpRequest["CustomerId"];
                     var ticketNo = httpRequest["TokenNo"];
                     var contactId = httpRequest["ContactId"];
-                    //var salute = httpRequest["Salute"];
-                    //var contactName = httpRequest["ContactName"];
-                    //var designation = httpRequest["Designation"];
-                    //var email = httpRequest["Email"];
-                    //var mobile = httpRequest["Mobile"];
-
+                
                     var requestfor = httpRequest["RequestFor"];
                     List<RequestItem> selectedRequestFor = JsonConvert.DeserializeObject<List<RequestItem>>(requestfor);
                     //JArray selectedFeatures = JArray.Parse(features);
@@ -125,6 +120,7 @@ namespace FPL.Api.Controllers
                         TokenID = Convert.ToInt32(ticketNo),
                         IsDone = false,
                         Remarks = remarks,
+                        Resolution = resolution,
                         RequestForId = selectedRequestFor[0].value,
                         CreatedOn = DateTime.Now,
                         CreatedBy = createdBy,
@@ -246,6 +242,7 @@ namespace FPL.Api.Controllers
                         MachineId = macid,
                         MachineNumber = machineID,
                         Remarks = remarks,
+                        Resolution = resolution,
                         RequestFor = string.Concat(machineNumber.Concat(remarks).Concat(customerId)),
                         RequestForId = selectedRequestFor[0].value,
                         SandS = string.Concat(machineNumber.Concat(remarks).Concat(customerId)),
