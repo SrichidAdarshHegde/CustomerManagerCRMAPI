@@ -78,8 +78,6 @@ namespace FPL.Api.Controllers
                             CreatedOn = DateTime.Now,
                             FeatureDataID = uniqueID
 
-
-
                         };
                         if (data2 != null)
                         {
@@ -271,7 +269,7 @@ namespace FPL.Api.Controllers
         public async Task<IHttpActionResult> GetMachineInLocation([FromUri(Name = "id")] string id)
         {
            // int idd = Convert.ToInt32(id);
-            var result = await Task.Run(() => db.Table_MachineRegistration.Where(c => c.CustomerName == id).ToList());
+            var result = await Task.Run(() => db.Table_MachineRegistration.Where(c => c.CustomerName == id && c.IsMachineDeleted != true).ToList());
             return Ok(result);
         }
 
@@ -754,6 +752,7 @@ namespace FPL.Api.Controllers
             {
                 var result = await Task.Run(() => db.Table_MachineRegistration.Where(c => c.IsMachineDeleted != true).ToList());
                 var datalist = new List<AllCustomerMachineDetails>();
+
                 for (var i = 0; i < result.Count; i++)
                 {
                     var cid = result[i].CustomerId;
@@ -763,36 +762,42 @@ namespace FPL.Api.Controllers
 
                     var customerData = await Task.Run(() => db.Table_CustomerRegistartion.Where(c => c.CustomerID == cid).Select(c => c).FirstOrDefault());
 
-                    AllCustomerMachineDetails data = new AllCustomerMachineDetails()
+                    AllCustomerMachineDetails data = new AllCustomerMachineDetails();
+
+                    if (MachineData != null)
                     {
-                        Id = MachineData.Id,
-                        MachineNumber = MachineData.MachineNumber,
-                        ModelId = MachineData.ModelId,
-                        ModelName = MachineData.ModelName,
-                        CustomerID = customerData.CustomerID,
-                        CustomerName = customerData.CompanyName,
-                        Unit = customerData.Unit,
-                        AddressOne = customerData.AddressOne,
-                        AddressTwo = customerData.AddressTwo,
-                        AddressThree = customerData.AddressThree,
-                        City = customerData.City,
-                        State = customerData.State,
-                        Pincode = customerData.Pincode,
-                        GSTIN = customerData.GSTIN,
-                        Cluster = customerData.Cluster,
-                        RouteNumber = customerData.RouteNumber,
-                        Region = customerData.Region,
-                        Zone = customerData.Zone,
-                        CreatedBy = result[i].CreatedBy,
-                        CreatedOn = result[i].CreatedOn,
-                    };
+                        data.Id = MachineData.Id;
+                        data.MachineNumber = MachineData.MachineNumber;
+                        data.ModelId = MachineData.ModelId;
+                        data.ModelName = MachineData.ModelName;
+                        data.CreatedBy = result[i].CreatedBy;
+                        data.CreatedOn = result[i].CreatedOn;
+                    }
+
+                    if (customerData != null)
+                    {
+                        data.CustomerID = customerData.CustomerID;
+                        data.CustomerName = customerData.CompanyName;
+                        data.Unit = customerData.Unit;
+                        data.AddressOne = customerData.AddressOne;
+                        data.AddressTwo = customerData.AddressTwo;
+                        data.AddressThree = customerData.AddressThree;
+                        data.City = customerData.City;
+                        data.State = customerData.State;
+                        data.Pincode = customerData.Pincode;
+                        data.GSTIN = customerData.GSTIN;
+                        data.Cluster = customerData.Cluster;
+                        data.RouteNumber = customerData.RouteNumber;
+                        data.Region = customerData.Region;
+                        data.Zone = customerData.Zone;
+                    }
+
                     datalist.Add(data);
                 }
 
                 return Ok(datalist);
             }
-
-             catch (Exception e)
+            catch (Exception e)
             {
                 throw e;
             }
