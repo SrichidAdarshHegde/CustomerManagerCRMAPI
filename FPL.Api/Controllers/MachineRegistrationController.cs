@@ -357,7 +357,7 @@ namespace FPL.Api.Controllers
         }
 
 
-            [HttpPost]
+        [HttpPost]
         public async Task<IHttpActionResult> DeleteMachineData(Table_MachineRegistration  data1)
         {
             int machinenumber = Convert.ToInt32(data1.MachineNumber);
@@ -692,7 +692,7 @@ namespace FPL.Api.Controllers
         {
             try
             {
-                var result = db.Table_RequestsFormData.Where(c => c.CustomerId == id && c.IsDone != true).ToList();
+                var result = db.Table_RequestsFormData.Where(c => c.CustomerId == id && c.IsDone != true && c.IsMachineDeleted != true).ToList();
                 var datalist = new List<AllCustomerTicketDetails>();
                 for (var i = 0; i < result.Count; i++)
                 {
