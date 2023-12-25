@@ -33,26 +33,23 @@ namespace FPL.Api.Controllers
                     //var httpRequest = HttpContext.Current.Request;
                     var customerId = httpRequest["CustomerId"];
                     var ticketNo = httpRequest["TokenNo"];
-
+                    var contactId = httpRequest["ContactId"];
+                
                     var requestfor = httpRequest["RequestFor"];
-                    //JArray selectedFeatures = JArray.Parse(features);
                     List<RequestItem> selectedRequestFor = JsonConvert.DeserializeObject<List<RequestItem>>(requestfor);
-
+                    //JArray selectedFeatures = JArray.Parse(features);
                     //    var featuresdd = JsonConvert.DeserializeObject<FeaturesVM>(features);
-
-
                     //var sands = httpRequest["SandS"];
                     //JArray selectedFeatures = JArray.Parse(features);
                     //List<SandSItem> selectedSandS = JsonConvert.DeserializeObject<List<SandSItem>>(sands);
-
                     //    var featuresdd = JsonConvert.DeserializeObject<FeaturesVM>(features);
                     var customername = httpRequest["CustomerName"];
                     var remarks = httpRequest["Remarks"];
                     var resolution = httpRequest["Resolution"];
 
-
-
+                    int contId = Convert.ToInt32(contactId);
                     var createdBy = httpRequest["CreatedBy"];
+                    var contactData = db.Table_Contactdetails.Where(c => c.Id == contId).Select(c => c).FirstOrDefault();
 
                     for (int i = 0; i < selectedRequestFor.Count; i++)
                     {
@@ -60,7 +57,6 @@ namespace FPL.Api.Controllers
                         {
                            
                             TokenNo = Convert.ToInt32(ticketNo),
-      
                             CustomerId = Convert.ToInt32(customerId),
                             CustomerName = customername,
                             RequestFor = selectedRequestFor[i].label,
@@ -68,10 +64,13 @@ namespace FPL.Api.Controllers
                             Remarks = remarks,
                             Resolution = resolution,
                             CreatedBy = createdBy,
-                            
                             CreatedOn = DateTime.Now,
-
-
+                            ContactId = contId,
+                            ContactName = contactData.ContactName,
+                            Salute = contactData.Salute,
+                            Designation = contactData.Designation,
+                            Email = contactData.Email,
+                            Mobile = contactData.Mobile,
 
                         };
                         if (data2 != null)
@@ -121,9 +120,16 @@ namespace FPL.Api.Controllers
                         TokenID = Convert.ToInt32(ticketNo),
                         IsDone = false,
                         Remarks = remarks,
+                        Resolution = resolution,
                         RequestForId = selectedRequestFor[0].value,
                         CreatedOn = DateTime.Now,
-                        CreatedBy = createdBy
+                        CreatedBy = createdBy,
+                        ContactId = contId,
+                        ContactName = contactData.ContactName,
+                        Salute = contactData.Salute,
+                        Designation = contactData.Designation,
+                        Email = contactData.Email,
+                        Mobile = contactData.Mobile,
                     };
 
                     await Task.Run(() => db.Table_RequestsFormData.Add(data));
@@ -138,13 +144,12 @@ namespace FPL.Api.Controllers
 
                     var customerId = httpRequest["CustomerId"];
                     var ticketNo = httpRequest["TokenNo"];
-
+                    var contactId = httpRequest["ContactId"];
                     var requestfor = httpRequest["RequestFor"];
                     //JArray selectedFeatures = JArray.Parse(features);
                     List<RequestItem> selectedRequestFor = JsonConvert.DeserializeObject<List<RequestItem>>(requestfor);
 
                     //    var featuresdd = JsonConvert.DeserializeObject<FeaturesVM>(features);
-
 
                     //var sands = httpRequest["SandS"];
                     //JArray selectedFeatures = JArray.Parse(features);
@@ -155,15 +160,14 @@ namespace FPL.Api.Controllers
                     var remarks = httpRequest["Remarks"];
                     var resolution = httpRequest["Resolution"];
 
-
-
                     var createdBy = httpRequest["CreatedBy"];
 
-
+                    int contId = Convert.ToInt32(contactId);
                     int machineID = Convert.ToInt32(machineNumber);
 
                     var macid = db.Table_MachineRegistration.Where(c => c.MachineNumber == machineID).Select(c => c.Id).FirstOrDefault();
-
+                    
+                    var contactData = db.Table_Contactdetails.Where(c => c.Id == contId).Select(c => c).FirstOrDefault();
 
                     for (int i = 0; i < selectedRequestFor.Count; i++)
                     {
@@ -181,8 +185,12 @@ namespace FPL.Api.Controllers
                             CreatedBy = createdBy,
                             UniqueID = string.Concat(machineNumber.Concat(remarks).Concat(customerId)),
                             CreatedOn = DateTime.Now,
-
-
+                            ContactId = contId,
+                            ContactName = contactData.ContactName,
+                            Salute = contactData.Salute,
+                            Designation = contactData.Designation,
+                            Email = contactData.Email,
+                            Mobile = contactData.Mobile,
 
                         };
                         if (data2 != null)
@@ -234,11 +242,18 @@ namespace FPL.Api.Controllers
                         MachineId = macid,
                         MachineNumber = machineID,
                         Remarks = remarks,
+                        Resolution = resolution,
                         RequestFor = string.Concat(machineNumber.Concat(remarks).Concat(customerId)),
                         RequestForId = selectedRequestFor[0].value,
                         SandS = string.Concat(machineNumber.Concat(remarks).Concat(customerId)),
                         CreatedOn = DateTime.Now,
-                        CreatedBy = createdBy
+                        CreatedBy = createdBy,
+                        ContactId = contId,
+                        ContactName = contactData.ContactName,
+                        Salute = contactData.Salute,
+                        Designation = contactData.Designation,
+                        Email = contactData.Email,
+                        Mobile = contactData.Mobile,
                     };
 
                     await Task.Run(() => db.Table_RequestsFormData.Add(data));
@@ -934,7 +949,7 @@ namespace FPL.Api.Controllers
                             //var machineData = db.Table_MachineRegistration.Where(c => c.MachineNumber == machineNumber && c.CustomerId == customerId).FirstOrDefault();
                             var requestData = db.Table_Requests.Where(c => c.RequestsId == reqForId).FirstOrDefault();
                             var contactData = db.Table_Contactdetails.Where(c => c.CustomerId == customerId).FirstOrDefault();
-                            var requestDatafull = db.Table_MachineCustomerRequestsDetails.Where(c => c.CustomerId == customerId).FirstOrDefault();
+                            var requestDatafull = db.Table_MachineCustomerRequestsDetails.Where(c => c.CustomerId == customerId && c.RequestForId == reqForId).OrderByDescending(c => c.TokenNo).FirstOrDefault();
                             if (customerData.ZoneId == id)
                             {
                                 allrequestdatamodel data = new allrequestdatamodel()
@@ -954,6 +969,7 @@ namespace FPL.Api.Controllers
                                     IsDone = Requests[i].IsDone,
                                     RouteId = customerData.RouteId,
                                     RequestId = Requests[i].id,
+                                    RequestForId = Requests[i].RequestForId,
                                     RequestFor = requestData.RequestsName,
                                     Priority = requestData.Priority,
                                     SandS = null,
@@ -971,7 +987,7 @@ namespace FPL.Api.Controllers
                             var machineData = db.Table_MachineRegistration.Where(c => c.MachineNumber == machineNum && c.CustomerId == customerId).FirstOrDefault();
                             var requestData = db.Table_Requests.Where(c => c.RequestsId == reqForId).FirstOrDefault();
                             var contactData = db.Table_Contactdetails.Where(c => c.CustomerId == customerId).FirstOrDefault();
-                            var requestDatafull = db.Table_MachineCustomerRequestsDetails.Where(c => c.MachineNumber == machineNum && c.CustomerId == customerId).FirstOrDefault();
+                            var requestDatafull = db.Table_MachineCustomerRequestsDetails.Where(c => c.MachineNumber == machineNum && c.CustomerId == customerId && c.RequestForId == reqForId).OrderByDescending(c => c.TokenNo).FirstOrDefault();
                             if (customerData.ZoneId == id)
                             {
                                 allrequestdatamodel data = new allrequestdatamodel()
@@ -991,6 +1007,7 @@ namespace FPL.Api.Controllers
                                     IsDone = Requests[i].IsDone,
                                     RouteId = customerData.RouteId,
                                     RequestId = Requests[i].id,
+                                    RequestForId = Requests[i].RequestForId,
                                     RequestFor = requestData.RequestsName,
                                     Priority = requestData.Priority,
                                     SandS = null,

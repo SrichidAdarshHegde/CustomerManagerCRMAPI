@@ -78,8 +78,6 @@ namespace FPL.Api.Controllers
                             CreatedOn = DateTime.Now,
                             FeatureDataID = uniqueID
 
-
-
                         };
                         if (data2 != null)
                         {
@@ -271,7 +269,7 @@ namespace FPL.Api.Controllers
         public async Task<IHttpActionResult> GetMachineInLocation([FromUri(Name = "id")] string id)
         {
            // int idd = Convert.ToInt32(id);
-            var result = await Task.Run(() => db.Table_MachineRegistration.Where(c => c.CustomerName == id).ToList());
+            var result = await Task.Run(() => db.Table_MachineRegistration.Where(c => c.CustomerName == id && c.IsMachineDeleted != true).ToList());
             return Ok(result);
         }
 
@@ -359,7 +357,7 @@ namespace FPL.Api.Controllers
         }
 
 
-            [HttpPost]
+        [HttpPost]
         public async Task<IHttpActionResult> DeleteMachineData(Table_MachineRegistration  data1)
         {
             int machinenumber = Convert.ToInt32(data1.MachineNumber);
@@ -552,13 +550,6 @@ namespace FPL.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<IHttpActionResult> GetCustomerTickets(int id)
-        {
-            var result = db.Table_MachineCustomerRequestsDetails.Where(c => c.CustomerId == id).ToList();
-            return Ok(result);
-        }
-
-        [HttpGet]
         public async Task<IHttpActionResult> DeleteContactDetails([FromUri(Name = "id")] int id)
         {
             var data = await Task.Run(() => db.Table_Contactdetails.FindAsync(id));
@@ -697,12 +688,71 @@ namespace FPL.Api.Controllers
         }
 
         [HttpGet]
+        public async Task<IHttpActionResult> GetCustomerTickets([FromUri(Name = "id")] int id)
+        {
+            try
+            {
+                var result = db.Table_RequestsFormData.Where(c => c.CustomerId == id && c.IsDone != true && c.IsMachineDeleted != true).ToList();
+                var datalist = new List<AllCustomerTicketDetails>();
+                for (var i = 0; i < result.Count; i++)
+                {
+                    var requestId = result[i].RequestForId;
+
+                    var custId = result[i].CustomerId;
+
+                    var priorityData = await Task.Run(() => db.Table_Requests.Where(c => c.RequestsId == requestId).Select(c => c).FirstOrDefault());
+
+                    var requestData = await Task.Run(() => db.Table_RequestsFormData.Where(c => c.CustomerId == id).Select(c => c).FirstOrDefault());
+
+                    AllCustomerTicketDetails data = new AllCustomerTicketDetails()
+                    {
+                        id = result[i].id,
+                        MachineId = result[i].MachineId,
+                        MachineNumber = result[i].MachineNumber,
+                        CustomerId = result[i].CustomerId,
+                        CustomerName = result[i].CustomerName,
+                        RequestForId = result[i].RequestForId,
+                        RequestsName = priorityData.RequestsName,
+                        Priority = priorityData.Priority,
+                        Remarks = result[i].Remarks,
+                        Resolution = result[i].Resolution,
+                        CreatedBy = result[i].CreatedBy,
+                        CreatedOn = result[i].CreatedOn,
+                        TokenID = result[i].TokenID,
+                        ContactId = result[i].ContactId,
+                        ContactName = result[i].ContactName,
+                        Salute = result[i].Salute,
+                        Designation = result[i].Designation,
+                        Email = result[i].Email,
+                        Mobile = result[i].Mobile,
+                    };
+                    datalist.Add(data);
+                }
+                return Ok(datalist);
+
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+
+        }
+
+        //[HttpGet]
+        //public async Task<IHttpActionResult> GetCustomerTickets([FromUri(Name = "id")] int id)
+        //{
+        //    var result = db.Table_RequestsFormData.Where(c => c.CustomerId == id && c.IsDone != true).ToList();
+        //    return Ok(result);
+        //}
+
+        [HttpGet]
         public async Task<IHttpActionResult> GetMachineCustomerDetails()
         {
             try
             {
                 var result = await Task.Run(() => db.Table_MachineRegistration.Where(c => c.IsMachineDeleted != true).ToList());
                 var datalist = new List<AllCustomerMachineDetails>();
+
                 for (var i = 0; i < result.Count; i++)
                 {
                     var cid = result[i].CustomerId;
@@ -712,36 +762,42 @@ namespace FPL.Api.Controllers
 
                     var customerData = await Task.Run(() => db.Table_CustomerRegistartion.Where(c => c.CustomerID == cid).Select(c => c).FirstOrDefault());
 
-                    AllCustomerMachineDetails data = new AllCustomerMachineDetails()
+                    AllCustomerMachineDetails data = new AllCustomerMachineDetails();
+
+                    if (MachineData != null)
                     {
-                        Id = MachineData.Id,
-                        MachineNumber = MachineData.MachineNumber,
-                        ModelId = MachineData.ModelId,
-                        ModelName = MachineData.ModelName,
-                        CustomerID = customerData.CustomerID,
-                        CustomerName = customerData.CompanyName,
-                        Unit = customerData.Unit,
-                        AddressOne = customerData.AddressOne,
-                        AddressTwo = customerData.AddressTwo,
-                        AddressThree = customerData.AddressThree,
-                        City = customerData.City,
-                        State = customerData.State,
-                        Pincode = customerData.Pincode,
-                        GSTIN = customerData.GSTIN,
-                        Cluster = customerData.Cluster,
-                        RouteNumber = customerData.RouteNumber,
-                        Region = customerData.Region,
-                        Zone = customerData.Zone,
-                        CreatedBy = result[i].CreatedBy,
-                        CreatedOn = result[i].CreatedOn,
-                    };
+                        data.Id = MachineData.Id;
+                        data.MachineNumber = MachineData.MachineNumber;
+                        data.ModelId = MachineData.ModelId;
+                        data.ModelName = MachineData.ModelName;
+                        data.CreatedBy = result[i].CreatedBy;
+                        data.CreatedOn = result[i].CreatedOn;
+                    }
+
+                    if (customerData != null)
+                    {
+                        data.CustomerID = customerData.CustomerID;
+                        data.CustomerName = customerData.CompanyName;
+                        data.Unit = customerData.Unit;
+                        data.AddressOne = customerData.AddressOne;
+                        data.AddressTwo = customerData.AddressTwo;
+                        data.AddressThree = customerData.AddressThree;
+                        data.City = customerData.City;
+                        data.State = customerData.State;
+                        data.Pincode = customerData.Pincode;
+                        data.GSTIN = customerData.GSTIN;
+                        data.Cluster = customerData.Cluster;
+                        data.RouteNumber = customerData.RouteNumber;
+                        data.Region = customerData.Region;
+                        data.Zone = customerData.Zone;
+                    }
+
                     datalist.Add(data);
                 }
 
                 return Ok(datalist);
             }
-
-             catch (Exception e)
+            catch (Exception e)
             {
                 throw e;
             }
@@ -827,6 +883,35 @@ namespace FPL.Api.Controllers
 
             }
             return Ok("success");
+        }
+
+        public partial class AllCustomerTicketDetails
+        {
+            public int id { get; set; }
+            public Nullable<int> MachineNumber { get; set; }
+            public Nullable<int> MachineId { get; set; }
+            public Nullable<int> CustomerId { get; set; }
+            public string CustomerName { get; set; }
+            public string RequestFor { get; set; }
+            public Nullable<int> RequestForId { get; set; }
+            public string SandS { get; set; }
+            public Nullable<int> SandSId { get; set; }
+            public string Remarks { get; set; }
+            public string Resolution { get; set; }
+            public Nullable<bool> IsDone { get; set; }
+            public string CreatedBy { get; set; }
+            public Nullable<System.DateTime> CreatedOn { get; set; }
+            public Nullable<bool> IsMachineDeleted { get; set; }
+            public Nullable<int> TokenID { get; set; }
+            public Nullable<int> ContactId { get; set; }
+            public string Salute { get; set; }
+            public string ContactName { get; set; }
+            public string Designation { get; set; }
+            public string Email { get; set; }
+            public string Mobile { get; set; }
+            public int RequestsId { get; set; }
+            public string RequestsName { get; set; }
+            public string Priority { get; set; }
         }
 
         public partial class AllCustomerMachineDetails
