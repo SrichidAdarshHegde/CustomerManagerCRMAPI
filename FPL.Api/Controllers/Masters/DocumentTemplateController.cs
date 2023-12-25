@@ -27,11 +27,15 @@ namespace FPL.Api.Controllers.Masters
             {
                 Table_DocumentTemplate data = new Table_DocumentTemplate()
                 {
-                    DocumentTemplateID = 0,
-                    TemplateName = data1.TemplateName,
-                    Createdon = DateTime.Now,
-                    CreatedBy = data1.CreatedBy
-                };
+                    DocumentID = Convert.ToInt32(data1.documentID),
+                     DocumentTemplateID = 0,
+                     TemplateName = data1.TemplateName,
+                     Createdon = DateTime.Now,
+                     CreatedBy = data1.CreatedBy,
+                    
+                 
+
+            };
 
            
 
@@ -55,7 +59,7 @@ namespace FPL.Api.Controllers.Masters
 
             try
             {
-                int documentTemplateID = Convert.ToInt32(data1.DocumentTemplateID);
+                int documentTemplateID = Convert.ToInt32(data1.documentID);
                 var data = db.Table_DocumentTemplate.Where(c => c.DocumentTemplateID == documentTemplateID).FirstOrDefault();
                 data.TemplateName = data1.TemplateName;
 
@@ -93,6 +97,8 @@ namespace FPL.Api.Controllers.Masters
             public Nullable<System.DateTime> Createdon { get; set; }
 
             public string CreatedBy { get; set; }
+
+               public int documentID { get; set; }
         }
     }
 }

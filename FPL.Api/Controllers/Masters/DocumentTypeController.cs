@@ -19,6 +19,14 @@ namespace FPL.Api.Controllers.Masters
         public async Task<IHttpActionResult> GetDocumentType()
         {
             var result = await Task.Run(() => db.Table_DocumentType.ToList());
+
+
+            return Ok(result);
+        }
+        [HttpGet]
+        public async Task<IHttpActionResult> GetPerticularDocumentType([FromUri(Name = "id")] int id)
+        {
+            var result = await Task.Run(() => db.Table_DocumentTemplate.Where(c => c.DocumentID == id).ToList());
             return Ok(result);
         }
 
