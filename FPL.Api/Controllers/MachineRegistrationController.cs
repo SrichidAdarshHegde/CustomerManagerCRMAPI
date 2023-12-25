@@ -44,101 +44,186 @@ namespace FPL.Api.Controllers
                 var invoiceparticulars = httpRequest["InvoicePerticularId"];
                 var warrantyr = httpRequest["WarrantyFrom"];
                 var warrantytill = httpRequest["WarrantyTill"];
-
-
                 var createdBy = httpRequest["CreatedBy"];
-
-                int dueamountint = Convert.ToInt32(dueamount);
-                int custID = Convert.ToInt32(customerId);
-
-                int invoiceparticuls = Convert.ToInt32(invoiceparticulars);
-
-                int machineID = Convert.ToInt32(machineNumber);
-
-                int modellID = Convert.ToInt32(modelid);
-
-
-                string uniqueID = "";
-                var customerData = db.Table_CustomerRegistartion.Where(c => c.CustomerID == custID).Select(c => c).FirstOrDefault();
-                var invoiceFileData = db.Table_InvoiceDocuments.Where(c => c.CustomerId == custID && c.MachineNumber == machineID).Select(c => c).FirstOrDefault();
-                var invoiceData = db.Table_InvoicePerticular.Where(c => c.InvoicePerticularId == invoiceparticuls).Select(c => c).FirstOrDefault();
-                var modelData = db.Table_Model.Where(c => c.ModelId == modellID).Select(c => c).FirstOrDefault();
-
-                for (int i = 0; i < selectedFeaturess.Count; i++)
+                if (dueamount == null || dueamount == "" || dueamount == "undefined" || invoiceNumber == null || invoiceNumber == "" || invoiceNumber == "undefined" || invoiceamount == null || invoiceamount == "" || invoiceamount == "undefined" || invoiceDate == null || invoiceDate == "" || invoiceDate == "undefined")
                 {
-                    uniqueID = string.Concat(machineNumber.Concat(customerId).Concat(modellID.ToString()));
-                    Table_MachineFeatureDetails data2 = new Table_MachineFeatureDetails()
+                    int custID = Convert.ToInt32(customerId);
+                    int machineID = Convert.ToInt32(machineNumber);
+                    int modellID = Convert.ToInt32(modelid);
+                    //int invoiceparticuls = Convert.ToInt32(invoiceparticulars);
+                    string uniqueID = "";
+                    var customerData = db.Table_CustomerRegistartion.Where(c => c.CustomerID == custID).Select(c => c).FirstOrDefault();
+                   // var invoiceFileData = db.Table_InvoiceDocuments.Where(c => c.CustomerId == custID && c.MachineNumber == machineID).Select(c => c).FirstOrDefault();
+                    //var invoiceData = db.Table_InvoicePerticular.Where(c => c.InvoicePerticularId == invoiceparticuls).Select(c => c).FirstOrDefault();
+                    var modelData = db.Table_Model.Where(c => c.ModelId == modellID).Select(c => c).FirstOrDefault();
+
+                    for (int i = 0; i < selectedFeaturess.Count; i++)
                     {
-                       
-                        FeatureID = selectedFeaturess[i].value,
-                        FeatureName = selectedFeaturess[i].label,
-                        MachineID = machineID,
-                        MachineNumber = machineID,
-                        CustomerID = custID,
-                        CustomerName = customerData.CompanyName,
-                        InvoiceID = invoiceFileData.Id,
-                        InvoiceParticulars = invoiceData.InvoicePerticularName,
-                        WarrantyFrom = Convert.ToDateTime(warrantyr),
-                        WarrantyTill = Convert.ToDateTime(warrantytill),
-                        ModelID = modellID,
-                        ModelName = modelData.ModelName,
+                        uniqueID = string.Concat(machineNumber.Concat(customerId).Concat(modellID.ToString()));
+                        Table_MachineFeatureDetails data2 = new Table_MachineFeatureDetails()
+                        {
+
+                            FeatureID = selectedFeaturess[i].value,
+                            FeatureName = selectedFeaturess[i].label,
+                            MachineID = machineID,
+                            MachineNumber = machineID,
+                            CustomerID = custID,
+                            CustomerName = customerData.CompanyName,
+                            //InvoiceID = invoiceFileData.Id,
+                            WarrantyFrom = Convert.ToDateTime(warrantyr),
+                            WarrantyTill = Convert.ToDateTime(warrantytill),
+                            ModelID = modellID,
+                            ModelName = modelData.ModelName,
+                            CreatedBy = createdBy,
+                            CreatedOn = DateTime.Now,
+                            FeatureDataID = uniqueID
+
+                        };
+                        if (data2 != null)
+                        {
+                            await Task.Run(() => db.Table_MachineFeatureDetails.Add(data2));
+                            int status = await db.SaveChangesAsync();
+
+                        }
+                        else
+                        {
+                            continue;
+                        }
+                    }
+
+                    //int mybalance = 0;
+                    //bool ispaid = false;
+                    //if (dueamountint == mybalance)
+                    //{
+                    //    ispaid = true;
+                    //}
+                    //else
+                    //{
+                    //    ispaid = ispaid;
+                    //}
+                    Table_MachineRegistration data = new Table_MachineRegistration()
+                    {
+
+                        MachineNumber = Convert.ToInt32(machineNumber),
                         CreatedBy = createdBy,
                         CreatedOn = DateTime.Now,
-                        FeatureDataID = uniqueID
-                      
-
-
+                        CustomerId = customerData.CustomerID,
+                        CustomerName = customerData.CompanyName,
+                        //InvoiceAmount = Convert.ToDecimal(invoiceamount),
+                        //InvoiceDate = Convert.ToDateTime(invoiceDate),
+                        //InvoiceFileBlob = invoiceFileData.BlobLink,
+                        //InvoiceNumber = invoiceNumber,
+                        //InvoicePerticular = invoiceData.InvoicePerticularName,
+                        //InvoicePerticularId = invoiceData.InvoicePerticularId,
+                        ModelId = modelData.ModelId,
+                        ModelName = modelData.ModelName,
+                        WarrantyFrom = Convert.ToDateTime(warrantyr),
+                        WarrantyTill = Convert.ToDateTime(warrantytill),
+                        IsMachineDeleted = false,
+                        FeatureDetailsID = uniqueID,
+                        //DueAmount = Convert.ToDecimal(dueamount),
+                        //IsPaid = ispaid
                     };
-                    if (data2 != null)
-                    {
-                        await Task.Run(() => db.Table_MachineFeatureDetails.Add(data2));
-                        int status = await db.SaveChangesAsync();
 
-                    }
-                    else
-                    {
-                        continue;
-                    }
-                }
+                    await Task.Run(() => db.Table_MachineRegistration.Add(data));
+                    await db.SaveChangesAsync();
 
-                int mybalance = 0;
-                bool ispaid = false;
-                if (dueamountint == mybalance)
-                {
-                    ispaid = true;
+                    return Ok("success");
+
                 }
                 else
                 {
-                    ispaid = ispaid;
+
+                    int dueamountint = Convert.ToInt32(dueamount);
+                    int custID = Convert.ToInt32(customerId);
+
+                    int invoiceparticuls = Convert.ToInt32(invoiceparticulars);
+
+                    int machineID = Convert.ToInt32(machineNumber);
+
+                    int modellID = Convert.ToInt32(modelid);
+
+
+                    string uniqueID = "";
+                    var customerData = db.Table_CustomerRegistartion.Where(c => c.CustomerID == custID).Select(c => c).FirstOrDefault();
+                    var invoiceFileData = db.Table_InvoiceDocuments.Where(c => c.CustomerId == custID && c.MachineNumber == machineID).Select(c => c).FirstOrDefault();
+                    var invoiceData = db.Table_InvoicePerticular.Where(c => c.InvoicePerticularId == invoiceparticuls).Select(c => c).FirstOrDefault();
+                    var modelData = db.Table_Model.Where(c => c.ModelId == modellID).Select(c => c).FirstOrDefault();
+
+                    for (int i = 0; i < selectedFeaturess.Count; i++)
+                    {
+                        uniqueID = string.Concat(machineNumber.Concat(customerId).Concat(modellID.ToString()));
+                        Table_MachineFeatureDetails data2 = new Table_MachineFeatureDetails()
+                        {
+
+                            FeatureID = selectedFeaturess[i].value,
+                            FeatureName = selectedFeaturess[i].label,
+                            MachineID = machineID,
+                            MachineNumber = machineID,
+                            CustomerID = custID,
+                            CustomerName = customerData.CompanyName,
+                            InvoiceID = invoiceFileData.Id,
+                            InvoiceParticulars = invoiceData.InvoicePerticularName,
+                            WarrantyFrom = Convert.ToDateTime(warrantyr),
+                            WarrantyTill = Convert.ToDateTime(warrantytill),
+                            ModelID = modellID,
+                            ModelName = modelData.ModelName,
+                            CreatedBy = createdBy,
+                            CreatedOn = DateTime.Now,
+                            FeatureDataID = uniqueID
+
+                        };
+                        if (data2 != null)
+                        {
+                            await Task.Run(() => db.Table_MachineFeatureDetails.Add(data2));
+                            int status = await db.SaveChangesAsync();
+
+                        }
+                        else
+                        {
+                            continue;
+                        }
+                    }
+
+                    int mybalance = 0;
+                    bool ispaid = false;
+                    if (dueamountint == mybalance)
+                    {
+                        ispaid = true;
+                    }
+                    else
+                    {
+                        ispaid = ispaid;
+                    }
+                    Table_MachineRegistration data = new Table_MachineRegistration()
+                    {
+
+                        MachineNumber = Convert.ToInt32(machineNumber),
+                        CreatedBy = createdBy,
+                        CreatedOn = DateTime.Now,
+                        CustomerId = customerData.CustomerID,
+                        CustomerName = customerData.CompanyName,
+                        InvoiceAmount = Convert.ToDecimal(invoiceamount),
+                        InvoiceDate = Convert.ToDateTime(invoiceDate),
+                        InvoiceFileBlob = invoiceFileData.BlobLink,
+                        InvoiceNumber = invoiceNumber,
+                        InvoicePerticular = invoiceData.InvoicePerticularName,
+                        InvoicePerticularId = invoiceData.InvoicePerticularId,
+                        ModelId = modelData.ModelId,
+                        ModelName = modelData.ModelName,
+                        WarrantyFrom = Convert.ToDateTime(warrantyr),
+                        WarrantyTill = Convert.ToDateTime(warrantytill),
+                        IsMachineDeleted = false,
+                        FeatureDetailsID = uniqueID,
+                        DueAmount = Convert.ToDecimal(dueamount),
+                        IsPaid = ispaid
+                    };
+
+                    await Task.Run(() => db.Table_MachineRegistration.Add(data));
+                    await db.SaveChangesAsync();
+
+                    return Ok("success");
                 }
-                Table_MachineRegistration data = new Table_MachineRegistration()
-                {
-                   
-                MachineNumber = Convert.ToInt32(machineNumber),
-                    CreatedBy = createdBy,
-                    CreatedOn = DateTime.Now,
-                    CustomerId = customerData.CustomerID,
-                    CustomerName = customerData.CompanyName,
-                    InvoiceAmount = Convert.ToDecimal(invoiceamount),
-                    InvoiceDate = Convert.ToDateTime(invoiceDate),
-                    InvoiceFileBlob = invoiceFileData.BlobLink,
-                    InvoiceNumber = invoiceNumber,
-                    InvoicePerticular = invoiceData.InvoicePerticularName,
-                    InvoicePerticularId = invoiceData.InvoicePerticularId,
-                    ModelId = modelData.ModelId,
-                    ModelName = modelData.ModelName,
-                    WarrantyFrom = Convert.ToDateTime(warrantyr),
-                    WarrantyTill = Convert.ToDateTime(warrantytill),
-                    IsMachineDeleted = false,
-                    FeatureDetailsID = uniqueID,
-                    DueAmount=Convert.ToDecimal(dueamount),
-                    IsPaid=ispaid
-                };
-
-                await Task.Run(() => db.Table_MachineRegistration.Add(data));
-                await db.SaveChangesAsync();
-
-                return Ok("success");
             }
             catch (Exception e)
             {
@@ -184,7 +269,7 @@ namespace FPL.Api.Controllers
         public async Task<IHttpActionResult> GetMachineInLocation([FromUri(Name = "id")] string id)
         {
            // int idd = Convert.ToInt32(id);
-            var result = await Task.Run(() => db.Table_MachineRegistration.Where(c => c.CustomerName == id).ToList());
+            var result = await Task.Run(() => db.Table_MachineRegistration.Where(c => c.CustomerName == id && c.IsMachineDeleted != true).ToList());
             return Ok(result);
         }
 
@@ -272,7 +357,7 @@ namespace FPL.Api.Controllers
         }
 
 
-            [HttpPost]
+        [HttpPost]
         public async Task<IHttpActionResult> DeleteMachineData(Table_MachineRegistration  data1)
         {
             int machinenumber = Convert.ToInt32(data1.MachineNumber);
@@ -286,7 +371,7 @@ namespace FPL.Api.Controllers
 
             try
             {
-                var dat = await Task.Run(() => db.Table_MachineRegistration.Where(c => c.MachineNumber == machinenumber && c.ModelId==modelID && c.ModelName==modelname && c.CustomerId==customerID && c.FeatureDetailsID==featureDetailsID).FirstOrDefault());
+                var dat = await Task.Run(() => db.Table_MachineRegistration.Where(c => c.MachineNumber == machinenumber && c.CustomerId==customerID).FirstOrDefault());
                 if (dat != null)
                 {
                     dat.IsMachineDeleted = true;
@@ -298,8 +383,8 @@ namespace FPL.Api.Controllers
                     await db.SaveChangesAsync();
                 }
 
-                var machineID = await Task.Run(() => db.Table_MachineRegistration.Where(c => c.MachineNumber == machinenumber && c.ModelId == modelID && c.ModelName == modelname && c.CustomerId == customerID && c.FeatureDetailsID == featureDetailsID).Select(c=>c.Id).FirstOrDefault());
-                var contactdetails = await Task.Run(() => db.Table_Contactdetails.Where(c => c.MachineNumber == machinenumber && c.ModelID == modelID && c.MachineId == machinenumber && c.CustomerId == customerID ).FirstOrDefault());
+                var machineID = await Task.Run(() => db.Table_MachineRegistration.Where(c => c.MachineNumber == machinenumber && c.CustomerId == customerID).Select(c=>c.Id).FirstOrDefault());
+                var contactdetails = await Task.Run(() => db.Table_Contactdetails.Where(c => c.MachineNumber == machinenumber && c.CustomerId == customerID ).FirstOrDefault());
 
                 if (contactdetails != null)
                 {
@@ -325,7 +410,7 @@ namespace FPL.Api.Controllers
                     await db.SaveChangesAsync();
                 }
 
-                var featuredetails = await Task.Run(() => db.Table_MachineFeatureDetails.Where(c => c.MachineNumber == machinenumber && c.MachineID == machinenumber && c.CustomerID==customerID && c.CustomerName== customerName && c.FeatureDataID==featureDetailsID).FirstOrDefault());
+                var featuredetails = await Task.Run(() => db.Table_MachineFeatureDetails.Where(c => c.MachineNumber == machinenumber && c.MachineID == machinenumber && c.CustomerID==customerID && c.CustomerName== customerName).FirstOrDefault());
 
                 if (featuredetails != null)
                 {
@@ -338,7 +423,7 @@ namespace FPL.Api.Controllers
                     await db.SaveChangesAsync();
                 }
 
-                var requestdetails = await Task.Run(() => db.Table_MachineCustomerRequestsDetails.Where(c => c.MachineNumber == machinenumber && c.MachineId == machineID && c.CustomerId == customerID && c.CustomerName == customerName && c.UniqueID != null).ToList());
+                var requestdetails = await Task.Run(() => db.Table_MachineCustomerRequestsDetails.Where(c => c.MachineNumber == machinenumber && c.MachineId == machineID && c.CustomerId == customerID && c.CustomerName == customerName).ToList());
                 for(int i = 0; i < requestdetails.Count; i++)
                 {
                     if (requestdetails[i] != null)
@@ -354,7 +439,7 @@ namespace FPL.Api.Controllers
                 }
 
 
-                var requestsandsdetails = await Task.Run(() => db.Table_MachineCustomerSansSDetails.Where(c => c.MachineNumber == machinenumber && c.MachineId == machineID && c.CustomerId == customerID && c.CustomerName == customerName && c.UniqueID != null).ToList());
+                var requestsandsdetails = await Task.Run(() => db.Table_MachineCustomerSansSDetails.Where(c => c.MachineNumber == machinenumber && c.MachineId == machineID && c.CustomerId == customerID).ToList());
                 for (int j = 0; j < requestsandsdetails.Count; j++)
                 {
                     if (requestsandsdetails[j] != null)
@@ -369,7 +454,7 @@ namespace FPL.Api.Controllers
                     }
                 }
 
-                var requesttable = await Task.Run(() => db.Table_RequestsFormData.Where(c => c.MachineNumber == machinenumber && c.MachineId == machineID && c.CustomerId == customerID && c.CustomerName == customerName ).FirstOrDefault());
+                var requesttable = await Task.Run(() => db.Table_RequestsFormData.Where(c => c.MachineNumber == machinenumber && c.MachineId == machineID && c.CustomerId == customerID).FirstOrDefault());
               
                     if (requesttable != null)
                     {
@@ -382,9 +467,6 @@ namespace FPL.Api.Controllers
                         await db.SaveChangesAsync();
                     }
                 
-
-
-
 
 
                 return Ok("success");
@@ -485,6 +567,13 @@ namespace FPL.Api.Controllers
 
             return Ok("success");
         }
+        [HttpGet]
+        public async Task<IHttpActionResult> GetCustomerContactDetailss(int id)
+        {
+            var result = db.Table_Contactdetails.Where(c => c.CustomerId == id).ToList();
+            return Ok(result);
+        }
+
 
         [HttpPost]
         public async Task<IHttpActionResult> UpdateContactDetails(Table_ContactdetailsDatamodel data1)
@@ -607,12 +696,71 @@ namespace FPL.Api.Controllers
         }
 
         [HttpGet]
+        public async Task<IHttpActionResult> GetCustomerTickets([FromUri(Name = "id")] int id)
+        {
+            try
+            {
+                var result = db.Table_RequestsFormData.Where(c => c.CustomerId == id && c.IsDone != true && c.IsMachineDeleted != true).ToList();
+                var datalist = new List<AllCustomerTicketDetails>();
+                for (var i = 0; i < result.Count; i++)
+                {
+                    var requestId = result[i].RequestForId;
+
+                    var custId = result[i].CustomerId;
+
+                    var priorityData = await Task.Run(() => db.Table_Requests.Where(c => c.RequestsId == requestId).Select(c => c).FirstOrDefault());
+
+                    var requestData = await Task.Run(() => db.Table_RequestsFormData.Where(c => c.CustomerId == id).Select(c => c).FirstOrDefault());
+
+                    AllCustomerTicketDetails data = new AllCustomerTicketDetails()
+                    {
+                        id = result[i].id,
+                        MachineId = result[i].MachineId,
+                        MachineNumber = result[i].MachineNumber,
+                        CustomerId = result[i].CustomerId,
+                        CustomerName = result[i].CustomerName,
+                        RequestForId = result[i].RequestForId,
+                        RequestsName = priorityData.RequestsName,
+                        Priority = priorityData.Priority,
+                        Remarks = result[i].Remarks,
+                        Resolution = result[i].Resolution,
+                        CreatedBy = result[i].CreatedBy,
+                        CreatedOn = result[i].CreatedOn,
+                        TokenID = result[i].TokenID,
+                        ContactId = result[i].ContactId,
+                        ContactName = result[i].ContactName,
+                        Salute = result[i].Salute,
+                        Designation = result[i].Designation,
+                        Email = result[i].Email,
+                        Mobile = result[i].Mobile,
+                    };
+                    datalist.Add(data);
+                }
+                return Ok(datalist);
+
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+
+        }
+
+        //[HttpGet]
+        //public async Task<IHttpActionResult> GetCustomerTickets([FromUri(Name = "id")] int id)
+        //{
+        //    var result = db.Table_RequestsFormData.Where(c => c.CustomerId == id && c.IsDone != true).ToList();
+        //    return Ok(result);
+        //}
+
+        [HttpGet]
         public async Task<IHttpActionResult> GetMachineCustomerDetails()
         {
             try
             {
                 var result = await Task.Run(() => db.Table_MachineRegistration.Where(c => c.IsMachineDeleted != true).ToList());
                 var datalist = new List<AllCustomerMachineDetails>();
+
                 for (var i = 0; i < result.Count; i++)
                 {
                     var cid = result[i].CustomerId;
@@ -622,35 +770,42 @@ namespace FPL.Api.Controllers
 
                     var customerData = await Task.Run(() => db.Table_CustomerRegistartion.Where(c => c.CustomerID == cid).Select(c => c).FirstOrDefault());
 
-                    AllCustomerMachineDetails data = new AllCustomerMachineDetails()
+                    AllCustomerMachineDetails data = new AllCustomerMachineDetails();
+
+                    if (MachineData != null)
                     {
-                        MachineNumber = MachineData.MachineNumber,
-                        ModelId = MachineData.ModelId,
-                        ModelName = MachineData.ModelName,
-                        CustomerID = customerData.CustomerID,
-                        CustomerName = customerData.CompanyName,
-                        Unit = customerData.Unit,
-                        AddressOne = customerData.AddressOne,
-                        AddressTwo = customerData.AddressTwo,
-                        AddressThree = customerData.AddressThree,
-                        City = customerData.City,
-                        State = customerData.State,
-                        Pincode = customerData.Pincode,
-                        GSTIN = customerData.GSTIN,
-                        Cluster = customerData.Cluster,
-                        RouteNumber = customerData.RouteNumber,
-                        Region = customerData.Region,
-                        Zone = customerData.Zone,
-                        CreatedBy = result[i].CreatedBy,
-                        CreatedOn = result[i].CreatedOn,
-                    };
+                        data.Id = MachineData.Id;
+                        data.MachineNumber = MachineData.MachineNumber;
+                        data.ModelId = MachineData.ModelId;
+                        data.ModelName = MachineData.ModelName;
+                        data.CreatedBy = result[i].CreatedBy;
+                        data.CreatedOn = result[i].CreatedOn;
+                    }
+
+                    if (customerData != null)
+                    {
+                        data.CustomerID = customerData.CustomerID;
+                        data.CustomerName = customerData.CompanyName;
+                        data.Unit = customerData.Unit;
+                        data.AddressOne = customerData.AddressOne;
+                        data.AddressTwo = customerData.AddressTwo;
+                        data.AddressThree = customerData.AddressThree;
+                        data.City = customerData.City;
+                        data.State = customerData.State;
+                        data.Pincode = customerData.Pincode;
+                        data.GSTIN = customerData.GSTIN;
+                        data.Cluster = customerData.Cluster;
+                        data.RouteNumber = customerData.RouteNumber;
+                        data.Region = customerData.Region;
+                        data.Zone = customerData.Zone;
+                    }
+
                     datalist.Add(data);
                 }
 
                 return Ok(datalist);
             }
-
-             catch (Exception e)
+            catch (Exception e)
             {
                 throw e;
             }
@@ -736,6 +891,35 @@ namespace FPL.Api.Controllers
 
             }
             return Ok("success");
+        }
+
+        public partial class AllCustomerTicketDetails
+        {
+            public int id { get; set; }
+            public Nullable<int> MachineNumber { get; set; }
+            public Nullable<int> MachineId { get; set; }
+            public Nullable<int> CustomerId { get; set; }
+            public string CustomerName { get; set; }
+            public string RequestFor { get; set; }
+            public Nullable<int> RequestForId { get; set; }
+            public string SandS { get; set; }
+            public Nullable<int> SandSId { get; set; }
+            public string Remarks { get; set; }
+            public string Resolution { get; set; }
+            public Nullable<bool> IsDone { get; set; }
+            public string CreatedBy { get; set; }
+            public Nullable<System.DateTime> CreatedOn { get; set; }
+            public Nullable<bool> IsMachineDeleted { get; set; }
+            public Nullable<int> TokenID { get; set; }
+            public Nullable<int> ContactId { get; set; }
+            public string Salute { get; set; }
+            public string ContactName { get; set; }
+            public string Designation { get; set; }
+            public string Email { get; set; }
+            public string Mobile { get; set; }
+            public int RequestsId { get; set; }
+            public string RequestsName { get; set; }
+            public string Priority { get; set; }
         }
 
         public partial class AllCustomerMachineDetails
