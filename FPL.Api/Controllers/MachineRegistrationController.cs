@@ -468,6 +468,14 @@ namespace FPL.Api.Controllers
         }
 
         [HttpGet]
+        public async Task<IHttpActionResult> getCustomerContactDetailsForQM(int id)
+        {
+            var result = db.Table_Contactdetails.Where(c => c.CustomerId == id).ToList();
+            return Ok(result);
+        }
+
+
+        [HttpGet]
         public async Task<IHttpActionResult> DeleteContactDetails([FromUri(Name = "id")] int id)
         {
             var data = await Task.Run(() => db.Table_Contactdetails.FindAsync(id));

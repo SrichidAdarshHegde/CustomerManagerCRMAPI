@@ -34,6 +34,7 @@ namespace FPL.Api.Controllers
                       AddressOne = data1.AddressOne,
                       AddressThree = data1.AddressThree,
                       AddressTwo = data1.AddressTwo,
+                      BillingAddress=data1.BillingAddress,
                       City = data1.City,
                       Cluster = clustername,
                       ClusterId= clusterID,
@@ -100,6 +101,8 @@ namespace FPL.Api.Controllers
                     dat.AddressOne = data1.AddressOne;
                     dat.AddressTwo = data1.AddressTwo;
                     dat.AddressThree = data1.AddressThree;
+                    dat.BillingAddress = data1.BillingAddress;
+
                     dat.GSTIN = data1.GSTIN;
                     dat.Cluster = clustername;
                     dat.ClusterId = clusterID;
@@ -195,11 +198,10 @@ namespace FPL.Api.Controllers
 
 
 
-        public class Table_CustomerRegistartionDataModel
+        public partial class Table_CustomerRegistartionDataModel
         {
             public int CustomerID { get; set; }
             public string CompanyName { get; set; }
-            public string CompanyOldName { get; set; }
             public string Unit { get; set; }
             public string AddressOne { get; set; }
             public string AddressTwo { get; set; }
@@ -223,6 +225,8 @@ namespace FPL.Api.Controllers
             public string SecurityFormalities { get; set; }
             public string CreatedBy { get; set; }
             public Nullable<System.DateTime> CreatedOn { get; set; }
+            public string CompanyOldName { get; set; }
+            public string BillingAddress { get; set; }
         }
     }
 }
