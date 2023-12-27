@@ -12,13 +12,13 @@ namespace FPL.Api.Controllers
     public class TravelBudgetController : ApiController
     {
         private CustomerManagerEntities db = new CustomerManagerEntities();
-     [HttpPost]
-     public async Task<IHttpActionResult> saveTravelBudget(TravelBudgetDetails data)
+        [HttpPost]
+        public async Task<IHttpActionResult> saveTravelBudget(TravelBudgetDetails data)
         {
             try
             {
                 Table_TravelBudget abc = new Table_TravelBudget()
-                {           
+                {
                     MachineNumber = data.MachineNumber,
                     CustomerName = data.CustomerName,
                     Purpose = data.Purpose,
@@ -31,7 +31,7 @@ namespace FPL.Api.Controllers
                     EstTravelTime = data.EstTravelTime,
                     EstTimeForJob = data.EstTimeForJob,
                     SchdETD = data.SchdETD,
-                    Totaltime= data.Totaltime,
+                    Totaltime = data.Totaltime,
                     ActualTime = data.ActualTime,
                     CNGFilledPreviously = data.CNGFilledPreviously,
                     UserName = data.UserName,
@@ -52,7 +52,7 @@ namespace FPL.Api.Controllers
                 throw e;
             }
         }
-         
+
         [HttpGet]
         public async Task<IHttpActionResult> GetAllTravelBudget()
         {
@@ -112,3 +112,4 @@ namespace FPL.Api.Controllers
         public Nullable<int> UserId { get; set; }
     }
 }
+
