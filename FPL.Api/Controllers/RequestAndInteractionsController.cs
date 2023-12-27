@@ -14,6 +14,10 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using HttpContext = System.Web.HttpContext;
 
+
+
+
+
 namespace FPL.Api.Controllers
 {
     public class RequestAndInteractionsController : ApiController
@@ -941,6 +945,7 @@ namespace FPL.Api.Controllers
                     for (var i = 0; i < Requests.Count; i++)
                     {
                         var customerId = Requests[i].CustomerId;
+                        var tokenId = Requests[i].TokenID;
                         var machineNumber = Convert.ToString(Requests[i].MachineNumber);
                         if (machineNumber == "undefined" || machineNumber == null || machineNumber == "")
                         {
@@ -949,7 +954,7 @@ namespace FPL.Api.Controllers
                             //var machineData = db.Table_MachineRegistration.Where(c => c.MachineNumber == machineNumber && c.CustomerId == customerId).FirstOrDefault();
                             var requestData = db.Table_Requests.Where(c => c.RequestsId == reqForId).FirstOrDefault();
                             var contactData = db.Table_Contactdetails.Where(c => c.CustomerId == customerId).FirstOrDefault();
-                            var requestDatafull = db.Table_MachineCustomerRequestsDetails.Where(c => c.CustomerId == customerId && c.RequestForId == reqForId).OrderByDescending(c => c.TokenNo).FirstOrDefault();
+                            var requestDatafull = db.Table_MachineCustomerRequestsDetails.Where(c => c.CustomerId == customerId && c.RequestForId == reqForId && c.TokenNo == tokenId).OrderByDescending(c => c.TokenNo).FirstOrDefault();
                             if (customerData.ZoneId == id)
                             {
                                 allrequestdatamodel data = new allrequestdatamodel()
@@ -973,7 +978,7 @@ namespace FPL.Api.Controllers
                                     RequestFor = requestData.RequestsName,
                                     Priority = requestData.Priority,
                                     SandS = null,
-                                    TokenID = requestDatafull.TokenNo
+                                    TokenID = requestDatafull.TokenNo,
                                 };
                                 datalist.Add(data);
                             }
@@ -987,7 +992,7 @@ namespace FPL.Api.Controllers
                             var machineData = db.Table_MachineRegistration.Where(c => c.MachineNumber == machineNum && c.CustomerId == customerId).FirstOrDefault();
                             var requestData = db.Table_Requests.Where(c => c.RequestsId == reqForId).FirstOrDefault();
                             var contactData = db.Table_Contactdetails.Where(c => c.CustomerId == customerId).FirstOrDefault();
-                            var requestDatafull = db.Table_MachineCustomerRequestsDetails.Where(c => c.MachineNumber == machineNum && c.CustomerId == customerId && c.RequestForId == reqForId).OrderByDescending(c => c.TokenNo).FirstOrDefault();
+                            var requestDatafull = db.Table_MachineCustomerRequestsDetails.Where(c => c.MachineNumber == machineNum && c.CustomerId == customerId && c.RequestForId == reqForId && c.TokenNo == tokenId).OrderByDescending(c => c.TokenNo).FirstOrDefault();
                             if (customerData.ZoneId == id)
                             {
                                 allrequestdatamodel data = new allrequestdatamodel()
@@ -1011,7 +1016,7 @@ namespace FPL.Api.Controllers
                                     RequestFor = requestData.RequestsName,
                                     Priority = requestData.Priority,
                                     SandS = null,
-                                    TokenID = requestDatafull.TokenNo
+                                    TokenID = requestDatafull.TokenNo,
                                 };
                                 datalist.Add(data);
                             }
