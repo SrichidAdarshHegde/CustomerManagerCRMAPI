@@ -306,6 +306,7 @@ namespace FPL.Api.Controllers
                     CutomerId = data1.CutomerId,
                     CutomerName = data1.CutomerName,
                     MachineNumber = data1.MachineNumber,
+                    TicketNo = data1.TicketNo,
                     ModelId = data1.ModelId,
                     ModelName = data1.ModelName,
                     RegionId = data1.RegionId,
@@ -323,7 +324,7 @@ namespace FPL.Api.Controllers
 
                 await Task.Run(() => db.Table_InteractionsData.Add(data));
                 await db.SaveChangesAsync();
-                var MachineData = db.Table_RequestsFormData.Where(c => c.MachineNumber == data1.MachineNumber && c.id == data1.RequestId).Select(c => c).FirstOrDefault();
+                var MachineData = db.Table_RequestsFormData.Where(c => c.MachineNumber == data1.MachineNumber && c.RequestForId == data1.RequestId && c.TokenID == data1.TicketNo).Select(c => c).FirstOrDefault();
 
                 if (MachineData != null)
                 {
@@ -369,6 +370,7 @@ namespace FPL.Api.Controllers
             public string CreatedBy { get; set; }
             public Nullable<System.DateTime> CreatedOn { get; set; }
             public DateTime DateOfInteraction { get; set; }
+            public Nullable<int> TicketNo { get; set; }
         }
 
         [HttpGet]

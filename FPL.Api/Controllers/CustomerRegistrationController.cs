@@ -195,6 +195,7 @@ namespace FPL.Api.Controllers
                     WorkingEnd = customerData.WorkingEnd,
                     SecurityFormalities = customerData.SecurityFormalities,
                    TokenNo = ticketData?.TokenID,
+                    RequestForId = ticketData?.RequestForId,
                    MachineNumber = machinedata[i].MachineNumber,
                    ModelName = machinedata[i].ModelName,
                    InvoicePerticular = machinedata[i].InvoicePerticular,
@@ -253,6 +254,7 @@ namespace FPL.Api.Controllers
             public Nullable<int> CustomerId { get; set; }
             public string CustomerName { get; set; }
             public Nullable<int> TokenNo { get; set; }
+            public Nullable<int> RequestForId { get; set; }
             public string Unit { get; set; }
             public string AddressOne { get; set; }
             public string AddressTwo { get; set; }

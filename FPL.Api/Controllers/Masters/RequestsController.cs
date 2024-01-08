@@ -153,6 +153,13 @@ namespace FPL.Api.Controllers.Masters
 
             return Ok("success");
         }
+
+        [HttpGet]
+        public async Task<IHttpActionResult> GetRequestForById([FromUri(Name = "id")] int id)
+        {
+            var requestForName = await Task.Run(() => db.Table_Requests.Where(c => c.RequestsId == id).Select(c => c.RequestsName).FirstOrDefault());
+            return Ok(requestForName);
+        }
         public partial class RequestsMasterDetails
         {
             public int RequestsId { get; set; }
