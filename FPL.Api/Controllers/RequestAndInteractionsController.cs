@@ -32,7 +32,7 @@ namespace FPL.Api.Controllers
             {
                 var httpRequest = HttpContext.Current.Request;
                 var mn = httpRequest["MachineNumber"];
-                if (mn == "undefined" || mn == null || mn == "")
+                if (mn == "undefined" || mn == "null" || mn == "")
                 {
                     //var httpRequest = HttpContext.Current.Request;
                     var customerId = httpRequest["CustomerId"];
