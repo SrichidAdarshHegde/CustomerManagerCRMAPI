@@ -242,7 +242,7 @@ namespace FPL.Api.Controllers
                             MachineNumber = machineID,
                             Remarks = remarks,
                             Resolution = resolution,
-                            RequestFor = string.Concat(machineNumber.Concat(remarks).Concat(customerId)),
+                            RequestFor = selectedRequestFor[0].label,
                             RequestForId = selectedRequestFor[0].value,
                             SandS = string.Concat(machineNumber.Concat(remarks).Concat(customerId)),
                             CreatedOn = DateTime.Now,
@@ -468,6 +468,7 @@ namespace FPL.Api.Controllers
                         CreatedOn = request.CreatedOn,
                         IsDone = request.IsDone,
                         RequestId = request.id,
+                        RequestForId = request.RequestForId,
                         RequestFor = requestForResult,
                         SandS = sandSResult
                     };
