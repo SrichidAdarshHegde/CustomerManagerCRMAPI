@@ -170,7 +170,7 @@ namespace FPL.Api.Controllers
             {
             var datalist = new List<MachineTicketDataVM>();
             var customerData = await Task.Run(() => db.Table_CustomerRegistartion.Where(c => c.CompanyName == id).FirstOrDefault());
-            var machinedata = await Task.Run(() => db.Table_MachineRegistration.Where(c => c.CustomerId == customerData.CustomerID && c.IsMachineDeleted != true).ToList());
+            var machinedata = await Task.Run(() => db.Table_MachineRegistration.Where(c => c.CustomerName == customerData.CompanyName && c.IsMachineDeleted != true).ToList());
             for (int i = 0; i < machinedata.Count; i++)
             {
                 var mn = machinedata[i].MachineNumber;
