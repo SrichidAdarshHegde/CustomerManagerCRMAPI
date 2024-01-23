@@ -167,18 +167,34 @@ namespace FPL.Api.Controllers
         }
 
         [HttpGet]
+        public async Task<IHttpActionResult> GetTripDetails([FromUri(Name = "id")] int id)
+        {
+            var tripData = await Task.Run(() => db.Table_TravelBudget.Where(c => c.TripSheetNo == id).Select(c => c).ToList());
+            return Ok(tripData);
+        }
+
+        [HttpGet]
         public async Task<IHttpActionResult> GetTripSheetNo()
         {
             try
             {
-                var data = db.Table_TravelBudget.ToList();
-                return Ok(data);
+                var lastTripSheet = db.Table_TravelBudget.OrderByDescending(c => c.TripSheetNo).FirstOrDefault();
+
+                if (lastTripSheet != null)
+                {
+                    return Ok(lastTripSheet.TripSheetNo);
+                }
+                else
+                {
+                    return Ok(0);
+                }
             }
             catch (Exception e)
             {
-                throw e;
+                return InternalServerError(e);
             }
         }
+
 
 
         //[HttpGet]
