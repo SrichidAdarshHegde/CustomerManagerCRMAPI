@@ -54,24 +54,12 @@ namespace FPL.Api.Controllers
         //}
 
         [HttpGet]
-        public async Task<IHttpActionResult> GetAllTravelBudget()
+        public async Task<IHttpActionResult> GetTripSheetDetails()
         {
             var result = await Task.Run(() => db.Table_TravelBudget.ToList());
             return Ok(result);
         }
-        //[HttpGet]
-        //public async Task<IHttpActionResult> GetTravelBudgetbyUser([FromUri(Name = "id")] int id)
-        //{
-        //    var result = await Task.Run(() =>
-        //        db.Table_TravelBudget
-        //            .Where(c => c.UserId == id)
-        //            .GroupBy(c => c.TravelId)  // Group by TravelId
-        //            .Select(group => group.FirstOrDefault())  // Select the first element from each group (unique rows)
-        //            .ToList()
-        //    );
 
-        //    return Ok(result);
-        //}
 
         [HttpPost]
         public async Task<IHttpActionResult> PostSaveTripSheetData(TripSheetDataVM tripSheetData)
@@ -137,7 +125,7 @@ namespace FPL.Api.Controllers
                         CompanyName = arrayDataVM.CompanyName,
                         CustomerId = arrayDataVM.CustomerId,
                         Purpose = arrayDataVM.Purpose,
-                        ClusterLocation = arrayDataVM.ClusterLocation,
+                        Cluster = arrayDataVM.Cluster,
                         ModelId = arrayDataVM.ModelId,
                         ModelName = arrayDataVM.ModelName,
                         Remarks = arrayDataVM.Remarks,
@@ -244,7 +232,7 @@ namespace FPL.Api.Controllers
         public string CompanyName { get; set; }
         public Nullable<int> CustomerId { get; set; }
         public string Purpose { get; set; }
-        public string ClusterLocation { get; set; }
+        public string Cluster { get; set; }
         public Nullable<int> ModelId { get; set; }
         public string ModelName { get; set; }
         public string Remarks { get; set; }
