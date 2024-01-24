@@ -75,6 +75,7 @@ namespace FPL.Api.Controllers
         }
 
 
+
         public partial class Quotationtemplatedetails
         {
             public int RefID { get; set; }
