@@ -14,6 +14,10 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using HttpContext = System.Web.HttpContext;
 
+
+
+
+
 namespace FPL.Api.Controllers
 {
     public class RequestAndInteractionsController : ApiController
@@ -28,25 +32,21 @@ namespace FPL.Api.Controllers
             {
                 var httpRequest = HttpContext.Current.Request;
                 var mn = httpRequest["MachineNumber"];
-                if (mn == "undefined" || mn == null || mn == "")
+                if (mn == "undefined" || mn == "null" || mn == "")
                 {
                     //var httpRequest = HttpContext.Current.Request;
                     var customerId = httpRequest["CustomerId"];
                     var ticketNo = httpRequest["TokenNo"];
                     var contactId = httpRequest["ContactId"];
-                
+                    var startTime = httpRequest["StartTime"];
+                    var endTime = httpRequest["EndTime"];
+                    var callFrom = httpRequest["CallFrom"];
                     var requestfor = httpRequest["RequestFor"];
                     List<RequestItem> selectedRequestFor = JsonConvert.DeserializeObject<List<RequestItem>>(requestfor);
-                    //JArray selectedFeatures = JArray.Parse(features);
-                    //    var featuresdd = JsonConvert.DeserializeObject<FeaturesVM>(features);
-                    //var sands = httpRequest["SandS"];
-                    //JArray selectedFeatures = JArray.Parse(features);
-                    //List<SandSItem> selectedSandS = JsonConvert.DeserializeObject<List<SandSItem>>(sands);
-                    //    var featuresdd = JsonConvert.DeserializeObject<FeaturesVM>(features);
+                   
                     var customername = httpRequest["CustomerName"];
                     var remarks = httpRequest["Remarks"];
                     var resolution = httpRequest["Resolution"];
-
                     int contId = Convert.ToInt32(contactId);
                     var createdBy = httpRequest["CreatedBy"];
                     var contactData = db.Table_Contactdetails.Where(c => c.Id == contId).Select(c => c).FirstOrDefault();
@@ -55,7 +55,6 @@ namespace FPL.Api.Controllers
                     {
                         Table_MachineCustomerRequestsDetails data2 = new Table_MachineCustomerRequestsDetails()
                         {
-                           
                             TokenNo = Convert.ToInt32(ticketNo),
                             CustomerId = Convert.ToInt32(customerId),
                             CustomerName = customername,
@@ -71,70 +70,73 @@ namespace FPL.Api.Controllers
                             Designation = contactData.Designation,
                             Email = contactData.Email,
                             Mobile = contactData.Mobile,
+                            StartTime = Convert.ToDateTime(startTime),
+                            EndTime = Convert.ToDateTime(endTime),
+                            CallFrom = callFrom,
 
                         };
                         if (data2 != null)
                         {
                             await Task.Run(() => db.Table_MachineCustomerRequestsDetails.Add(data2));
                             int status = await db.SaveChangesAsync();
-
                         }
                         else
                         {
                             continue;
                         }
                     }
-                    //for (int i = 0; i < selectedSandS.Count; i++)
-                    //{
-                    //    Table_MachineCustomerSansSDetails data3 = new Table_MachineCustomerSansSDetails()
-                    //    {
-                    //        MachineNumber = Convert.ToInt32(machineNumber),
-                    //        MachineId = macid,
-                    //        CustomerId = Convert.ToInt32(customerId),
-                    //        CustomerName = customername,
-                    //        SandS = selectedRequestFor[i].label,
-                    //        SandSId = selectedRequestFor[i].value,
-                    //        Remarks = remarks,
-                    //        CreatedBy = createdBy,
-                    //        UniqueID = string.Concat(machineNumber.Concat(remarks).Concat(customerId)),
-                    //        CreatedOn = DateTime.Now,
 
-
-
-                    //    };
-                    //    if (data3 != null)
-                    //    {
-                    //        await Task.Run(() => db.Table_MachineCustomerSansSDetails.Add(data3));
-                    //        int status = await db.SaveChangesAsync();
-
-                    //    }
-                    //    else
-                    //    {
-                    //        continue;
-                    //    }
-                    //}
-                    Table_RequestsFormData data = new Table_RequestsFormData()
+                    int ticketId = Convert.ToInt32(ticketNo);
+                    var ticketData = db.Table_RequestsFormData.Where(c => c.TokenID == ticketId).FirstOrDefault();
+                    if (ticketData != null && ticketData.TokenID == ticketId)
                     {
-                        CustomerId = Convert.ToInt32(customerId),
-                        CustomerName = customername,
-                        TokenID = Convert.ToInt32(ticketNo),
-                        IsDone = false,
-                        Remarks = remarks,
-                        Resolution = resolution,
-                        RequestForId = selectedRequestFor[0].value,
-                        CreatedOn = DateTime.Now,
-                        CreatedBy = createdBy,
-                        ContactId = contId,
-                        ContactName = contactData.ContactName,
-                        Salute = contactData.Salute,
-                        Designation = contactData.Designation,
-                        Email = contactData.Email,
-                        Mobile = contactData.Mobile,
-                    };
+                        ticketData.TokenID = ticketId;
+                        ticketData.RequestFor = selectedRequestFor[0].label;
+                        ticketData.RequestForId = selectedRequestFor[0].value;
+                        ticketData.Remarks = remarks;
+                        ticketData.Resolution = resolution;
+                        ticketData.ContactId = contId;
+                        ticketData.Salute = contactData.Salute;
+                        ticketData.ContactName = contactData.ContactName;
+                        ticketData.Designation = contactData.Designation;
+                        ticketData.Email = contactData.Designation;
+                        ticketData.Mobile = contactData.Mobile;
+                        ticketData.IsDone = false;
+                        ticketData.CreatedOn = DateTime.Now;
+                        ticketData.CreatedBy = createdBy;
 
-                    await Task.Run(() => db.Table_RequestsFormData.Add(data));
-                    await db.SaveChangesAsync();
+                        await Task.Run(() => db.Entry(ticketData).State = EntityState.Modified);
+                        await db.SaveChangesAsync();
 
+                        return Ok("success");
+                    }
+                    else
+                    {
+
+                        Table_RequestsFormData data = new Table_RequestsFormData()
+                        {
+                            CustomerId = Convert.ToInt32(customerId),
+                            CustomerName = customername,
+                            TokenID = Convert.ToInt32(ticketNo),
+                            IsDone = false,
+                            Remarks = remarks,
+                            Resolution = resolution,
+                            RequestForId = selectedRequestFor[0].value,
+                            CreatedOn = DateTime.Now,
+                            CreatedBy = createdBy,
+                            ContactId = contId,
+                            ContactName = contactData.ContactName,
+                            Salute = contactData.Salute,
+                            Designation = contactData.Designation,
+                            Email = contactData.Email,
+                            Mobile = contactData.Mobile,
+
+                        };
+
+                        await Task.Run(() => db.Table_RequestsFormData.Add(data));
+                        await db.SaveChangesAsync();
+
+                    }
                     return Ok("success");
                 }
                 else
@@ -145,28 +147,24 @@ namespace FPL.Api.Controllers
                     var customerId = httpRequest["CustomerId"];
                     var ticketNo = httpRequest["TokenNo"];
                     var contactId = httpRequest["ContactId"];
+                    var startTime = httpRequest["StartTime"];
+                    var endTime = httpRequest["EndTime"];
+                    var callFrom = httpRequest["CallFrom"];
                     var requestfor = httpRequest["RequestFor"];
                     //JArray selectedFeatures = JArray.Parse(features);
                     List<RequestItem> selectedRequestFor = JsonConvert.DeserializeObject<List<RequestItem>>(requestfor);
 
-                    //    var featuresdd = JsonConvert.DeserializeObject<FeaturesVM>(features);
-
-                    //var sands = httpRequest["SandS"];
-                    //JArray selectedFeatures = JArray.Parse(features);
-                    //List<SandSItem> selectedSandS = JsonConvert.DeserializeObject<List<SandSItem>>(sands);
-
-                    //    var featuresdd = JsonConvert.DeserializeObject<FeaturesVM>(features);
                     var customername = httpRequest["CustomerName"];
                     var remarks = httpRequest["Remarks"];
                     var resolution = httpRequest["Resolution"];
 
                     var createdBy = httpRequest["CreatedBy"];
-
+                   
                     int contId = Convert.ToInt32(contactId);
                     int machineID = Convert.ToInt32(machineNumber);
 
                     var macid = db.Table_MachineRegistration.Where(c => c.MachineNumber == machineID).Select(c => c.Id).FirstOrDefault();
-                    
+
                     var contactData = db.Table_Contactdetails.Where(c => c.Id == contId).Select(c => c).FirstOrDefault();
 
                     for (int i = 0; i < selectedRequestFor.Count; i++)
@@ -191,6 +189,9 @@ namespace FPL.Api.Controllers
                             Designation = contactData.Designation,
                             Email = contactData.Email,
                             Mobile = contactData.Mobile,
+                            StartTime = Convert.ToDateTime(startTime),
+                            EndTime = Convert.ToDateTime(endTime),
+                            CallFrom = callFrom,
 
                         };
                         if (data2 != null)
@@ -204,65 +205,63 @@ namespace FPL.Api.Controllers
                             continue;
                         }
                     }
-                    //for (int i = 0; i < selectedSandS.Count; i++)
-                    //{
-                    //    Table_MachineCustomerSansSDetails data3 = new Table_MachineCustomerSansSDetails()
-                    //    {
-                    //        MachineNumber = Convert.ToInt32(machineNumber),
-                    //        MachineId = macid,
-                    //        CustomerId = Convert.ToInt32(customerId),
-                    //        CustomerName = customername,
-                    //        SandS = selectedRequestFor[i].label,
-                    //        SandSId = selectedRequestFor[i].value,
-                    //        Remarks = remarks,
-                    //        CreatedBy = createdBy,
-                    //        UniqueID = string.Concat(machineNumber.Concat(remarks).Concat(customerId)),
-                    //        CreatedOn = DateTime.Now,
 
-
-
-                    //    };
-                    //    if (data3 != null)
-                    //    {
-                    //        await Task.Run(() => db.Table_MachineCustomerSansSDetails.Add(data3));
-                    //        int status = await db.SaveChangesAsync();
-
-                    //    }
-                    //    else
-                    //    {
-                    //        continue;
-                    //    }
-                    //}
-                    Table_RequestsFormData data = new Table_RequestsFormData()
+                    int ticketId = Convert.ToInt32(ticketNo);
+                    var ticketData = db.Table_RequestsFormData.Where(c => c.TokenID == ticketId).FirstOrDefault();
+                    if (ticketData != null && ticketData.TokenID == ticketId)
                     {
-                        CustomerId = Convert.ToInt32(customerId),
-                        CustomerName = customername,
-                        TokenID = Convert.ToInt32(ticketNo),
-                        IsDone = false,
-                        MachineId = macid,
-                        MachineNumber = machineID,
-                        Remarks = remarks,
-                        Resolution = resolution,
-                        RequestFor = string.Concat(machineNumber.Concat(remarks).Concat(customerId)),
-                        RequestForId = selectedRequestFor[0].value,
-                        SandS = string.Concat(machineNumber.Concat(remarks).Concat(customerId)),
-                        CreatedOn = DateTime.Now,
-                        CreatedBy = createdBy,
-                        ContactId = contId,
-                        ContactName = contactData.ContactName,
-                        Salute = contactData.Salute,
-                        Designation = contactData.Designation,
-                        Email = contactData.Email,
-                        Mobile = contactData.Mobile,
-                    };
+                        ticketData.TokenID = ticketId;
+                        ticketData.RequestFor = selectedRequestFor[0].label;
+                        ticketData.RequestForId = selectedRequestFor[0].value;
+                        ticketData.Remarks = remarks;
+                        ticketData.Resolution = resolution;
+                        ticketData.ContactId = contId;
+                        ticketData.Salute = contactData.Salute;
+                        ticketData.ContactName = contactData.ContactName;
+                        ticketData.Designation = contactData.Designation;
+                        ticketData.Email = contactData.Designation;
+                        ticketData.Mobile = contactData.Mobile;
+                        ticketData.IsDone = false;
+                        ticketData.CreatedOn = DateTime.Now;
+                        ticketData.CreatedBy = createdBy;
 
-                    await Task.Run(() => db.Table_RequestsFormData.Add(data));
-                    await db.SaveChangesAsync();
+                        await Task.Run(() => db.Entry(ticketData).State = EntityState.Modified);
+                        await db.SaveChangesAsync();
 
+                        return Ok("success");
+                    }
+                    else
+                    {
+                        Table_RequestsFormData data = new Table_RequestsFormData()
+                        {
+                            CustomerId = Convert.ToInt32(customerId),
+                            CustomerName = customername,
+                            TokenID = Convert.ToInt32(ticketNo),
+                            IsDone = false,
+                            MachineId = macid,
+                            MachineNumber = machineID,
+                            Remarks = remarks,
+                            Resolution = resolution,
+                            RequestFor = selectedRequestFor[0].label,
+                            RequestForId = selectedRequestFor[0].value,
+                            SandS = string.Concat(machineNumber.Concat(remarks).Concat(customerId)),
+                            CreatedOn = DateTime.Now,
+                            CreatedBy = createdBy,
+                            ContactId = contId,
+                            ContactName = contactData.ContactName,
+                            Salute = contactData.Salute,
+                            Designation = contactData.Designation,
+                            Email = contactData.Email,
+                            Mobile = contactData.Mobile,
+                        };
+
+                        await Task.Run(() => db.Table_RequestsFormData.Add(data));
+                        await db.SaveChangesAsync();
+
+                    }
                     return Ok("success");
-                }
 
-                
+                }
             }
             catch (Exception e)
             {
@@ -307,6 +306,7 @@ namespace FPL.Api.Controllers
                     CutomerId = data1.CutomerId,
                     CutomerName = data1.CutomerName,
                     MachineNumber = data1.MachineNumber,
+                    TicketNo = data1.TicketNo,
                     ModelId = data1.ModelId,
                     ModelName = data1.ModelName,
                     RegionId = data1.RegionId,
@@ -324,7 +324,7 @@ namespace FPL.Api.Controllers
 
                 await Task.Run(() => db.Table_InteractionsData.Add(data));
                 await db.SaveChangesAsync();
-                var MachineData = db.Table_RequestsFormData.Where(c => c.MachineNumber == data1.MachineNumber && c.id == data1.RequestId).Select(c => c).FirstOrDefault();
+                var MachineData = db.Table_RequestsFormData.Where(c => c.MachineNumber == data1.MachineNumber && c.RequestForId == data1.RequestId && c.TokenID == data1.TicketNo).Select(c => c).FirstOrDefault();
 
                 if (MachineData != null)
                 {
@@ -370,6 +370,7 @@ namespace FPL.Api.Controllers
             public string CreatedBy { get; set; }
             public Nullable<System.DateTime> CreatedOn { get; set; }
             public DateTime DateOfInteraction { get; set; }
+            public Nullable<int> TicketNo { get; set; }
         }
 
         [HttpGet]
@@ -467,6 +468,7 @@ namespace FPL.Api.Controllers
                         CreatedOn = request.CreatedOn,
                         IsDone = request.IsDone,
                         RequestId = request.id,
+                        RequestForId = request.RequestForId,
                         RequestFor = requestForResult,
                         SandS = sandSResult
                     };
@@ -941,6 +943,7 @@ namespace FPL.Api.Controllers
                     for (var i = 0; i < Requests.Count; i++)
                     {
                         var customerId = Requests[i].CustomerId;
+                        var tokenId = Requests[i].TokenID;
                         var machineNumber = Convert.ToString(Requests[i].MachineNumber);
                         if (machineNumber == "undefined" || machineNumber == null || machineNumber == "")
                         {
@@ -949,7 +952,7 @@ namespace FPL.Api.Controllers
                             //var machineData = db.Table_MachineRegistration.Where(c => c.MachineNumber == machineNumber && c.CustomerId == customerId).FirstOrDefault();
                             var requestData = db.Table_Requests.Where(c => c.RequestsId == reqForId).FirstOrDefault();
                             var contactData = db.Table_Contactdetails.Where(c => c.CustomerId == customerId).FirstOrDefault();
-                            var requestDatafull = db.Table_MachineCustomerRequestsDetails.Where(c => c.CustomerId == customerId && c.RequestForId == reqForId).OrderByDescending(c => c.TokenNo).FirstOrDefault();
+                            var requestDatafull = db.Table_MachineCustomerRequestsDetails.Where(c => c.CustomerId == customerId && c.RequestForId == reqForId && c.TokenNo == tokenId).OrderByDescending(c => c.TokenNo).FirstOrDefault();
                             if (customerData.ZoneId == id)
                             {
                                 allrequestdatamodel data = new allrequestdatamodel()
@@ -973,7 +976,7 @@ namespace FPL.Api.Controllers
                                     RequestFor = requestData.RequestsName,
                                     Priority = requestData.Priority,
                                     SandS = null,
-                                    TokenID = requestDatafull.TokenNo
+                                    TokenID = requestDatafull.TokenNo,
                                 };
                                 datalist.Add(data);
                             }
@@ -987,7 +990,7 @@ namespace FPL.Api.Controllers
                             var machineData = db.Table_MachineRegistration.Where(c => c.MachineNumber == machineNum && c.CustomerId == customerId).FirstOrDefault();
                             var requestData = db.Table_Requests.Where(c => c.RequestsId == reqForId).FirstOrDefault();
                             var contactData = db.Table_Contactdetails.Where(c => c.CustomerId == customerId).FirstOrDefault();
-                            var requestDatafull = db.Table_MachineCustomerRequestsDetails.Where(c => c.MachineNumber == machineNum && c.CustomerId == customerId && c.RequestForId == reqForId).OrderByDescending(c => c.TokenNo).FirstOrDefault();
+                            var requestDatafull = db.Table_MachineCustomerRequestsDetails.Where(c => c.MachineNumber == machineNum && c.CustomerId == customerId && c.RequestForId == reqForId && c.TokenNo == tokenId).OrderByDescending(c => c.TokenNo).FirstOrDefault();
                             if (customerData.ZoneId == id)
                             {
                                 allrequestdatamodel data = new allrequestdatamodel()
@@ -1011,7 +1014,7 @@ namespace FPL.Api.Controllers
                                     RequestFor = requestData.RequestsName,
                                     Priority = requestData.Priority,
                                     SandS = null,
-                                    TokenID = requestDatafull.TokenNo
+                                    TokenID = requestDatafull.TokenNo,
                                 };
                                 datalist.Add(data);
                             }
@@ -1392,7 +1395,12 @@ namespace FPL.Api.Controllers
             public Nullable<int> TokenID { get; set; }
         }
 
-
+        [HttpGet]
+        public async Task<IHttpActionResult> GetTicketDetailsFromTicket([FromUri(Name = "id")] int id)
+        {
+            var data = await Task.Run(() => db.Table_MachineCustomerRequestsDetails.Where(c => c.TokenNo == id).ToList());
+            return Ok(data);
+        }
 
         [HttpGet]
         public async Task<IHttpActionResult> GetMachineFromMachineNumber([FromUri(Name = "id")] int id)
