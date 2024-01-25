@@ -225,6 +225,7 @@ namespace FPL.Api.Controllers
                     TemplateName = data.TemplateName,
                     CreatedOn = DateTime.Now,
                     CreatedBy = data.CreatedBy,
+                    TotalAmount=data.TotalAmount,
                 };
 
                 db.Table_quotation2015.Add(abc);
@@ -272,6 +273,7 @@ namespace FPL.Api.Controllers
                     TemplateName = data.TemplateName,
                     CreatedOn = DateTime.Now,
                     CreatedBy = data.CreatedBy,
+
                 };
                 var result = db.Table_Rapid_I_4020_4030J_LX_ACSC_05_Apr_2021
                   .OrderByDescending(c => c.ID)
@@ -361,6 +363,9 @@ namespace FPL.Api.Controllers
                     TemplateName = data.TemplateName,
                     CreatedOn = DateTime.Now,
                     CreatedBy = data.CreatedBy,
+                    TotalAmount = data.TotalAmount,
+
+
                 };
 
 
@@ -421,6 +426,7 @@ namespace FPL.Api.Controllers
                     TemplateName = data.TemplateName,
                     CreatedOn = DateTime.Now,
                     CreatedBy = data.CreatedBy,
+                    TotalAmount = data.TotalAmount,
                 };
                 db.Table_quotation2015HT.Add(abc);
                 await db.SaveChangesAsync();
@@ -486,6 +492,7 @@ namespace FPL.Api.Controllers
                     TemplateName = data.TemplateName,
                     CreatedOn = DateTime.Now,
                     CreatedBy = data.CreatedBy,
+                    TotalAmount = data.TotalAmount,
                 };
 
 
@@ -553,6 +560,7 @@ namespace FPL.Api.Controllers
                     TemplateName = data.TemplateName,
                     CreatedOn = DateTime.Now,
                     CreatedBy = data.CreatedBy,
+                    TotalAmount = data.TotalAmount,
                 };
 
                 db.Table_Quotation4030.Add(abc);
@@ -618,6 +626,8 @@ namespace FPL.Api.Controllers
                     TemplateName = data.TemplateName,
                     CreatedOn = DateTime.Now,
                     CreatedBy = data.CreatedBy,
+                    TotalAmount = data.TotalAmount,
+
                 };
 
                 db.Table_4020Z25.Add(abc);
@@ -685,6 +695,7 @@ namespace FPL.Api.Controllers
                     TemplateName = data.TemplateName,
                     CreatedOn = DateTime.Now,
                     CreatedBy = data.CreatedBy,
+                    TotalAmount = data.TotalAmount,
                 };
 
                 db.Table_Quotation5030Z25ZLX_.Add(abc);
@@ -754,6 +765,7 @@ namespace FPL.Api.Controllers
                     TemplateName = data.TemplateName,
                     CreatedOn = DateTime.Now,
                     CreatedBy = data.CreatedBy,
+                    TotalAmount = data.TotalAmount,
                 };
                 db.Table_4030InDollor.Add(abc);
                 await db.SaveChangesAsync();
@@ -822,6 +834,7 @@ namespace FPL.Api.Controllers
                     TemplateName = data.TemplateName,
                     CreatedOn = DateTime.Now,
                     CreatedBy = data.CreatedBy,
+                    TotalAmount = data.TotalAmount,
                 };
 
                 db.Table_Quotation5030.Add(abc);
@@ -831,7 +844,20 @@ namespace FPL.Api.Controllers
                 var result = db.Table_Quotation5030
                                 .OrderByDescending(c => c.ID)
                                 .FirstOrDefault();
-                return Ok(result);
+                Table_Common_RefID_Template ab = new Table_Common_RefID_Template()
+
+                {
+                    RefID = data.RefID,
+                    TemplateName = data.TemplateName,
+                    CreatedBy = data.CreatedBy,
+                    CreatedOn = DateTime.Now,
+                };
+
+                await Task.Run(() => db.Table_Common_RefID_Template.Add(ab));
+                await db.SaveChangesAsync();
+
+                return Ok("success");
+
             }
             catch (Exception e)
             {
@@ -878,6 +904,7 @@ namespace FPL.Api.Controllers
                     TemplateName = data.TemplateName,
                     CreatedOn = DateTime.Now,
                     CreatedBy = data.CreatedBy,
+                    TotalAmount = data.TotalAmount,
                 };
 
                 db.Table_quotation2015Z25.Add(abc);
@@ -929,6 +956,7 @@ namespace FPL.Api.Controllers
             public string TemplateName { get; set; }
             public Nullable<System.DateTime> CreatedOn { get; set; }
             public string CreatedBy { get; set; }
+            public Nullable<int> TotalAmount { get; set; }
         }
         public partial class QuotationTemplate4020z25Details
         {
@@ -963,6 +991,7 @@ namespace FPL.Api.Controllers
             public Nullable<System.DateTime> CreatedOn { get; set; }
             public string CreatedBy { get; set; }
             public string TemplateName { get; set; }
+            public Nullable<int> TotalAmount { get; set; }
         }
         public partial class QuotationTemplate2015z25Details
         {
@@ -997,6 +1026,7 @@ namespace FPL.Api.Controllers
             public string CreatedBy { get; set; }
             public string KindAttention { get; set; }
             public string OptionalQtyE { get; set; }
+            public Nullable<int> TotalAmount { get; set; }
         }
         public partial class QuotationTemplateRapidI5APRIL2015Details
         {
@@ -1011,6 +1041,7 @@ namespace FPL.Api.Controllers
             public string TemplateName { get; set; }
             public Nullable<System.DateTime> CreatedOn { get; set; }
             public string CreatedBy { get; set; }
+            public Nullable<int> TotalAmount { get; set; }
         }
         public partial class QuotationTemplateDetails4030Z25
         {
@@ -1045,6 +1076,7 @@ namespace FPL.Api.Controllers
             public string CreatedBy { get; set; }
             public string OptionalPriceC { get; set; }
             public string TemplateName { get; set; }
+            public Nullable<int> TotalAmount { get; set; }
         }
         public class QuotationTemplateDetails
         {
@@ -1079,6 +1111,7 @@ namespace FPL.Api.Controllers
             public int ID { get; set; }
             public Nullable<System.DateTime> CreatedOn { get; set; }
             public string CreatedBy { get; set; }
+            public Nullable<int> TotalAmount { get; set; }
         }
 
         public partial class QuotationTemplateDetails2015HT
@@ -1106,6 +1139,7 @@ namespace FPL.Api.Controllers
             public string TemplateName { get; set; }
             public Nullable<System.DateTime> CreatedOn { get; set; }
             public string CreatedBy { get; set; }
+            public Nullable<int> TotalAmount { get; set; }
         }
         public partial class QuotationTemplateDetails4030INDOLLOR
         {
@@ -1140,6 +1174,7 @@ namespace FPL.Api.Controllers
             public Nullable<System.DateTime> CreatedOn { get; set; }
             public string CreatedBy { get; set; }
             public string TemplateName { get; set; }
+            public Nullable<int> TotalAmount { get; set; }
         }
         public partial class QuotationTemplateDetails4020INDOLLOR
         {
@@ -1174,6 +1209,7 @@ namespace FPL.Api.Controllers
             public string CreatedBy { get; set; }
             public string OptionalQtyE { get; set; }
             public string KindAttention { get; set; }
+            public Nullable<int> TotalAmount { get; set; }
         }
             public partial class QuotationTemplateDetails4030
         {
@@ -1208,6 +1244,7 @@ namespace FPL.Api.Controllers
             public System.DateTime CreatedOn { get; set; }
             public string CreatedBy { get; set; }
             public string TemplateName { get; set; }
+            public Nullable<int> TotalAmount { get; set; }
         }
         public partial class QuotationTemplateDetails5030Z25ZLX
         {
@@ -1242,6 +1279,8 @@ namespace FPL.Api.Controllers
             public Nullable<System.DateTime> CreatedOn { get; set; }
             public string CreatedBy { get; set; }
             public string BasicSystemPrice { get; set; }
+
+            public Nullable<int> TotalAmount { get; set; }
         }
         public partial class QuotationTemplateDetails5030
         {
@@ -1276,6 +1315,7 @@ namespace FPL.Api.Controllers
             public string CustomerName { get; set; }
             public string OptionalPriceG { get; set; }
             public string BasicSystemQty { get; set; }
+            public Nullable<int> TotalAmount { get; set; }
         }
 
 

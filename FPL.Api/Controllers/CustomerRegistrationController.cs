@@ -14,7 +14,6 @@ namespace FPL.Api.Controllers
     {
         private CustomerManagerEntities db = new CustomerManagerEntities();
 
-
         [HttpPost]
         public async Task<IHttpActionResult> PostSaveCustomerRegistration(Table_CustomerRegistartionDataModel data1)
         {
@@ -165,13 +164,68 @@ namespace FPL.Api.Controllers
         }
 
         [HttpGet]
+        public async Task<IHttpActionResult> GetMachineTicketDetails([FromUri(Name = "id")] string id)
+        {
+            try
+            {
+            var datalist = new List<MachineTicketDataVM>();
+            var customerData = await Task.Run(() => db.Table_CustomerRegistartion.Where(c => c.CompanyName == id).FirstOrDefault());
+            var machinedata = await Task.Run(() => db.Table_MachineRegistration.Where(c => c.CustomerName == customerData.CompanyName && c.IsMachineDeleted != true).ToList());
+            for (int i = 0; i < machinedata.Count; i++)
+            {
+                var mn = machinedata[i].MachineNumber;
+                var ticketData = await Task.Run(() => db.Table_RequestsFormData.Where(c => c.MachineNumber == mn && c.CustomerId == customerData.CustomerID && c.IsDone != true).OrderByDescending(c => c.TokenID).FirstOrDefault());
+
+                MachineTicketDataVM data = new MachineTicketDataVM()
+                {
+                    CustomerName = id,
+                    CustomerId = customerData.CustomerID,
+                    AddressOne = customerData.AddressOne,
+                    AddressTwo = customerData.AddressTwo,
+                    AddressThree = customerData.AddressThree,
+                    City = customerData.City,
+                    State = customerData.State,
+                    Cluster = customerData.Cluster,
+                    Pincode = customerData.Pincode,
+                    Zone = customerData.Zone,
+                    RouteNumber = customerData.RouteNumber,
+                    GSTIN = customerData.GSTIN,
+                    WeeklyOff = customerData.WeeklyOff,
+                    WorkingStart = customerData.WorkingStart,
+                    WorkingEnd = customerData.WorkingEnd,
+                    SecurityFormalities = customerData.SecurityFormalities,
+                   TokenNo = ticketData?.TokenID,
+                    RequestForId = ticketData?.RequestForId,
+                   MachineNumber = machinedata[i].MachineNumber,
+                   ModelName = machinedata[i].ModelName,
+                   InvoicePerticular = machinedata[i].InvoicePerticular,
+                   WarrantyFrom = machinedata[i].WarrantyFrom,
+                   WarrantyTill = machinedata[i].WarrantyTill,
+                   InvoiceNumber = machinedata[i].InvoiceNumber,
+                   InvoiceDate = machinedata[i].InvoiceDate,
+                   InvoiceAmount = machinedata[i].InvoiceAmount,
+                };
+                datalist.Add(data);
+            }
+            return Ok(datalist);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+
+
+
+
+
+        [HttpGet]
         public async Task<IHttpActionResult> GetPerticularCustomerInvoice([FromUri(Name = "id")] int id)
         {
             var result = await Task.Run(() => db.Table_InvoiceDocuments.Where(c => c.CustomerId == id).Select(c => c).ToList());
             return Ok(result);
         }
-
-
 
         [HttpGet]
         public async Task<IHttpActionResult> DeleteCustomerData([FromUri(Name = "id")] int id)
@@ -195,7 +249,56 @@ namespace FPL.Api.Controllers
             return Ok("success");
         }
 
-
+        public partial class MachineTicketDataVM
+        {
+            public Nullable<int> CustomerId { get; set; }
+            public string CustomerName { get; set; }
+            public Nullable<int> TokenNo { get; set; }
+            public Nullable<int> RequestForId { get; set; }
+            public string Unit { get; set; }
+            public string AddressOne { get; set; }
+            public string AddressTwo { get; set; }
+            public string AddressThree { get; set; }
+            public string Pincode { get; set; }
+            public string City { get; set; }
+            public string State { get; set; }
+            public string Country { get; set; }
+            public string GSTIN { get; set; }
+            public string Cluster { get; set; }
+            public string RouteNumber { get; set; }
+            public Nullable<int> RouteId { get; set; }
+            public Nullable<int> ClusterId { get; set; }
+            public string Region { get; set; }
+            public Nullable<int> RegionId { get; set; }
+            public string Zone { get; set; }
+            public Nullable<int> ZoneId { get; set; }
+            public string WeeklyOff { get; set; }
+            public string WorkingStart { get; set; }
+            public string WorkingEnd { get; set; }
+            public string SecurityFormalities { get; set; }
+            public string CreatedBy { get; set; }
+            public Nullable<System.DateTime> CreatedOn { get; set; }
+            public string CompanyOldName { get; set; }
+            public string BillingAddress { get; set; }
+            public Nullable<int> MachineNumber { get; set; }
+            public Nullable<int> ModelId { get; set; }
+            public string ModelName { get; set; }
+            public string Features { get; set; }
+            public Nullable<int> FeaturesId { get; set; }
+            public string InvoiceNumber { get; set; }
+            public Nullable<System.DateTime> InvoiceDate { get; set; }
+            public Nullable<decimal> InvoiceAmount { get; set; }
+            public string InvoiceFileBlob { get; set; }
+            public Nullable<int> InvoicePerticularId { get; set; }
+            public string InvoicePerticular { get; set; }
+            public Nullable<System.DateTime> WarrantyFrom { get; set; }
+            public Nullable<System.DateTime> WarrantyTill { get; set; }
+            public Nullable<bool> IsMachineDeleted { get; set; }
+            public string ContactDataID { get; set; }
+            public string FeatureDetailsID { get; set; }
+            public Nullable<decimal> DueAmount { get; set; }
+            public Nullable<bool> IsPaid { get; set; }
+        }
 
 
         public partial class Table_CustomerRegistartionDataModel
