@@ -25,7 +25,7 @@ namespace FPL.Api.Controllers
             }
             catch (Exception e)
             {
-                return InternalServerError(e);//ggg
+                return InternalServerError(e);//gggasas
             }
         }
 
