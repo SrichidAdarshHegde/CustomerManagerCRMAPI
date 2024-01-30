@@ -87,7 +87,7 @@ namespace FPL.Api.Controllers
             try
             {
                 var refID = db.Table_Common_RefID_Template.ToList();
-                return Ok(refID);
+               return Ok(refID);
             }
             catch (Exception e)
             {
@@ -341,48 +341,50 @@ namespace FPL.Api.Controllers
                 Table_Quotation4020template abc = new Table_Quotation4020template()
 
                 {
-                    RefID = data.RefID,
 
-                    BillingAddress = data.BillingAddress,
+                 RefID = data.RefID,
 
-                    BasicSystemQty=data.BasicSystemQty,
-                    BasicSystemPrice= data.BasicSystemPrice,
+                 BillingAddress = data.BillingAddress,
 
-                   OptionalQtyA= data.OptionalQtyA,
-                   OptionalPriceA= data.OptionalPriceA,
+                 BasicSystemQty=data.BasicSystemQty,
+                 BasicSystemPrice= data.BasicSystemPrice,
 
-                   OptionalQtyB= data.OptionalQtyB,
-                   OptionalPriceB=data.OptionalPriceB,
+                 OptionalQtyA= data.OptionalQtyA,
+                 OptionalPriceA= data.OptionalPriceA,
 
-                  OptionalQtyC= data.OptionalQtyC,
-                  OptionalPriceC=data.OptionalPriceC,
+                 OptionalQtyB= data.OptionalQtyB,
+                 OptionalPriceB=data.OptionalPriceB,
 
-                OptionalQtyD= data.OptionalQtyD,
-               OptionalPriceD= data.OptionalPriceD,
+                 OptionalQtyC= data.OptionalQtyC,
+                 OptionalPriceC=data.OptionalPriceC,
 
-              OptionalQtyE= data.OptionalQtyE,
-            OptionalPriceE= data.OptionalPriceE,
+                 OptionalQtyD= data.OptionalQtyD,
+                 OptionalPriceD= data.OptionalPriceD,
 
-          OptionalQtyF= data.OptionalQtyF,
-            OptionalPriceF=data.OptionalPriceF, 
+                 OptionalQtyE= data.OptionalQtyE,
+                 OptionalPriceE= data.OptionalPriceE,
 
-        OptionalQtyG=data.OptionalQtyG,
-        OptionalPriceG= data.OptionalPriceG,
+                 OptionalQtyF= data.OptionalQtyF,
+                 OptionalPriceF=data.OptionalPriceF, 
 
-     OptionalQtyH=data.OptionalQtyH,
-      OptionalPriceH= data.OptionalPriceH,
+                OptionalQtyG=data.OptionalQtyG,
+                OptionalPriceG= data.OptionalPriceG,
 
-          TemplateID=data.TemplateID,
-                    TemplateName = data.TemplateName,
-            CustomerName=data.CustomerName,
-                    CreatedBy = data.CreatedBy,
-                    CreatedOn = DateTime.Now,
-                    CustomerID = data.CustomerID,
-                    KindAttention=data.KindAttention,
-                    TotalAmount = data.TotalAmount,
+                OptionalQtyH=data.OptionalQtyH,
+                OptionalPriceH= data.OptionalPriceH,
+
+                TemplateID=data.TemplateID,
+                TemplateName = data.TemplateName,
+                CustomerName=data.CustomerName,
+                CreatedBy = data.CreatedBy,
+                CreatedOn = DateTime.Now,
+                CustomerID = data.CustomerID,
+                KindAttention=data.KindAttention,
+                TotalAmount = data.TotalAmount,
+               
                 };
 
-              db.Table_Quotation4020template.Add(abc);
+               db.Table_Quotation4020template.Add(abc);
                 await db.SaveChangesAsync();
 
                var result= db.Table_Quotation4020template.OrderByDescending(c => c.ID).FirstOrDefault();
@@ -684,8 +686,22 @@ namespace FPL.Api.Controllers
                 await db.SaveChangesAsync();
 
                 var result = db.Table_Rapid_I_Spares.OrderByDescending(c => c.ID).FirstOrDefault();
-                return Ok(result);
+                Table_Common_RefID_Template ab = new Table_Common_RefID_Template()
+
+                {
+                    RefID = data.RefID,
+                    TemplateName = data.TemplateName,
+                    CreatedBy = data.CreatedBy,
+                    CreatedOn = DateTime.Now,
+                };
+
+                await Task.Run(() => db.Table_Common_RefID_Template.Add(ab));
+                await db.SaveChangesAsync();
+
+                return Ok("success");
+
             }
+
 
             catch (Exception e)
             {
@@ -957,7 +973,6 @@ namespace FPL.Api.Controllers
                 await db.SaveChangesAsync();
 
                 var result = db.Table_Rapid64CAM.OrderByDescending(c => c.ID).FirstOrDefault();
-
                 Table_Common_RefID_Template ab = new Table_Common_RefID_Template()
 
                 {
@@ -973,6 +988,8 @@ namespace FPL.Api.Controllers
                 return Ok("success");
 
             }
+
+            
 
             catch (Exception e)
             {
