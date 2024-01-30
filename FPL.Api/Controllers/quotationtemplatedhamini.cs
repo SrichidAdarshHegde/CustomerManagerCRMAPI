@@ -127,7 +127,25 @@ namespace FPL.Api.Controllers
         {
             try
             {
-                var result = db.Table_Quotation4030.Where(c => c.RefID == id).FirstOrDefault();
+                var result = db.Table_4030InDollor.Where(c => c.RefID == id).FirstOrDefault();
+
+                return Ok(result);
+            }
+            catch (Exception e)
+            {
+
+                throw e;
+            }
+
+        }
+
+
+        [HttpGet]
+        public async Task<IHttpActionResult> Savequotationtemplate4020z25([FromUri(Name = "id")] int id)
+        {
+            try
+            {
+                var result = db.Table_4020Z25.Where(c => c.RefID == id).FirstOrDefault();
 
                 return Ok(result);
             }
@@ -257,7 +275,8 @@ namespace FPL.Api.Controllers
       
 
         [HttpPost]
-        public async Task<IHttpActionResult>SavequotationtemplateRapidI5APRIL2015(QuotationTemplateRapidI5APRIL2015Details data)
+        public async Task<IHttpActionResult>
+            SavequotationtemplateRapidI5APRIL2015(QuotationTemplateRapidI5APRIL2015Details data)
         {
             try
             {
@@ -276,14 +295,29 @@ namespace FPL.Api.Controllers
                     CreatedBy = data.CreatedBy,
 
                 };
+                db.Table_Rapid_I_4020_4030J_LX_ACSC_05_Apr_2021.Add(abc);
+                await db.SaveChangesAsync();
+
                 var result = db.Table_Rapid_I_4020_4030J_LX_ACSC_05_Apr_2021
                   .OrderByDescending(c => c.ID)
                   .FirstOrDefault();
-                return Ok(result);
+           
                
+
+                Table_Common_RefID_Template ab = new Table_Common_RefID_Template()
+
+                {
+                    RefID = data.RefID,
+                    TemplateName = data.TemplateName,
+                    CreatedBy = data.CreatedBy,
+                    CreatedOn = DateTime.Now,
+                };
+
+                await Task.Run(() => db.Table_Common_RefID_Template.Add(ab));
                 await db.SaveChangesAsync();
 
-                return Ok(result);
+                return Ok("success");
+            
             }
             catch (Exception e)
             {
@@ -318,14 +352,29 @@ namespace FPL.Api.Controllers
                 var result = db.Table_Rapid_I_AMC_OFFER
                     .OrderByDescending(c => c.ID)
                     .FirstOrDefault();
-                return Ok(result);
-                
+                Table_Common_RefID_Template ab = new Table_Common_RefID_Template()
+
+                {
+                    RefID = data.RefID,
+                    TemplateName = data.TemplateName,
+                    CreatedBy = data.CreatedBy,
+                    CreatedOn = DateTime.Now,
+                };
+
+                await Task.Run(() => db.Table_Common_RefID_Template.Add(ab));
+                await db.SaveChangesAsync();
+
+                return Ok("success");
+            
+
+
             }
             catch (Exception e)
             {
                 return InternalServerError(e);
             }
         }
+       
 
         [HttpPost]
         public async Task<IHttpActionResult> Savequotationtemplate4030Z25(QuotationTemplateDetails4030Z25 data)
