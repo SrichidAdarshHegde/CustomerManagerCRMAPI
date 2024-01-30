@@ -577,7 +577,7 @@ namespace FPL.Api.Controllers
             {
 
 
-                Table_Quotation2015_in_dollar abc = new Table_Quotation2015_in_dollar()
+                Table_Quotation2015_in_dollar xyz = new Table_Quotation2015_in_dollar()
                 {
                     RefID = data.RefID,
 
@@ -619,8 +619,8 @@ namespace FPL.Api.Controllers
                     KindAttention = data.KindAttention,
                     TotalAmount = data.TotalAmount,
                 };
-
-                db.Table_Quotation2015_in_dollar.Add(abc);
+                db.Table_Quotation2015_in_dollar.Add(xyz);
+              
                 await db.SaveChangesAsync();
 
                 var result = db.Table_Quotation2015_in_dollar.OrderByDescending(c => c.ID).FirstOrDefault();
@@ -1061,6 +1061,9 @@ namespace FPL.Api.Controllers
             {
 
 
+
+
+
                 Table_RapidiTrainingcharges abc = new Table_RapidiTrainingcharges()
                 {
                     RefID = data.RefID,
@@ -1124,6 +1127,39 @@ namespace FPL.Api.Controllers
             public string ACSCPrice { get; set; }
             public Nullable<int> TotalAmount { get; set; }
         }
+        public partial class Quotation2015indollartemplatedetails
+        {
+            public int RefID { get; set; }
+            public string YourEnquiry { get; set; }
+            public string KindAttention { get; set; }
+            public string BillingAddress { get; set; }
+            public Nullable<System.DateTime> CreatedOn { get; set; }
+            public string CreatedBy { get; set; }
+            public string BasicSystemQty { get; set; }
+            public string BasicSystemPrice { get; set; }
+            public string OptionalQtyA { get; set; }
+            public string OptionalPriceA { get; set; }
+            public string OptionalQtyB { get; set; }
+            public string OptionalPriceB { get; set; }
+            public string OptionalQtyC { get; set; }
+            public string OptionalPriceC { get; set; }
+            public string OptionalQtyD { get; set; }
+            public string OptionalPriceD { get; set; }
+            public string OptionalQtyE { get; set; }
+            public string OptionalPriceE { get; set; }
+            public string OptionalQtyF { get; set; }
+            public string OptionalPriceF { get; set; }
+            public string OptionalQtyG { get; set; }
+            public string OptionalPriceG { get; set; }
+            public string OptionalQtyH { get; set; }
+            public string OptionalPriceH { get; set; }
+            public Nullable<int> CustomerID { get; set; }
+            public string CustomerName { get; set; }
+            public Nullable<int> TemplateID { get; set; }
+            public string TemplateName { get; set; }
+            public int ID { get; set; }
+            public Nullable<int> TotalAmount { get; set; }
+        }
 
         public partial class Rapiditabledetails
         {
@@ -1142,7 +1178,40 @@ namespace FPL.Api.Controllers
             public string BillingAddress { get; set; }
             public Nullable<int> TotalAmount { get; set; }
         }
-
+       
+        public partial class Quotation4020HTtemplatedetails  
+        {
+            public int ID { get; set; }
+            public Nullable<int> RefID { get; set; }
+            public string YourEnquiry { get; set; }
+            public string KindAttention { get; set; }
+            public string BillingAddress { get; set; }
+            public Nullable<System.DateTime> CreatedOn { get; set; }
+            public string CreatedBy { get; set; }
+            public string BasicSystemQty { get; set; }
+            public string BasicSystemPrice { get; set; }
+            public string OptionalQtyA { get; set; }
+            public string OptionalPriceA { get; set; }
+            public string OptionalQtyB { get; set; }
+            public string OptionalPriceB { get; set; }
+            public string OptionalQtyC { get; set; }
+            public string OptionalPriceC { get; set; }
+            public string OptionalQtyD { get; set; }
+            public string OptionalPriceD { get; set; }
+            public string OptionalQtyE { get; set; }
+            public string OptionalPriceE { get; set; }
+            public string OptionalQtyF { get; set; }
+            public string OptionalPriceF { get; set; }
+            public string OptionalQtyG { get; set; }
+            public string OptionalPriceG { get; set; }
+            public string OptionalQtyH { get; set; }
+            public string OptionalPriceH { get; set; }
+            public Nullable<int> CustomerID { get; set; }
+            public string CustomerName { get; set; }
+            public Nullable<int> TemplateID { get; set; }
+            public string TemplateName { get; set; }
+            public Nullable<int> TotalAmount { get; set; }
+        }
         public partial class Rapid64CAMdetails
         {
             public int ID { get; set; }
@@ -1297,75 +1366,6 @@ namespace FPL.Api.Controllers
         }
 
 
-        public partial class Quotation2015indollartemplatedetails
-        {
-            public int RefID { get; set; }
-            public string YourEnquiry { get; set; }
-            public string KindAttention { get; set; }
-            public string BillingAddress { get; set; }
-            public Nullable<System.DateTime> CreatedOn { get; set; }
-            public string CreatedBy { get; set; }
-            public string BasicSystemQty { get; set; }
-            public string BasicSystemPrice { get; set; }
-            public string OptionalQtyA { get; set; }
-            public string OptionalPriceA { get; set; }
-            public string OptionalQtyB { get; set; }
-            public string OptionalPriceB { get; set; }
-            public string OptionalQtyC { get; set; }
-            public string OptionalPriceC { get; set; }
-            public string OptionalQtyD { get; set; }
-            public string OptionalPriceD { get; set; }
-            public string OptionalQtyE { get; set; }
-            public string OptionalPriceE { get; set; }
-            public string OptionalQtyF { get; set; }
-            public string OptionalPriceF { get; set; }
-            public string OptionalQtyG { get; set; }
-            public string OptionalPriceG { get; set; }
-            public string OptionalQtyH { get; set; }
-            public string OptionalPriceH { get; set; }
-            public Nullable<int> CustomerID { get; set; }
-            public string CustomerName { get; set; }
-            public Nullable<int> TemplateID { get; set; }
-            public string TemplateName { get; set; }
-            public int ID { get; set; }
-            public Nullable<int> TotalAmount { get; set; }
-        }
-
-        public partial class Quotation4020HTtemplatedetails
-        {
-            public int ID { get; set; }
-            public int RefID { get; set; }
-            public string YourEnquiry { get; set; }
-            public string KindAttention { get; set; }
-            public string BillingAddress { get; set; }
-            public Nullable<System.DateTime> CreatedOn { get; set; }
-            public string CreatedBy { get; set; }
-            public string BasicSystemQty { get; set; }
-            public string BasicSystemPrice { get; set; }
-            public string OptionalQtyA { get; set; }
-            public string OptionalPriceA { get; set; }
-            public string OptionalQtyB { get; set; }
-            public string OptionalPriceB { get; set; }
-            public string OptionalQtyC { get; set; }
-            public string OptionalPriceC { get; set; }
-            public string OptionalQtyD { get; set; }
-            public string OptionalPriceD { get; set; }
-            public string OptionalQtyE { get; set; }
-            public string OptionalPriceE { get; set; }
-            public string OptionalQtyF { get; set; }
-            public string OptionalPriceF { get; set; }
-            public string OptionalQtyG { get; set; }
-            public string OptionalPriceG { get; set; }
-            public string OptionalQtyH { get; set; }
-            public string OptionalPriceH { get; set; }
-            public Nullable<int> CustomerID { get; set; }
-            public string CustomerName { get; set; }
-            public Nullable<int> TemplateID { get; set; }
-            public string TemplateName { get; set; }
-            public Nullable<int> TotalAmount { get; set; }
-        }
-
-
         public partial class Quotationtemplatedetails
         {
             public int RefID { get; set; }
@@ -1397,7 +1397,7 @@ namespace FPL.Api.Controllers
             public Nullable<int> TemplateID { get; set; }
             public string TemplateName { get; set; }
             public int ID { get; set; }
-            public Nullable<int> TotalAmount { get; set; }
+            public int? TotalAmount { get; set; }
         }
 
     }
