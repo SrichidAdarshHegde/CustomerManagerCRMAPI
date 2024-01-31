@@ -296,9 +296,7 @@ namespace FPL.Api.Controllers
                 db.Table_Rapid_I_4020_4030J_LX_ACSC_05_Apr_2021.Add(abc);
                 await db.SaveChangesAsync();
 
-                var result = db.Table_Rapid_I_4020_4030J_LX_ACSC_05_Apr_2021
-                  .OrderByDescending(c => c.ID)
-                  .FirstOrDefault();
+                var result = db.Table_Rapid_I_4020_4030J_LX_ACSC_05_Apr_2021.OrderByDescending(c => c.ID).FirstOrDefault();
            
                
 
