@@ -73,11 +73,11 @@ namespace FPL.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<IHttpActionResult> Savequotationtemplate2015Z25([FromUri(Name = "id")] int id)
+        public async Task<IHttpActionResult> Savequotationtemplate4020Z25([FromUri(Name = "id")] int id)
         {
             try
             {
-                var result = db.Table_quotation2015Z25.Where(c => c.RefID == id).FirstOrDefault();
+                var result = db.Table_4020Z25.Where(c => c.RefID == id).FirstOrDefault();
 
                 return Ok(result);
             }
