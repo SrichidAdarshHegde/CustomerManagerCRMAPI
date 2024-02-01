@@ -255,7 +255,7 @@ namespace FPL.Api.Controllers
         {
             try
             {
-                var result = db.Table_Quotation4020template.Where(c => c.RefID == id).FirstOrDefault();
+                var result = db.Table_rapiditable.Where(c => c.RefID == id).FirstOrDefault();
 
 
 
