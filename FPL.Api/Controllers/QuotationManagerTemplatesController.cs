@@ -326,8 +326,26 @@ namespace FPL.Api.Controllers
 
         }
 
-    
 
+
+        [HttpGet]
+        public async Task<IHttpActionResult> GetVMCdetails([FromUri(Name = "id")] int id)
+        {
+            try
+            {
+                var result = db.Table_rapiditable.Where(c => c.RefID == id).FirstOrDefault();
+
+
+
+                return Ok(result);
+            }
+            catch (Exception e)
+            {
+
+                throw e;
+            }
+
+        }
 
 
 
@@ -412,6 +430,100 @@ namespace FPL.Api.Controllers
                 throw e;
             }
         }
+
+
+        [HttpPost]
+        public async Task<IHttpActionResult> SaveRapidIVMC(RapidIVMCdetails data)
+        {
+            try
+            {
+
+
+                Table_Rapid_i_VMS abc = new Table_Rapid_i_VMS()
+
+                {
+
+                    RefID = data.RefID,
+
+                    BillingAddress = data.BillingAddress,
+
+                    BasicQty = data.BasicQty,
+                    BasicPrice = data.BasicPrice,
+
+                    BasicQtyA = data.BasicQtyA,
+                    BasicPriceA = data.BasicPriceA,
+
+                    BasicQtyB = data.BasicQtyB,
+                    BasicPriceB = data.BasicPriceB,
+
+                    BasicQtyC = data.BasicQtyC,
+                    BasicPriceC = data.BasicPriceC,
+
+
+                    OptionalQtyA = data.OptionalQtyA,
+                    OptionalPriceA = data.OptionalPriceA,
+
+                    OptionalQtyB = data.OptionalQtyB,
+                    OptionalPriceB = data.OptionalPriceB,
+
+                    OptionalQtyC = data.OptionalQtyC,
+                    OptionalPriceC = data.OptionalPriceC,
+
+                    OptionalQtyD = data.OptionalQtyD,
+                    OptionalPriceD = data.OptionalPriceD,
+
+                    OptionalQtyE = data.OptionalQtyE,
+                    OptionalPriceE = data.OptionalPriceE,
+
+                    OptionalQtyF = data.OptionalQtyF,
+                    OptionalPriceF = data.OptionalPriceF,
+
+                    OptionalQtyG = data.OptionalQtyG,
+                    OptionalPriceG = data.OptionalPriceG,
+
+                    OptionalQtyH = data.OptionalQtyH,
+                    OptionalPriceH = data.OptionalPriceH,
+
+                    TemplateID = data.TemplateID,
+                    TemplateName = data.TemplateName,
+                    CustomerName = data.CustomerName,
+                    CreatedBy = data.CreatedBy,
+                    CreatedOn = DateTime.Now,
+                    CustomerID = data.CustomerID,
+                    KindAttention = data.KindAttention,
+                    TotalAmount = data.TotalAmount,
+
+                };
+
+                db.Table_Rapid_i_VMS.Add(abc);
+                await db.SaveChangesAsync();
+
+                var result = db.Table_Rapid_i_VMS.OrderByDescending(c => c.ID).FirstOrDefault();
+
+                Table_Common_RefID_Template ab = new Table_Common_RefID_Template()
+
+                {
+                    RefID = data.RefID,
+                    TemplateName = data.TemplateName,
+                    CreatedBy = data.CreatedBy,
+                    CreatedOn = DateTime.Now,
+                };
+
+                await Task.Run(() => db.Table_Common_RefID_Template.Add(ab));
+                await db.SaveChangesAsync();
+
+                return Ok("success");
+
+
+            }
+
+            catch (Exception e)
+            {
+
+                throw e;
+            }
+        }
+
 
 
 
@@ -1398,6 +1510,46 @@ namespace FPL.Api.Controllers
             public string TemplateName { get; set; }
             public int ID { get; set; }
             public int? TotalAmount { get; set; }
+        }
+
+        public partial class RapidIVMCdetails
+        {
+            public int ID { get; set; }
+            public Nullable<int> RefID { get; set; }
+            public string YourEnquiry { get; set; }
+            public string KindAttention { get; set; }
+            public string BillingAddress { get; set; }
+            public Nullable<System.DateTime> CreatedOn { get; set; }
+            public string CreatedBy { get; set; }
+            public string BasicQty { get; set; }
+            public string BasicPrice { get; set; }
+            public string OptionalQtyA { get; set; }
+            public string OptionalPriceA { get; set; }
+            public string OptionalQtyB { get; set; }
+            public string OptionalPriceB { get; set; }
+            public string OptionalQtyC { get; set; }
+            public string OptionalPriceC { get; set; }
+            public string OptionalQtyD { get; set; }
+            public string OptionalPriceD { get; set; }
+            public string OptionalQtyE { get; set; }
+            public string OptionalPriceE { get; set; }
+            public string OptionalQtyF { get; set; }
+            public string OptionalPriceF { get; set; }
+            public string OptionalQtyG { get; set; }
+            public string OptionalPriceG { get; set; }
+            public string OptionalQtyH { get; set; }
+            public string OptionalPriceH { get; set; }
+            public Nullable<int> CustomerID { get; set; }
+            public string CustomerName { get; set; }
+            public Nullable<int> TemplateID { get; set; }
+            public string TemplateName { get; set; }
+            public Nullable<int> TotalAmount { get; set; }
+            public string BasicQtyA { get; set; }
+            public string BasicPriceA { get; set; }
+            public string BasicQtyB { get; set; }
+            public string BasicPriceB { get; set; }
+            public string BasicQtyC { get; set; }
+            public string BasicPriceC { get; set; }
         }
 
     }
