@@ -159,11 +159,22 @@ namespace FPL.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<IHttpActionResult> GetTripDetails([FromUri(Name = "id")] int id)
+        public async Task<IHttpActionResult> GetTripDetailsbyTripSheetNo([FromUri(Name = "id")] int id)
         {
             var tripData = await Task.Run(() => db.Table_TravelBudget.Where(c => c.TripSheetNo == id).Select(c => c).ToList());
             return Ok(tripData);
         }
+
+        [HttpGet]
+        public async Task<IHttpActionResult> GetTripSheetNos()
+        {
+            var tripData = await Task.Run(() => db.Table_TravelBudget.GroupBy(c => c.TripSheetNo).Select(group => group.FirstOrDefault()).ToList());
+
+            return Ok(tripData);
+        }
+
+
+
 
         [HttpGet]
         public async Task<IHttpActionResult> GetTripSheetNo()
