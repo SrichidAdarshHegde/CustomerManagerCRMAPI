@@ -88,6 +88,8 @@ namespace FPL.Api.Controllers
                     Vehicle = tripSheetData.Vehicle,
                     StartPlace = tripSheetData.StartPlace,
                     StartCluster = tripSheetData.StartCluster,
+                    EndPlace = tripSheetData.EndPlace,
+                    EndCluster = tripSheetData.EndCluster,
                     InitialTime = tripSheetData.InitialTime,
                     CreatedBy = tripSheetData.CreatedBy,
                     CreatedOn = tripSheetData.CreatedOn,
@@ -118,6 +120,8 @@ namespace FPL.Api.Controllers
                         Vehicle = tripSheetData.Vehicle,
                         StartPlace = tripSheetData.StartPlace,
                         StartCluster = tripSheetData.StartCluster,
+                        EndPlace = tripSheetData.EndPlace,
+                        EndCluster = tripSheetData.EndCluster,
                         InitialTime = tripSheetData.InitialTime,
                         CreatedBy = tripSheetData.CreatedBy,
                         UserId = tripSheetData.UserId,
@@ -218,6 +222,9 @@ namespace FPL.Api.Controllers
         public string Vehicle { get; set; }
         public string StartPlace { get; set; }
         public string StartCluster { get; set; }
+        public string EndPlace { get; set; }
+        public string EndCluster { get; set; }
+
         public Nullable<System.TimeSpan> InitialTime { get; set; }
         public string CreatedBy { get; set; }
         public Nullable<System.DateTime> CreatedOn { get; set; }
@@ -262,6 +269,9 @@ namespace FPL.Api.Controllers
         public string Vehicle { get; set; }
         public string StartPlace { get; set; }
         public string StartCluster { get; set; }
+        public string EndPlace { get; set; }
+        public string EndCluster { get; set; }
+
         public Nullable<System.TimeSpan> InitialTime { get; set; }
         public string CreatedBy { get; set; }
         public Nullable<System.DateTime> CreatedOn { get; set; }
