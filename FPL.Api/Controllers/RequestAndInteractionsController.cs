@@ -12,8 +12,6 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
 using System.Web.Http.Description;
-using HttpContext = System.Web.HttpContext;
-
 
 
 
@@ -30,7 +28,7 @@ namespace FPL.Api.Controllers
             List<Table_MachineFeatureDetails> MachineDetails = new List<Table_MachineFeatureDetails>();
             try
             {
-                var httpRequest = HttpContext.Current.Request;
+                var httpRequest = System.Web.HttpContext.Current.Request;
                 var mn = httpRequest["MachineNumber"];
                 if (mn == "undefined" || mn == "null" || mn == "")
                 {
@@ -324,7 +322,7 @@ namespace FPL.Api.Controllers
 
                 await Task.Run(() => db.Table_InteractionsData.Add(data));
                 await db.SaveChangesAsync();
-                var MachineData = db.Table_RequestsFormData.Where(c => c.MachineNumber == data1.MachineNumber && c.RequestForId == data1.RequestId && c.TokenID == data1.TicketNo).Select(c => c).FirstOrDefault();
+                var MachineData = db.Table_RequestsFormData.Where(c => c.CustomerId == data1.CutomerId && c.RequestForId == data1.RequestId && c.TokenID == data1.TicketNo).Select(c => c).FirstOrDefault();
 
                 if (MachineData != null)
                 {
@@ -468,6 +466,7 @@ namespace FPL.Api.Controllers
                         CreatedOn = request.CreatedOn,
                         IsDone = request.IsDone,
                         RequestId = request.id,
+                        TokenID = request.TokenID,
                         RequestForId = request.RequestForId,
                         RequestFor = requestForResult,
                         SandS = sandSResult
@@ -1393,6 +1392,7 @@ namespace FPL.Api.Controllers
             public string Remarks { get; set; }
             public Nullable<bool> IsDone { get; set; }
             public Nullable<int> TokenID { get; set; }
+
         }
 
         [HttpGet]

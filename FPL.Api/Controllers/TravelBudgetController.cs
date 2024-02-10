@@ -1,6 +1,7 @@
 ﻿using FPL.Dal.DataModel;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -173,6 +174,17 @@ namespace FPL.Api.Controllers
             return Ok(tripData);
         }
 
+        [HttpGet]
+        public async Task<IHttpActionResult> DeleteTripData([FromUri(Name = "id")] int id)
+        {
+            
+            var data = await db.Table_TravelBudget.Where(c => c.TripSheetNo == id).ToListAsync();
+
+            db.Table_TravelBudget.RemoveRange(data);
+            await db.SaveChangesAsync();
+
+            return Ok("success");
+        }
 
 
 
