@@ -1,6 +1,7 @@
 ﻿using FPL.Dal.DataModel;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -88,6 +89,8 @@ namespace FPL.Api.Controllers
                     Vehicle = tripSheetData.Vehicle,
                     StartPlace = tripSheetData.StartPlace,
                     StartCluster = tripSheetData.StartCluster,
+                    EndPlace = tripSheetData.EndPlace,
+                    EndCluster = tripSheetData.EndCluster,
                     InitialTime = tripSheetData.InitialTime,
                     CreatedBy = tripSheetData.CreatedBy,
                     CreatedOn = tripSheetData.CreatedOn,
@@ -118,6 +121,8 @@ namespace FPL.Api.Controllers
                         Vehicle = tripSheetData.Vehicle,
                         StartPlace = tripSheetData.StartPlace,
                         StartCluster = tripSheetData.StartCluster,
+                        EndPlace = tripSheetData.EndPlace,
+                        EndCluster = tripSheetData.EndCluster,
                         InitialTime = tripSheetData.InitialTime,
                         CreatedBy = tripSheetData.CreatedBy,
                         UserId = tripSheetData.UserId,
@@ -155,11 +160,33 @@ namespace FPL.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<IHttpActionResult> GetTripDetails([FromUri(Name = "id")] int id)
+        public async Task<IHttpActionResult> GetTripDetailsbyTripSheetNo([FromUri(Name = "id")] int id)
         {
             var tripData = await Task.Run(() => db.Table_TravelBudget.Where(c => c.TripSheetNo == id).Select(c => c).ToList());
             return Ok(tripData);
         }
+
+        [HttpGet]
+        public async Task<IHttpActionResult> GetTripSheetNos()
+        {
+            var tripData = await Task.Run(() => db.Table_TravelBudget.GroupBy(c => c.TripSheetNo).Select(group => group.FirstOrDefault()).ToList());
+
+            return Ok(tripData);
+        }
+
+        [HttpGet]
+        public async Task<IHttpActionResult> DeleteTripData([FromUri(Name = "id")] int id)
+        {
+            
+            var data = await db.Table_TravelBudget.Where(c => c.TripSheetNo == id).ToListAsync();
+
+            db.Table_TravelBudget.RemoveRange(data);
+            await db.SaveChangesAsync();
+
+            return Ok("success");
+        }
+
+
 
         [HttpGet]
         public async Task<IHttpActionResult> GetTripSheetNo()
@@ -218,6 +245,9 @@ namespace FPL.Api.Controllers
         public string Vehicle { get; set; }
         public string StartPlace { get; set; }
         public string StartCluster { get; set; }
+        public string EndPlace { get; set; }
+        public string EndCluster { get; set; }
+
         public Nullable<System.TimeSpan> InitialTime { get; set; }
         public string CreatedBy { get; set; }
         public Nullable<System.DateTime> CreatedOn { get; set; }
@@ -262,6 +292,9 @@ namespace FPL.Api.Controllers
         public string Vehicle { get; set; }
         public string StartPlace { get; set; }
         public string StartCluster { get; set; }
+        public string EndPlace { get; set; }
+        public string EndCluster { get; set; }
+
         public Nullable<System.TimeSpan> InitialTime { get; set; }
         public string CreatedBy { get; set; }
         public Nullable<System.DateTime> CreatedOn { get; set; }
