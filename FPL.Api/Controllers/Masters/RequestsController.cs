@@ -93,17 +93,18 @@ namespace FPL.Api.Controllers.Masters
             }
         }
 
-
         public async Task<IHttpActionResult> PostUpdateRequestPriority(RequestsMasterDetails data1)
         {
 
             try
             {
                 var dat = await Task.Run(() => db.Table_Requests.Where(c => c.RequestsId == data1.RequestsId).FirstOrDefault());
+                var priid = Convert.ToInt32(data1.Priority);
+                var priData = await Task.Run(() => db.Table_Priority.Where(c => c.ID == priid).Select(c => c.PriorityID).FirstOrDefault());
                 if (dat != null)
                 {
-                    dat.Priority = data1.Priority;
-                             
+                    dat.Priority = priData;
+
                     await Task.Run(() => db.Entry(dat).State = EntityState.Modified);
                     await db.SaveChangesAsync();
                 }
@@ -118,6 +119,8 @@ namespace FPL.Api.Controllers.Masters
             {
             }
         }
+
+
         [HttpPost]
         public async Task<IHttpActionResult> PutRequests(RequestsMasterDetails data1)
         {
