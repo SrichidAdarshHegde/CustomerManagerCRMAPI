@@ -281,9 +281,7 @@ namespace FPL.Api.Controllers
             {
                 var httpRequest = System.Web.HttpContext.Current.Request;
                 var machineNumber = httpRequest["MachineNumber"];
-
                 var customerId = httpRequest["CustomerId"];
-
                 var companyName = httpRequest["CustomerName"];
                 var ClusterId = httpRequest["clusterId"];
                 var RoadCondition = httpRequest["RoadCondition"];
@@ -295,66 +293,54 @@ namespace FPL.Api.Controllers
                 var NearbyMedicalShop = httpRequest["NearbyMedicalShop"];
                 var NearbyHospital = httpRequest["NearbyHospital"];
                 var NearbyMechanicShops = httpRequest["NearbyMechanicShops"];
-
                 var whatToCarry = httpRequest["whatToCarry"];
                 var textarea = httpRequest["textarea"];
                 var createdBy = httpRequest["CreatedBy"];
 
+                int? clustid = null;
 
+                if (!string.IsNullOrEmpty(ClusterId) && ClusterId.ToLower() != "null")
+                {
+                    clustid = Convert.ToInt32(ClusterId);
+                }
 
                 int machineID = Convert.ToInt32(machineNumber);
-
                 int custID = Convert.ToInt32(customerId);
-                int clustid = Convert.ToInt32(ClusterId);
 
                 var customerData = db.Table_CustomerRegistartion.Where(c => c.CustomerID == custID).Select(c => c).FirstOrDefault();
 
-
-
                 Table_LocationDetails data = new Table_LocationDetails()
                 {
-
-
-
                     MachineNumber = machineID,
                     CustomerID = custID,
                     CustomerName = companyName,
                     ClusterId = clustid,
-
                     RoadCondition = RoadCondition,
                     InsideCityOutsideCity = InsideCityOutsideCity,
                     NearbyLodge = NearbyLodge,
                     NearbyPetrolBunk = NearbyPetrolBunk,
                     HotelType = HotelType,
                     BestHotels = BestHotels,
-
-
                     NearbyMedicalShop = NearbyMedicalShop,
                     NearbyHospital = NearbyHospital,
                     NearbyMechanicShops = NearbyMechanicShops,
                     WhatToCarry = whatToCarry,
                     TextArea = textarea,
-
                     UserName = createdBy,
-                    CreatedOn = DateTime.Now,
-
-
-
+                    CreatedOn = DateTime.Now
                 };
-
-
 
                 await Task.Run(() => db.Table_LocationDetails.Add(data));
                 await db.SaveChangesAsync();
 
                 return Ok("success");
-
             }
             catch (Exception e)
             {
                 return Ok("fail");
             }
         }
+
 
 
         [HttpPost]

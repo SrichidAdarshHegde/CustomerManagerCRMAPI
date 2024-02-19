@@ -104,7 +104,7 @@ namespace FPL.Api.Controllers.Masters
                 if (dat != null)
                 {
                     dat.Priority = priData;
-
+                             
                     await Task.Run(() => db.Entry(dat).State = EntityState.Modified);
                     await db.SaveChangesAsync();
                 }
