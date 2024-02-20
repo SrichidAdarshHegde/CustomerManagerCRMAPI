@@ -12,29 +12,27 @@ namespace FPL.Dal.DataModel
     using System;
     using System.Collections.Generic;
     
-    public partial class Table_RequestsFormData
+    public partial class Table_CallTicketScreen
     {
-        public int id { get; set; }
+        public int Id { get; set; }
+        public string CustomerName { get; set; }
+        public Nullable<int> CustomerId { get; set; }
         public Nullable<int> MachineNumber { get; set; }
         public Nullable<int> MachineId { get; set; }
-        public Nullable<int> CustomerId { get; set; }
-        public string CustomerName { get; set; }
+        public string ModelName { get; set; }
+        public Nullable<int> ModelId { get; set; }
+        public Nullable<int> TicketNo { get; set; }
         public string RequestFor { get; set; }
         public Nullable<int> RequestForId { get; set; }
-        public string SandS { get; set; }
-        public Nullable<int> SandSId { get; set; }
-        public string Remarks { get; set; }
+        public string Priority { get; set; }
+        public string Fault { get; set; }
         public string Resolution { get; set; }
+        public string ContactName { get; set; }
+        public Nullable<int> ContactId { get; set; }
+        public Nullable<System.TimeSpan> StartTime { get; set; }
+        public Nullable<System.TimeSpan> EndTime { get; set; }
         public Nullable<bool> IsDone { get; set; }
         public string CreatedBy { get; set; }
         public Nullable<System.DateTime> CreatedOn { get; set; }
-        public Nullable<bool> IsMachineDeleted { get; set; }
-        public Nullable<int> TokenID { get; set; }
-        public Nullable<int> ContactId { get; set; }
-        public string Salute { get; set; }
-        public string ContactName { get; set; }
-        public string Designation { get; set; }
-        public string Email { get; set; }
-        public string Mobile { get; set; }
     }
 }

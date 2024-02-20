@@ -28,12 +28,17 @@ namespace FPL.Dal.DataModel
         public virtual DbSet<Table_4020Z25> Table_4020Z25 { get; set; }
         public virtual DbSet<Table_4030InDollor> Table_4030InDollor { get; set; }
         public virtual DbSet<Table_AttendType> Table_AttendType { get; set; }
+        public virtual DbSet<table_brochure> table_brochure { get; set; }
+        public virtual DbSet<Table_CallTicketScreen> Table_CallTicketScreen { get; set; }
         public virtual DbSet<Table_Cluster> Table_Cluster { get; set; }
         public virtual DbSet<Table_Common_RefID_Template> Table_Common_RefID_Template { get; set; }
         public virtual DbSet<Table_Consumables> Table_Consumables { get; set; }
         public virtual DbSet<Table_Contactdetails> Table_Contactdetails { get; set; }
         public virtual DbSet<Table_Country> Table_Country { get; set; }
         public virtual DbSet<Table_CustomerRegistartion> Table_CustomerRegistartion { get; set; }
+        public virtual DbSet<Table_DocumentMailTemplate> Table_DocumentMailTemplate { get; set; }
+        public virtual DbSet<Table_DocumentTemplate> Table_DocumentTemplate { get; set; }
+        public virtual DbSet<Table_DocumentType> Table_DocumentType { get; set; }
         public virtual DbSet<Table_Faults> Table_Faults { get; set; }
         public virtual DbSet<Table_Features> Table_Features { get; set; }
         public virtual DbSet<Table_FollowUpDetails> Table_FollowUpDetails { get; set; }
@@ -45,8 +50,10 @@ namespace FPL.Dal.DataModel
         public virtual DbSet<Table_MachineCustomerSansSDetails> Table_MachineCustomerSansSDetails { get; set; }
         public virtual DbSet<Table_MachineFeatureDetails> Table_MachineFeatureDetails { get; set; }
         public virtual DbSet<Table_MachineRegistration> Table_MachineRegistration { get; set; }
+        public virtual DbSet<table_mailtemplate> table_mailtemplate { get; set; }
         public virtual DbSet<Table_Model> Table_Model { get; set; }
         public virtual DbSet<Table_Priority> Table_Priority { get; set; }
+        public virtual DbSet<Table_PurposeEstJobTime> Table_PurposeEstJobTime { get; set; }
         public virtual DbSet<Table_quotation2015> Table_quotation2015 { get; set; }
         public virtual DbSet<Table_quotation2015HT> Table_quotation2015HT { get; set; }
         public virtual DbSet<Table_Quotation2015_in_dollar> Table_Quotation2015_in_dollar { get; set; }

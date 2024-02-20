@@ -46,5 +46,6 @@ namespace FPL.Dal.DataModel
         public string CreatedBy { get; set; }
         public string TemplateName { get; set; }
         public Nullable<int> TotalAmount { get; set; }
+        public string TemplateName { get; set; }
     }
 }

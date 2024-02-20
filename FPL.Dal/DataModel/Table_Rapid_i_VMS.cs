@@ -21,8 +21,8 @@ namespace FPL.Dal.DataModel
         public string BillingAddress { get; set; }
         public Nullable<System.DateTime> CreatedOn { get; set; }
         public string CreatedBy { get; set; }
-        public string BasicSystemQty { get; set; }
-        public string BasicSystemPrice { get; set; }
+        public string BasicQty { get; set; }
+        public string BasicPrice { get; set; }
         public string OptionalQtyA { get; set; }
         public string OptionalPriceA { get; set; }
         public string OptionalQtyB { get; set; }

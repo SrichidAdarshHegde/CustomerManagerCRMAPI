@@ -50,11 +50,14 @@ namespace FPL.Dal.DataModel
         public string Vehicle { get; set; }
         public string StartPlace { get; set; }
         public string StartCluster { get; set; }
+        public string EndPlace { get; set; }
+        public string EndCluster { get; set; }
         public Nullable<System.TimeSpan> InitialTime { get; set; }
         public string CreatedBy { get; set; }
         public Nullable<int> UserId { get; set; }
         public Nullable<System.DateTime> CreatedOn { get; set; }
-        public string EndPlace { get; set; }
-        public string EndCluster { get; set; }
+        public string TripId { get; set; }
+        public Nullable<int> TravelId { get; set; }
+        public Nullable<int> UserId { get; set; }
     }
 }

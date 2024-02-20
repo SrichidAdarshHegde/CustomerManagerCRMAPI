@@ -47,6 +47,7 @@ namespace FPL.Api.Controllers
                     var resolution = httpRequest["Resolution"];
                     int contId = Convert.ToInt32(contactId);
                     var createdBy = httpRequest["CreatedBy"];
+                    var createdOn = httpRequest["CreatedOn"];
                     var contactData = db.Table_Contactdetails.Where(c => c.Id == contId).Select(c => c).FirstOrDefault();
 
                     for (int i = 0; i < selectedRequestFor.Count; i++)
@@ -61,7 +62,7 @@ namespace FPL.Api.Controllers
                             Remarks = remarks,
                             Resolution = resolution,
                             CreatedBy = createdBy,
-                            CreatedOn = DateTime.Now,
+                            CreatedOn = Convert.ToDateTime(createdOn),
                             ContactId = contId,
                             ContactName = contactData.ContactName,
                             Salute = contactData.Salute,
@@ -100,7 +101,7 @@ namespace FPL.Api.Controllers
                         ticketData.Email = contactData.Designation;
                         ticketData.Mobile = contactData.Mobile;
                         ticketData.IsDone = false;
-                        ticketData.CreatedOn = DateTime.Now;
+                        ticketData.CreatedOn = Convert.ToDateTime(createdOn);
                         ticketData.CreatedBy = createdBy;
 
                         await Task.Run(() => db.Entry(ticketData).State = EntityState.Modified);
@@ -120,7 +121,7 @@ namespace FPL.Api.Controllers
                             Remarks = remarks,
                             Resolution = resolution,
                             RequestForId = selectedRequestFor[0].value,
-                            CreatedOn = DateTime.Now,
+                            CreatedOn = Convert.ToDateTime(createdOn),
                             CreatedBy = createdBy,
                             ContactId = contId,
                             ContactName = contactData.ContactName,
@@ -157,7 +158,7 @@ namespace FPL.Api.Controllers
                     var resolution = httpRequest["Resolution"];
 
                     var createdBy = httpRequest["CreatedBy"];
-                   
+                    var createdOn = httpRequest["CreatedOn"];
                     int contId = Convert.ToInt32(contactId);
                     int machineID = Convert.ToInt32(machineNumber);
 
@@ -180,7 +181,7 @@ namespace FPL.Api.Controllers
                             Resolution = resolution,
                             CreatedBy = createdBy,
                             UniqueID = string.Concat(machineNumber.Concat(remarks).Concat(customerId)),
-                            CreatedOn = DateTime.Now,
+                            CreatedOn = Convert.ToDateTime(createdOn),
                             ContactId = contId,
                             ContactName = contactData.ContactName,
                             Salute = contactData.Salute,
@@ -220,7 +221,7 @@ namespace FPL.Api.Controllers
                         ticketData.Email = contactData.Designation;
                         ticketData.Mobile = contactData.Mobile;
                         ticketData.IsDone = false;
-                        ticketData.CreatedOn = DateTime.Now;
+                        ticketData.CreatedOn = Convert.ToDateTime(createdOn);
                         ticketData.CreatedBy = createdBy;
 
                         await Task.Run(() => db.Entry(ticketData).State = EntityState.Modified);
@@ -243,7 +244,7 @@ namespace FPL.Api.Controllers
                             RequestFor = selectedRequestFor[0].label,
                             RequestForId = selectedRequestFor[0].value,
                             SandS = string.Concat(machineNumber.Concat(remarks).Concat(customerId)),
-                            CreatedOn = DateTime.Now,
+                            CreatedOn = Convert.ToDateTime(createdOn),
                             CreatedBy = createdBy,
                             ContactId = contId,
                             ContactName = contactData.ContactName,
@@ -1477,9 +1478,6 @@ namespace FPL.Api.Controllers
                 Salute = CuntactDataData.Salute
             };
             contact.Add(cdata);
-
-
-
 
             return this.Ok(contact);
         }

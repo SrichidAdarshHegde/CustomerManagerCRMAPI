@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'G:\Customer Manger CTPL (04-07-2023)\Customer Manager 21-11-2023\GitApi\FPL.Dal\DataModel\Model1.edmx'. 
+﻿// T4 code generation is enabled for model 'D:\Customer Manager CRM\CustomerManager\FPL.Api\FPL.Dal\DataModel\Model1.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

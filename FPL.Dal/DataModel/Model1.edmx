@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="CustomerManagerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="CustomerManagerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Table_4020Z25">
           <Key>
             <PropertyRef Name="ID" />
@@ -24,7 +24,7 @@
           <Property Name="OptionalPriceB" Type="nvarchar(max)" />
           <Property Name="OptionalQtyC" Type="nvarchar(max)" />
           <Property Name="OptionalPriceC" Type="nvarchar(max)" />
-          <Property Name="OptionalQtyD" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="OptionalQtyD" Type="nvarchar(max)" />
           <Property Name="OptionalPriceD" Type="nvarchar(max)" />
           <Property Name="OptionalQtyE" Type="nvarchar(max)" />
           <Property Name="OptionalPriceE" Type="nvarchar(max)" />
@@ -39,8 +39,8 @@
           <Property Name="TemplateID" Type="int" />
           <Property Name="CreatedOn" Type="datetime" />
           <Property Name="CreatedBy" Type="nvarchar(max)" />
-          <Property Name="TemplateName" Type="nvarchar(max)" />
           <Property Name="TotalAmount" Type="int" />
+          <Property Name="TemplateName" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Table_4030InDollor">
           <Key>
@@ -85,15 +85,6 @@
           </Key>
           <Property Name="AttendTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="AttendTypeName" Type="nvarchar(max)" />
-          <Property Name="CreatedBy" Type="nvarchar(max)" />
-          <Property Name="CreatedOn" Type="datetime" />
-        </EntityType>
-        <EntityType Name="table_brochure">
-          <Key>
-            <PropertyRef Name="BrochureID" />
-          </Key>
-          <Property Name="BrochureID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="BrochureName" Type="nvarchar(max)" />
           <Property Name="CreatedBy" Type="nvarchar(max)" />
           <Property Name="CreatedOn" Type="datetime" />
         </EntityType>
@@ -183,7 +174,6 @@
           <Property Name="CreatedBy" Type="nvarchar(max)" />
           <Property Name="CreatedOn" Type="datetime" />
           <Property Name="CompanyOldName" Type="nvarchar(max)" />
-          <Property Name="BillingAddress" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Table_DocumentMailTemplate">
           <Key>
@@ -262,6 +252,7 @@
           <Property Name="CutomerName" Type="nvarchar(max)" />
           <Property Name="MachineId" Type="int" />
           <Property Name="MachineNumber" Type="int" />
+          <Property Name="TicketNo" Type="int" />
           <Property Name="ModelId" Type="int" />
           <Property Name="ModelName" Type="nvarchar(max)" />
           <Property Name="RegionId" Type="int" />
@@ -458,625 +449,7 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="PriorityID" Type="nvarchar(max)" />
-        </EntityType>
-        <EntityType Name="Table_PurposeEstJobTime">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="PurposeName" Type="nvarchar(max)" />
-          <Property Name="JobTime" Type="time" Precision="3" />
-          <Property Name="CreatedBy" Type="nvarchar(max)" />
-          <Property Name="CreatedOn" Type="datetime" />
-        </EntityType>
-        <EntityType Name="Table_quotation2015">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="RefID" Type="int" />
-          <Property Name="YourEnquiry" Type="nvarchar(max)" />
-          <Property Name="KindAttention" Type="nvarchar(max)" />
-          <Property Name="BillingAddress" Type="nvarchar(max)" />
-          <Property Name="Price" Type="nvarchar(max)" />
-          <Property Name="Quantity" Type="nvarchar(max)" />
-          <Property Name="BasicSystemQty" Type="nvarchar(max)" />
-          <Property Name="BasicSystemPrice" Type="nvarchar(max)" />
-          <Property Name="OptionalQtyA" Type="nvarchar(max)" />
-          <Property Name="OptionalPriceA" Type="nvarchar(max)" />
-          <Property Name="OptionalQtyB" Type="nvarchar(max)" />
-          <Property Name="OptionalPriceB" Type="nvarchar(max)" />
-          <Property Name="OptionalQtyC" Type="nvarchar(max)" />
-          <Property Name="OptionalPriceC" Type="nvarchar(max)" />
-          <Property Name="OptionalQtyD" Type="nvarchar(max)" />
-          <Property Name="OptionalPriceD" Type="nvarchar(max)" />
-          <Property Name="OptionalQtyE" Type="nvarchar(max)" />
-          <Property Name="OptionalPriceE" Type="nvarchar(max)" />
-          <Property Name="OptionalQtyF" Type="nvarchar(max)" />
-          <Property Name="OptionalPriceF" Type="nvarchar(max)" />
-          <Property Name="OptionalQtyG" Type="nvarchar(max)" />
-          <Property Name="OptionalPriceG" Type="nvarchar(max)" />
-          <Property Name="OptionalQtyH" Type="nvarchar(max)" />
-          <Property Name="OptionalPriceH" Type="nvarchar(max)" />
-          <Property Name="CustomerID" Type="nvarchar" MaxLength="50" />
-          <Property Name="CustomerName" Type="nvarchar(max)" />
-          <Property Name="TemplateID" Type="int" />
-          <Property Name="TemplateName" Type="nvarchar(max)" />
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="CreatedOn" Type="datetime" />
-          <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
-          <Property Name="TotalAmount" Type="int" />
-        </EntityType>
-        <EntityType Name="Table_quotation2015HT">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="RefID" Type="int" />
-          <Property Name="YourEnquiry" Type="nvarchar(max)" />
-          <Property Name="BillingAddress" Type="nvarchar(max)" />
-          <Property Name="Price" Type="nvarchar(max)" />
-          <Property Name="Quantity" Type="nvarchar(max)" />
-          <Property Name="BasicSystemQty" Type="nvarchar(max)" />
-          <Property Name="BasicSystemPrice" Type="nvarchar(max)" />
-          <Property Name="OptionalQtyA" Type="nvarchar(max)" />
-          <Property Name="OptionalPriceA" Type="nvarchar" MaxLength="50" />
-          <Property Name="OptionalQtyB" Type="nvarchar" MaxLength="50" />
-          <Property Name="OptionalPriceB" Type="nvarchar(max)" />
-          <Property Name="OptionalQtyC" Type="nvarchar(max)" />
-          <Property Name="OptionalPriceC" Type="nvarchar(max)" />
-          <Property Name="OptionalQtyD" Type="nvarchar" MaxLength="50" />
-          <Property Name="OptionalPriceD" Type="nvarchar(max)" />
-          <Property Name="CustomerID" Type="nvarchar(max)" />
-          <Property Name="CustomerName" Type="nvarchar(max)" />
-          <Property Name="TemplateID" Type="int" />
-          <Property Name="TemplateName" Type="nvarchar(max)" />
-          <Property Name="CreatedOn" Type="datetime" />
-          <Property Name="CreatedBy" Type="nvarchar(max)" />
-          <Property Name="TotalAmount" Type="int" />
-        </EntityType>
-        <EntityType Name="Table_Quotation2015-in-dollar">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="RefID" Type="int" Nullable="false" />
-          <Property Name="YourEnquiry" Type="nvarchar(max)" />
-          <Property Name="KindAttention" Type="nvarchar(max)" />
-          <Property Name="BillingAddress" Type="nvarchar(max)" />
-          <Property Name="CreatedOn" Type="datetime" />
-          <Property Name="CreatedBy" Type="nvarchar(max)" />
-          <Property Name="BasicSystemQty" Type="nvarchar(max)" />
-          <Property Name="BasicSystemPrice" Type="nvarchar(max)" />
-          <Property Name="OptionalQtyA" Type="nvarchar(max)" />
-          <Property Name="OptionalPriceA" Type="nvarchar(max)" />
-          <Property Name="OptionalQtyB" Type="nvarchar(max)" />
-          <Property Name="OptionalPriceB" Type="nvarchar(max)" />
-          <Property Name="OptionalQtyC" Type="nvarchar(max)" />
-          <Property Name="OptionalPriceC" Type="nvarchar(max)" />
-          <Property Name="OptionalQtyD" Type="nvarchar(max)" />
-          <Property Name="OptionalPriceD" Type="nvarchar(max)" />
-          <Property Name="OptionalQtyE" Type="nvarchar(max)" />
-          <Property Name="OptionalPriceE" Type="nvarchar(max)" />
-          <Property Name="OptionalQtyF" Type="nvarchar(max)" />
-          <Property Name="OptionalPriceF" Type="nvarchar(max)" />
-          <Property Name="OptionalQtyG" Type="nvarchar(max)" />
-          <Property Name="OptionalPriceG" Type="nvarchar(max)" />
-          <Property Name="OptionalQtyH" Type="nvarchar(max)" />
-          <Property Name="OptionalPriceH" Type="nvarchar(max)" />
-          <Property Name="CustomerID" Type="int" />
-          <Property Name="CustomerName" Type="nvarchar(max)" />
-          <Property Name="TemplateID" Type="int" />
-          <Property Name="TemplateName" Type="nvarchar(max)" />
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="TotalAmount" Type="int" />
-        </EntityType>
-        <EntityType Name="Table_quotation2015Z25">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="RefID" Type="int" />
-          <Property Name="YourEnquiry" Type="nvarchar(max)" />
-          <Property Name="BillingAddress" Type="nvarchar(max)" />
-          <Property Name="Price" Type="nvarchar(max)" />
-          <Property Name="Quantity" Type="nvarchar(max)" />
-          <Property Name="BasicSystemQty" Type="nvarchar(max)" />
-          <Property Name="BasicSystemPrice" Type="nvarchar(max)" />
-          <Property Name="OptionalQtyA" Type="nvarchar(max)" />
-          <Property Name="OptionalPriceA" Type="nvarchar(max)" />
-          <Property Name="OptionalQtyB" Type="nvarchar(max)" />
-          <Property Name="OptionalPriceB" Type="nvarchar(max)" />
-          <Property Name="OptionalQtyC" Type="nvarchar(max)" />
-          <Property Name="OptionalPriceC" Type="nvarchar(max)" />
-          <Property Name="OptionalQtyD" Type="nvarchar(max)" />
-          <Property Name="OptionalPriceD" Type="nvarchar(max)" />
-          <Property Name="OptionalPriceE" Type="nvarchar(max)" />
-          <Property Name="OptionalQtyF" Type="nvarchar(max)" />
-          <Property Name="OptionalPriceF" Type="nvarchar(max)" />
-          <Property Name="OptionalQtyG" Type="nvarchar(max)" />
-          <Property Name="OptionalPriceG" Type="nvarchar(max)" />
-          <Property Name="OptionalQtyH" Type="nvarchar(max)" />
-          <Property Name="OptionalPriceH" Type="nvarchar(max)" />
-          <Property Name="CustomerID" Type="int" />
-          <Property Name="CustomerName" Type="nvarchar(max)" />
-          <Property Name="TemplateID" Type="int" />
-          <Property Name="TemplateName" Type="nvarchar" MaxLength="50" />
-          <Property Name="CreatedOn" Type="datetime" />
-          <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
-          <Property Name="KindAttention" Type="nvarchar(max)" />
-          <Property Name="OptionalQtyE" Type="nvarchar(max)" />
-          <Property Name="TotalAmount" Type="int" />
-        </EntityType>
-        <EntityType Name="Table_QUOTATION40202inDollor">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="RefID" Type="int" />
-          <Property Name="YourEnquiry" Type="nvarchar(max)" />
-          <Property Name="BillingAddress" Type="nvarchar(max)" />
-          <Property Name="Price" Type="nvarchar(max)" />
-          <Property Name="Quantity" Type="nvarchar(max)" />
-          <Property Name="BasicSystemQty" Type="nvarchar(max)" />
-          <Property Name="BasicSystemPrice" Type="nvarchar(max)" />
-          <Property Name="OptionalQtyA" Type="nvarchar(max)" />
-          <Property Name="OptionalPriceA" Type="nvarchar(max)" />
-          <Property Name="OptionalQtyB" Type="nvarchar(max)" />
-          <Property Name="OptionalPriceB" Type="nvarchar(max)" />
-          <Property Name="OptionalQtyC" Type="nvarchar(max)" />
-          <Property Name="OptionalPriceC" Type="nvarchar(max)" />
-          <Property Name="OptionalQtyD" Type="nvarchar(max)" />
-          <Property Name="OptionalPriceD" Type="nvarchar(max)" />
-          <Property Name="OptionalPriceE" Type="nvarchar(max)" />
-          <Property Name="OptionalQtyF" Type="nvarchar(max)" />
-          <Property Name="OptionalPriceF" Type="nvarchar(max)" />
-          <Property Name="OptionalQtyG" Type="nvarchar(max)" />
-          <Property Name="OptionalPriceG" Type="nvarchar(max)" />
-          <Property Name="OptionalQtyH" Type="nvarchar(max)" />
-          <Property Name="OptionalPriceH" Type="nvarchar(max)" />
-          <Property Name="CustomerID" Type="int" />
-          <Property Name="CustomerName" Type="nvarchar(max)" />
-          <Property Name="TemplateID" Type="int" />
-          <Property Name="TemplateName" Type="nvarchar(max)" />
-          <Property Name="CreatedOn" Type="datetime" />
-          <Property Name="CreatedBy" Type="nvarchar(max)" />
-          <Property Name="OptionalQtyE" Type="nvarchar(max)" />
-          <Property Name="KindAttention" Type="nvarchar(max)" />
-          <Property Name="TotalAmount" Type="int" />
-        </EntityType>
-        <EntityType Name="Table_Quotation4020-HT">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="RefID" Type="int" />
-          <Property Name="YourEnquiry" Type="nvarchar(max)" />
-          <Property Name="KindAttention" Type="nvarchar(max)" />
-          <Property Name="BillingAddress" Type="nvarchar(max)" />
-          <Property Name="CreatedOn" Type="datetime" />
-          <Property Name="CreatedBy" Type="nvarchar(max)" />
-          <Property Name="BasicSystemQty" Type="nvarchar(max)" />
-          <Property Name="BasicSystemPrice" Type="nvarchar(max)" />
-          <Property Name="OptionalQtyA" Type="nvarchar(max)" />
-          <Property Name="OptionalPriceA" Type="nvarchar(max)" />
-          <Property Name="OptionalQtyB" Type="nvarchar(max)" />
-          <Property Name="OptionalPriceB" Type="nvarchar(max)" />
-          <Property Name="OptionalQtyC" Type="nvarchar(max)" />
-          <Property Name="OptionalPriceC" Type="nvarchar(max)" />
-          <Property Name="OptionalQtyD" Type="nvarchar(max)" />
-          <Property Name="OptionalPriceD" Type="nvarchar(max)" />
-          <Property Name="OptionalQtyE" Type="nvarchar(max)" />
-          <Property Name="OptionalPriceE" Type="nvarchar(max)" />
-          <Property Name="OptionalQtyF" Type="nvarchar(max)" />
-          <Property Name="OptionalPriceF" Type="nvarchar(max)" />
-          <Property Name="OptionalQtyG" Type="nvarchar(max)" />
-          <Property Name="OptionalPriceG" Type="nvarchar(max)" />
-          <Property Name="OptionalQtyH" Type="nvarchar(max)" />
-          <Property Name="OptionalPriceH" Type="nvarchar(max)" />
-          <Property Name="CustomerID" Type="int" />
-          <Property Name="CustomerName" Type="nvarchar(max)" />
-          <Property Name="TemplateID" Type="int" />
-          <Property Name="TemplateName" Type="nvarchar(max)" />
-          <Property Name="TotalAmount" Type="int" />
-        </EntityType>
-        <EntityType Name="Table_Quotation4020template">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="RefID" Type="int" Nullable="false" />
-          <Property Name="YourEnquiry" Type="nvarchar(max)" />
-          <Property Name="KindAttention" Type="nvarchar(max)" />
-          <Property Name="BillingAddress" Type="nvarchar(max)" />
-          <Property Name="CreatedOn" Type="datetime" />
-          <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
-          <Property Name="BasicSystemQty" Type="nvarchar(max)" />
-          <Property Name="BasicSystemPrice" Type="nvarchar(max)" />
-          <Property Name="OptionalQtyA" Type="nvarchar(max)" />
-          <Property Name="OptionalPriceA" Type="nvarchar(max)" />
-          <Property Name="OptionalQtyB" Type="nvarchar(max)" />
-          <Property Name="OptionalPriceB" Type="nvarchar(max)" />
-          <Property Name="OptionalQtyC" Type="nvarchar(max)" />
-          <Property Name="OptionalPriceC" Type="nvarchar(max)" />
-          <Property Name="OptionalQtyD" Type="nvarchar(max)" />
-          <Property Name="OptionalPriceD" Type="nvarchar(max)" />
-          <Property Name="OptionalQtyE" Type="nvarchar(max)" />
-          <Property Name="OptionalPriceE" Type="nvarchar(max)" />
-          <Property Name="OptionalQtyF" Type="nvarchar(max)" />
-          <Property Name="OptionalPriceF" Type="nvarchar(max)" />
-          <Property Name="OptionalQtyG" Type="nvarchar(max)" />
-          <Property Name="OptionalPriceG" Type="nvarchar(max)" />
-          <Property Name="OptionalQtyH" Type="nvarchar(max)" />
-          <Property Name="OptionalPriceH" Type="nvarchar(max)" />
-          <Property Name="CustomerID" Type="int" />
-          <Property Name="CustomerName" Type="nvarchar(max)" />
-          <Property Name="TemplateID" Type="int" />
-          <Property Name="TemplateName" Type="nvarchar(max)" />
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="TotalAmount" Type="int" />
-        </EntityType>
-        <EntityType Name="Table_Quotation4030">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="RefID" Type="int" />
-          <Property Name="YourEnquiry" Type="nvarchar(max)" />
-          <Property Name="KindAttention" Type="nvarchar(max)" />
-          <Property Name="BillingAddress" Type="nvarchar(max)" />
-          <Property Name="Price" Type="nvarchar(max)" />
-          <Property Name="Quantity" Type="nvarchar(max)" />
-          <Property Name="BasicSystemQty" Type="nvarchar(max)" />
-          <Property Name="BasicSystemPrice" Type="nvarchar(max)" />
-          <Property Name="OptionalQtyA" Type="nvarchar(max)" />
-          <Property Name="OptionalPriceA" Type="nvarchar(max)" />
-          <Property Name="OptionalQtyB" Type="nvarchar(max)" />
-          <Property Name="OptionalPriceB" Type="nvarchar(max)" />
-          <Property Name="OptionalQtyC" Type="nvarchar(max)" />
-          <Property Name="OptionalPriceC" Type="nvarchar(max)" />
-          <Property Name="OptionalQtyD" Type="nvarchar(max)" />
-          <Property Name="OptionalPriceD" Type="nvarchar(max)" />
-          <Property Name="OptionalQtyE" Type="nvarchar(max)" />
-          <Property Name="OptionalPriceE" Type="nvarchar(max)" />
-          <Property Name="OptionalQtyF" Type="nvarchar(max)" />
-          <Property Name="OptionalPriceF" Type="nvarchar(max)" />
-          <Property Name="OptionalQtyG" Type="nvarchar(max)" />
-          <Property Name="OptionalPriceG" Type="nvarchar(max)" />
-          <Property Name="OptionalQtyH" Type="nvarchar(max)" />
-          <Property Name="OptionalPriceH" Type="nvarchar(max)" />
-          <Property Name="CustomerID" Type="int" />
-          <Property Name="CustomerName" Type="nvarchar(max)" />
-          <Property Name="TemplateID" Type="int" />
-          <Property Name="CreatedOn" Type="datetime" />
-          <Property Name="CreatedBy" Type="nvarchar(max)" />
-          <Property Name="TemplateName" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="TotalAmount" Type="int" />
-        </EntityType>
-        <EntityType Name="Table_Quotation4030z25">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="RefID" Type="int" />
-          <Property Name="YourEnquiry" Type="nvarchar(max)" />
-          <Property Name="KindAttention" Type="nvarchar(max)" />
-          <Property Name="BillingAddress" Type="nvarchar(max)" />
-          <Property Name="Price" Type="nvarchar(max)" />
-          <Property Name="Quantity" Type="nvarchar(max)" />
-          <Property Name="BasicSystemQty" Type="nvarchar(max)" />
-          <Property Name="BasicSystemPrice" Type="nvarchar(max)" />
-          <Property Name="OptionalQtyA" Type="nvarchar(max)" />
-          <Property Name="OptionalPriceA" Type="nvarchar(max)" />
-          <Property Name="OptionalQtyB" Type="nvarchar(max)" />
-          <Property Name="OptionalPriceB" Type="nvarchar(max)" />
-          <Property Name="OptionalQtyC" Type="nvarchar(max)" />
-          <Property Name="OptionalQtyD" Type="nvarchar(max)" />
-          <Property Name="OptionalPriceD" Type="nvarchar(max)" />
-          <Property Name="OptionalQtyE" Type="nvarchar(max)" />
-          <Property Name="OptionalPriceE" Type="nvarchar(max)" />
-          <Property Name="OptionalQtyF" Type="nvarchar(max)" />
-          <Property Name="OptionalPriceF" Type="nvarchar(max)" />
-          <Property Name="OptionalQtyG" Type="nvarchar(max)" />
-          <Property Name="OptionalPriceG" Type="nvarchar(max)" />
-          <Property Name="OptionalQtyH" Type="nvarchar(max)" />
-          <Property Name="OptionalPriceH" Type="nvarchar(max)" />
-          <Property Name="CustomerID" Type="int" />
-          <Property Name="CustomerName" Type="nvarchar(max)" />
-          <Property Name="TemplateID" Type="int" />
-          <Property Name="CreatedOn" Type="datetime" />
-          <Property Name="CreatedBy" Type="nvarchar(max)" />
-          <Property Name="OptionalPriceC" Type="nvarchar(max)" />
-          <Property Name="TemplateName" Type="nvarchar(max)" />
-          <Property Name="TotalAmount" Type="int" />
-        </EntityType>
-        <EntityType Name="Table_Quotation5030">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="RefID" Type="int" />
-          <Property Name="YourEnquiry" Type="nvarchar(max)" />
-          <Property Name="KindAttention" Type="nvarchar(max)" />
-          <Property Name="BillingAddress" Type="nvarchar(max)" />
-          <Property Name="Price" Type="nvarchar(max)" />
-          <Property Name="Quantity" Type="nvarchar(max)" />
-          <Property Name="BasicSystemPrice" Type="nvarchar(max)" />
-          <Property Name="OptionalQtyA" Type="nvarchar(max)" />
-          <Property Name="OptionalPriceA" Type="nvarchar(max)" />
-          <Property Name="OptionalQtyB" Type="nvarchar(max)" />
-          <Property Name="OptionalPriceB" Type="nvarchar(max)" />
-          <Property Name="OptionalQtyC" Type="nvarchar(max)" />
-          <Property Name="OptionalPriceC" Type="nvarchar(max)" />
-          <Property Name="OptionalQtyD" Type="nvarchar(max)" />
-          <Property Name="OptionalPriceD" Type="nvarchar(max)" />
-          <Property Name="OptionalQtyE" Type="nvarchar(max)" />
-          <Property Name="OptionalPriceE" Type="nvarchar(max)" />
-          <Property Name="OptionalQtyF" Type="nvarchar(max)" />
-          <Property Name="OptionalPriceF" Type="nvarchar(max)" />
-          <Property Name="OptionalQtyG" Type="nvarchar(max)" />
-          <Property Name="OptionalQtyH" Type="nvarchar(max)" />
-          <Property Name="OptionalPriceH" Type="nvarchar(max)" />
-          <Property Name="CustomerID" Type="int" />
-          <Property Name="TemplateID" Type="int" />
-          <Property Name="TemplateName" Type="nvarchar(max)" />
-          <Property Name="CreatedOn" Type="datetime" />
-          <Property Name="CreatedBy" Type="nchar" MaxLength="10" />
-          <Property Name="CustomerName" Type="nvarchar(max)" />
-          <Property Name="OptionalPriceG" Type="nvarchar(max)" />
-          <Property Name="BasicSystemQty" Type="nvarchar(max)" />
-          <Property Name="TotalAmount" Type="int" />
-        </EntityType>
-        <EntityType Name="Table_Quotation5030Z25ZLX_">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="RefID" Type="int" />
-          <Property Name="YourEnquiry" Type="nvarchar(max)" />
-          <Property Name="KindAttention" Type="nvarchar(max)" />
-          <Property Name="BillingAddress" Type="nvarchar(max)" />
-          <Property Name="Price" Type="nvarchar(max)" />
-          <Property Name="Quantity" Type="nvarchar(max)" />
-          <Property Name="BasicSystemQty" Type="nvarchar(max)" />
-          <Property Name="OptionalQtyA" Type="nvarchar(max)" />
-          <Property Name="OptionalPriceA" Type="nvarchar(max)" />
-          <Property Name="OptionalQtyB" Type="nvarchar(max)" />
-          <Property Name="OptionalPriceB" Type="nvarchar(max)" />
-          <Property Name="OptionalQtyC" Type="nvarchar(max)" />
-          <Property Name="OptionalPriceC" Type="nvarchar(max)" />
-          <Property Name="OptionalQtyD" Type="nvarchar(max)" />
-          <Property Name="OptionalPriceD" Type="nvarchar(max)" />
-          <Property Name="OptionalQtyE" Type="nvarchar(max)" />
-          <Property Name="OptionalPriceE" Type="nvarchar(max)" />
-          <Property Name="OptionalQtyF" Type="nvarchar(max)" />
-          <Property Name="OptionalPriceF" Type="nvarchar(max)" />
-          <Property Name="OptionalQtyG" Type="nvarchar(max)" />
-          <Property Name="OptionalPriceG" Type="nvarchar(max)" />
-          <Property Name="OptionalQtyH" Type="nvarchar(max)" />
-          <Property Name="OptionalPriceH" Type="nvarchar(max)" />
-          <Property Name="CustomerID" Type="int" />
-          <Property Name="CustomerName" Type="nvarchar(max)" />
-          <Property Name="TemplateID" Type="int" />
-          <Property Name="TemplateName" Type="nvarchar(max)" />
-          <Property Name="CreatedOn" Type="datetime" />
-          <Property Name="CreatedBy" Type="nvarchar(max)" />
-          <Property Name="BasicSystemPrice" Type="nvarchar(max)" />
-          <Property Name="TotalAmount" Type="int" />
-        </EntityType>
-        <EntityType Name="Table_Quotationtemplate">
-          <Key>
-            <PropertyRef Name="RefID" />
-          </Key>
-          <Property Name="RefID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="YourEnquiry" Type="nvarchar(max)" />
-          <Property Name="KindAttention" Type="nvarchar(max)" />
-          <Property Name="BillingAddress" Type="nvarchar(max)" />
-          <Property Name="TelephoneNo" Type="nvarchar(max)" />
-          <Property Name="Pincode" Type="nvarchar(max)" />
-          <Property Name="CreatedOn" Type="datetime" />
-          <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
-        </EntityType>
-        <EntityType Name="Table_Rapid64CAM">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
-          <Property Name="RefID" Type="int" />
-          <Property Name="CreatedBy" Type="nvarchar(max)" />
-          <Property Name="CreatedOn" Type="datetime" />
-          <Property Name="TemplateID" Type="int" />
-          <Property Name="TemplateName" Type="nvarchar(max)" />
-          <Property Name="CustomerID" Type="int" />
-          <Property Name="CustomerName" Type="nvarchar(max)" />
-          <Property Name="YourEnquiry" Type="nvarchar(max)" />
-          <Property Name="KindAttention" Type="nvarchar(max)" />
-          <Property Name="ACSCQty" Type="nvarchar(max)" />
-          <Property Name="ACSCPrice" Type="nvarchar(max)" />
-          <Property Name="BillingAddress" Type="nvarchar(max)" />
-          <Property Name="DesQty" Type="nvarchar(max)" />
-          <Property Name="DesPrice" Type="nvarchar(max)" />
-          <Property Name="TotalAmount" Type="int" />
-        </EntityType>
-        <EntityType Name="Table_Rapid-I 4020&amp;4030J LX ACSC 05 Apr 2021">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="RefID" Type="int" />
-          <Property Name="YourEnquiry" Type="nvarchar(max)" />
-          <Property Name="KindAttention" Type="nvarchar(max)" />
-          <Property Name="BillingAddress" Type="nvarchar(max)" />
-          <Property Name="CustomerID" Type="int" />
-          <Property Name="CustomerName" Type="nvarchar(max)" />
-          <Property Name="TemplateID" Type="int" />
-          <Property Name="TemplateName" Type="nvarchar(max)" />
-          <Property Name="CreatedOn" Type="datetime" />
-          <Property Name="CreatedBy" Type="nvarchar(max)" />
-          <Property Name="TotalAmount" Type="int" />
-        </EntityType>
-        <EntityType Name="Table_Rapid-I_AMC-OFFER">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="RefID" Type="int" />
-          <Property Name="YourEnquiry" Type="nvarchar(max)" />
-          <Property Name="KindAttention" Type="nvarchar(max)" />
-          <Property Name="BillingAddress" Type="nvarchar(max)" />
-          <Property Name="CustomerID" Type="int" />
-          <Property Name="CustomerName" Type="nvarchar(max)" />
-          <Property Name="TemplateID" Type="int" />
-          <Property Name="TemplateName" Type="nvarchar(max)" />
-          <Property Name="CreatedOn" Type="datetime" />
-          <Property Name="CreatedBy" Type="nvarchar(max)" />
-          <Property Name="TotalAmount" Type="int" />
-        </EntityType>
-        <EntityType Name="Table_Rapidi2015JLX">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
-          <Property Name="RefID" Type="int" />
-          <Property Name="YourEnquiry" Type="nvarchar(max)" />
-          <Property Name="KindAttention" Type="nvarchar(max)" />
-          <Property Name="BillingAddress" Type="nvarchar(max)" />
-          <Property Name="CreatedOn" Type="datetime" />
-          <Property Name="CreatedBy" Type="nvarchar(max)" />
-          <Property Name="BasicSystemQty" Type="nvarchar(max)" />
-          <Property Name="BasicSystemPrice" Type="nvarchar(max)" />
-          <Property Name="OptionalQtyA" Type="nvarchar(max)" />
-          <Property Name="OptionalPriceA" Type="nvarchar(max)" />
-          <Property Name="OptionalQtyB" Type="nvarchar(max)" />
-          <Property Name="OptionalPriceB" Type="nvarchar(max)" />
-          <Property Name="OptionalQtyC" Type="nvarchar(max)" />
-          <Property Name="OptionalPriceC" Type="nvarchar(max)" />
-          <Property Name="OptionalQtyD" Type="nvarchar(max)" />
-          <Property Name="OptionalPriceD" Type="nvarchar(max)" />
-          <Property Name="OptionalQtyE" Type="nvarchar(max)" />
-          <Property Name="OptionalPriceE" Type="nvarchar(max)" />
-          <Property Name="OptionalQtyF" Type="nvarchar(max)" />
-          <Property Name="OptionalPriceF" Type="nvarchar(max)" />
-          <Property Name="OptionalQtyG" Type="nvarchar(max)" />
-          <Property Name="OptionalPriceG" Type="nvarchar(max)" />
-          <Property Name="OptionalQtyH" Type="nvarchar(max)" />
-          <Property Name="OptionalPriceH" Type="nvarchar(max)" />
-          <Property Name="CustomerID" Type="int" />
-          <Property Name="CustomerName" Type="nvarchar(max)" />
-          <Property Name="TemplateID" Type="int" />
-          <Property Name="TemplateName" Type="nvarchar(max)" />
-          <Property Name="TotalAmount" Type="int" />
-        </EntityType>
-        <EntityType Name="Table_Rapid-I-64-Upgrade">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
-          <Property Name="RefID" Type="int" />
-          <Property Name="CreatedBy" Type="nvarchar(max)" />
-          <Property Name="CreatedOn" Type="datetime" />
-          <Property Name="UpgradeQtyA" Type="nvarchar(max)" />
-          <Property Name="UpgradePrice" Type="nvarchar(max)" />
-          <Property Name="UpgradeQtyB" Type="nvarchar(max)" />
-          <Property Name="UpgradeQtyC" Type="nvarchar(max)" />
-          <Property Name="CustomerID" Type="int" />
-          <Property Name="CustomerName" Type="nvarchar(max)" />
-          <Property Name="TemplateID" Type="int" />
-          <Property Name="TemplateName" Type="nvarchar(max)" />
-          <Property Name="YourEnquiry" Type="nvarchar(max)" />
-          <Property Name="KindAttention" Type="nvarchar(max)" />
-          <Property Name="BillingAddress" Type="nvarchar(max)" />
-          <Property Name="TotalAmount" Type="int" />
-        </EntityType>
-        <EntityType Name="Table_Rapid-I-Spares">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="RefID" Type="int" />
-          <Property Name="CreatedBy" Type="nvarchar(max)" />
-          <Property Name="CreatedOn" Type="datetime" />
-          <Property Name="VisionQtyA" Type="nvarchar(max)" />
-          <Property Name="VisionPriceA" Type="nvarchar(max)" />
-          <Property Name="VisionQtyB" Type="nvarchar(max)" />
-          <Property Name="VisionPriceB" Type="nvarchar(max)" />
-          <Property Name="TemplateID" Type="int" />
-          <Property Name="TemplateName" Type="nvarchar(max)" />
-          <Property Name="CustomerID" Type="int" />
-          <Property Name="CustomerName" Type="nvarchar(max)" />
-          <Property Name="YourEnquiry" Type="nvarchar(max)" />
-          <Property Name="KindAttention" Type="nvarchar(max)" />
-          <Property Name="BillingAddress" Type="nvarchar(max)" />
-          <Property Name="TotalAmount" Type="int" />
-        </EntityType>
-        <EntityType Name="Table_rapiditable">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
-          <Property Name="RefID" Type="int" />
-          <Property Name="CreatedBy" Type="nvarchar(max)" />
-          <Property Name="CreatedOn" Type="datetime" />
-          <Property Name="VisionQty" Type="nvarchar(max)" />
-          <Property Name="VisionPrice" Type="nvarchar(max)" />
-          <Property Name="TemplateID" Type="int" />
-          <Property Name="TemplateName" Type="nvarchar(max)" />
-          <Property Name="CustomerID" Type="int" />
-          <Property Name="CustomerName" Type="nvarchar(max)" />
-          <Property Name="YourEnquiry" Type="nvarchar(max)" />
-          <Property Name="KindAttention" Type="nvarchar(max)" />
-          <Property Name="BillingAddress" Type="nvarchar(max)" />
-          <Property Name="TotalAmount" Type="int" />
-        </EntityType>
-        <EntityType Name="Table_RapidiTrainingcharges">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
-          <Property Name="RefID" Type="int" />
-          <Property Name="CreatedBy" Type="nvarchar(max)" />
-          <Property Name="CreatedOn" Type="datetime" />
-          <Property Name="TemplateID" Type="int" />
-          <Property Name="TemplateName" Type="nvarchar(max)" />
-          <Property Name="CustomerID" Type="int" />
-          <Property Name="CustomerName" Type="nvarchar(max)" />
-          <Property Name="YourEnquiry" Type="nvarchar(max)" />
-          <Property Name="KindAttention" Type="nvarchar(max)" />
-          <Property Name="BillingAddress" Type="nvarchar(max)" />
-          <Property Name="TotalAmount" Type="int" />
-        </EntityType>
-        <EntityType Name="Table_Rapid-i-VMS">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="RefID" Type="int" />
-          <Property Name="YourEnquiry" Type="nvarchar(max)" />
-          <Property Name="KindAttention" Type="nvarchar(max)" />
-          <Property Name="BillingAddress" Type="nvarchar(max)" />
-          <Property Name="CreatedOn" Type="datetime" />
-          <Property Name="CreatedBy" Type="nvarchar(max)" />
-          <Property Name="BasicSystemQty" Type="nvarchar(max)" />
-          <Property Name="BasicSystemPrice" Type="nvarchar(max)" />
-          <Property Name="OptionalQtyA" Type="nvarchar(max)" />
-          <Property Name="OptionalPriceA" Type="nvarchar(max)" />
-          <Property Name="OptionalQtyB" Type="nvarchar(max)" />
-          <Property Name="OptionalPriceB" Type="nvarchar(max)" />
-          <Property Name="OptionalQtyC" Type="nvarchar(max)" />
-          <Property Name="OptionalPriceC" Type="nvarchar(max)" />
-          <Property Name="OptionalQtyD" Type="nvarchar(max)" />
-          <Property Name="OptionalPriceD" Type="nvarchar(max)" />
-          <Property Name="OptionalQtyE" Type="nvarchar(max)" />
-          <Property Name="OptionalPriceE" Type="nvarchar(max)" />
-          <Property Name="OptionalQtyF" Type="nvarchar(max)" />
-          <Property Name="OptionalPriceF" Type="nvarchar(max)" />
-          <Property Name="OptionalQtyG" Type="nvarchar(max)" />
-          <Property Name="OptionalPriceG" Type="nvarchar(max)" />
-          <Property Name="OptionalQtyH" Type="nvarchar(max)" />
-          <Property Name="OptionalPriceH" Type="nvarchar(max)" />
-          <Property Name="CustomerID" Type="int" />
-          <Property Name="CustomerName" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="TemplateID" Type="int" />
-          <Property Name="TemplateName" Type="nvarchar(max)" />
-          <Property Name="TotalAmount" Type="int" />
+          <Property Name="PriorityID" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Table_Region">
           <Key>
@@ -1111,18 +484,11 @@
           <Property Name="SandS" Type="nvarchar(max)" />
           <Property Name="SandSId" Type="int" />
           <Property Name="Remarks" Type="nvarchar(max)" />
+          <Property Name="Resolution" Type="nvarchar(max)" />
           <Property Name="IsDone" Type="bit" />
           <Property Name="CreatedBy" Type="nvarchar(max)" />
           <Property Name="CreatedOn" Type="datetime" />
           <Property Name="IsMachineDeleted" Type="bit" />
-          <Property Name="TokenID" Type="int" />
-          <Property Name="ContactId" Type="int" />
-          <Property Name="Salute" Type="nvarchar(max)" />
-          <Property Name="ContactName" Type="nvarchar(max)" />
-          <Property Name="Designation" Type="nvarchar(max)" />
-          <Property Name="Email" Type="nvarchar(max)" />
-          <Property Name="Mobile" Type="nvarchar(max)" />
-          <Property Name="Resolution" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Table_RoleMaster">
           <Key>
@@ -1170,42 +536,22 @@
           <Property Name="CompanyName" Type="nvarchar(max)" />
           <Property Name="CustomerId" Type="int" />
           <Property Name="Purpose" Type="nvarchar(max)" />
-          <Property Name="Cluster" Type="nvarchar(max)" />
-          <Property Name="ModelId" Type="int" />
-          <Property Name="ModelName" Type="nvarchar(max)" />
-          <Property Name="Remarks" Type="nvarchar(max)" />
-          <Property Name="RequestForId" Type="int" />
-          <Property Name="TicketId" Type="int" />
-          <Property Name="Zone" Type="nvarchar(max)" />
-          <Property Name="EstDistanceKms" Type="int" />
-          <Property Name="EstTravelTime" Type="time" Precision="3" />
-          <Property Name="FoodFuelOthers" Type="time" Precision="3" />
-          <Property Name="EstJobTime" Type="time" Precision="3" />
-          <Property Name="SchdET" Type="time" Precision="3" />
-          <Property Name="IsDone" Type="bit" />
-          <Property Name="TotalEstDistKms" Type="int" />
-          <Property Name="TotalEstTravelTime" Type="time" Precision="3" />
-          <Property Name="TotalFoodFuel" Type="time" Precision="3" />
-          <Property Name="TotalEstJobTime" Type="time" Precision="3" />
-          <Property Name="TotalSchdET" Type="time" Precision="3" />
-          <Property Name="MileageCNG" Type="int" />
-          <Property Name="MileagePetrol" Type="int" />
-          <Property Name="MileageDiesel" Type="int" />
-          <Property Name="FuelPriceCNG" Type="decimal" Precision="18" Scale="0" />
-          <Property Name="FuelPricePetrol" Type="decimal" Precision="18" Scale="0" />
-          <Property Name="FuelPriceDiesel" Type="decimal" Precision="18" Scale="0" />
-          <Property Name="FuelPriceReqd" Type="decimal" Precision="18" Scale="0" />
-          <Property Name="FuelReqd" Type="decimal" Precision="18" Scale="0" />
-          <Property Name="SparesReqd" Type="nvarchar(max)" />
-          <Property Name="Vehicle" Type="nvarchar(max)" />
-          <Property Name="StartPlace" Type="nvarchar(max)" />
-          <Property Name="StartCluster" Type="nvarchar(max)" />
-          <Property Name="InitialTime" Type="time" Precision="3" />
-          <Property Name="CreatedBy" Type="nvarchar(max)" />
-          <Property Name="UserId" Type="int" />
+          <Property Name="ClusterLocation" Type="nvarchar(max)" />
+          <Property Name="CNG" Type="nvarchar(max)" />
+          <Property Name="Mileage" Type="nvarchar(max)" />
+          <Property Name="EstInterDistance" Type="nvarchar(max)" />
+          <Property Name="EstCompanyDistance" Type="nvarchar(max)" />
+          <Property Name="ActualODOReading" Type="nvarchar(max)" />
+          <Property Name="EstTravelTime" Type="nvarchar(max)" />
+          <Property Name="EstTimeForJob" Type="nvarchar(max)" />
+          <Property Name="SchdETD" Type="nvarchar(max)" />
+          <Property Name="ActualTime" Type="nvarchar(max)" />
+          <Property Name="CNGFilledPreviously" Type="nvarchar(max)" />
+          <Property Name="UserName" Type="nvarchar(max)" />
           <Property Name="CreatedOn" Type="datetime" />
-          <Property Name="EndPlace" Type="nvarchar(max)" />
-          <Property Name="EndCluster" Type="nvarchar(max)" />
+          <Property Name="TripId" Type="nvarchar" MaxLength="50" />
+          <Property Name="TravelId" Type="int" />
+          <Property Name="UserId" Type="int" />
         </EntityType>
         <EntityType Name="Table_UserRegistration">
           <Key>
@@ -1220,67 +566,6 @@
           <Property Name="RoleId" Type="int" />
           <Property Name="RoleName" Type="nvarchar(max)" />
         </EntityType>
-        <EntityType Name="Table_V20152AXES">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
-          <Property Name="RefID" Type="int" />
-          <Property Name="CreatedBy" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="CreatedOn" Type="datetime" />
-          <Property Name="AxesQty" Type="nvarchar(max)" />
-          <Property Name="AxesPrice" Type="nvarchar(max)" />
-          <Property Name="TemplateID" Type="int" />
-          <Property Name="TemplateName" Type="nvarchar(max)" />
-          <Property Name="CustomerID" Type="int" />
-          <Property Name="CustomerName" Type="nvarchar(max)" />
-          <Property Name="YourEnquiry" Type="nvarchar(max)" />
-          <Property Name="KindAttention" Type="nvarchar(max)" />
-          <Property Name="BillingAddress" Type="nvarchar(max)" />
-          <Property Name="TotalAmount" Type="int" />
-        </EntityType>
-        <EntityType Name="Table_V4020">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
-          <Property Name="RefID" Type="int" />
-          <Property Name="CreatedBy" Type="nchar" MaxLength="10" />
-          <Property Name="CreatedOn" Type="datetime" />
-          <Property Name="DesQty" Type="nvarchar(max)" />
-          <Property Name="DesPrice" Type="nvarchar(max)" />
-          <Property Name="TemplateID" Type="int" />
-          <Property Name="TemplateName" Type="nvarchar(max)" />
-          <Property Name="CustomerID" Type="int" />
-          <Property Name="CustomerName" Type="nvarchar(max)" />
-          <Property Name="YourEnquiry" Type="nvarchar(max)" />
-          <Property Name="KindAttention" Type="nvarchar(max)" />
-          <Property Name="BillingAddress" Type="nvarchar(max)" />
-          <Property Name="BasicQty" Type="nvarchar(max)" />
-          <Property Name="BasicPrice" Type="nvarchar(max)" />
-          <Property Name="TotalAmount" Type="int" />
-        </EntityType>
-        <EntityType Name="Table_V4030">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
-          <Property Name="RefID" Type="int" />
-          <Property Name="CreatedBy" Type="nvarchar(max)" />
-          <Property Name="CreatedOn" Type="datetime" />
-          <Property Name="BasicQty" Type="nvarchar(max)" />
-          <Property Name="BasicPrice" Type="nvarchar(max)" />
-          <Property Name="AuxQty" Type="nvarchar(max)" />
-          <Property Name="AuxPrice" Type="nvarchar(max)" />
-          <Property Name="TemplateID" Type="int" />
-          <Property Name="TemplateName" Type="nvarchar(max)" />
-          <Property Name="CustomerID" Type="int" />
-          <Property Name="CustomerName" Type="nvarchar(max)" />
-          <Property Name="YourEnquiry" Type="nvarchar(max)" />
-          <Property Name="KindAttention" Type="nvarchar(max)" />
-          <Property Name="BillingAddress" Type="nvarchar(max)" />
-          <Property Name="TotalAmount" Type="int" />
-        </EntityType>
         <EntityType Name="Table_Zone">
           <Key>
             <PropertyRef Name="ZoneId" />
@@ -1294,7 +579,6 @@
           <EntitySet Name="Table_4020Z25" EntityType="Self.Table_4020Z25" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Table_4030InDollor" EntityType="Self.Table_4030InDollor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Table_AttendType" EntityType="Self.Table_AttendType" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="table_brochure" EntityType="Self.table_brochure" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Table_Cluster" EntityType="Self.Table_Cluster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Table_Common_RefID_Template" EntityType="Self.Table_Common_RefID_Template" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Table_Consumables" EntityType="Self.Table_Consumables" Schema="dbo" store:Type="Tables" />
@@ -1359,86 +643,46 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="CustomerManagerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Table_4020Z25">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="RefID" Type="Int32" />
-          <Property Name="YourEnquiry" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="KindAttention" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="BillingAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Price" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Quantity" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="BasicSystemQty" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="BasicSystemPrice" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="OptionalQtyA" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="OptionalPriceA" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="OptionalQtyB" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="OptionalPriceB" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="OptionalQtyC" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="OptionalPriceC" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="OptionalQtyD" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="OptionalPriceD" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="OptionalQtyE" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="OptionalPriceE" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="OptionalQtyF" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="OptionalPriceF" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="OptionalQtyG" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="OptionalPriceG" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="OptionalQtyH" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="OptionalPriceH" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="CustomerID" Type="Int32" />
-          <Property Name="CustomerName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="TemplateID" Type="Int32" />
-          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
-          <Property Name="CreatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="TemplateName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="TotalAmount" Type="Int32" />
-        </EntityType>
-        <EntityType Name="Table_4030InDollor">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="RefID" Type="Int32" />
-          <Property Name="YourEnquiry" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="KindAttention" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="BillingAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Price" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Quantity" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="BasicSystemQty" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="BasicSystemPrice" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="OptionalQtyA" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="OptionalPriceA" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="OptionalQtyB" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="OptionalPriceB" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="OptionalQtyC" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="OptionalPriceC" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="OptionalQtyD" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="OptionalPriceD" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="OptionalQtyE" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="OptionalPriceE" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="OptionalQtyF" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="OptionalPriceF" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="OptionalQtyG" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="OptionalPriceG" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="OptionalQtyH" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="OptionalPriceH" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="CustomerID" Type="Int32" />
-          <Property Name="CustomerName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="TemplateID" Type="Int32" />
-          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
-          <Property Name="CreatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="TemplateName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="TotalAmount" Type="Int32" />
-        </EntityType>
         <EntityType Name="Table_AttendType">
           <Key>
             <PropertyRef Name="AttendTypeId" />
           </Key>
           <Property Name="AttendTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="AttendTypeName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="table_brochure">
+          <Key>
+            <PropertyRef Name="BrochureID" />
+          </Key>
+          <Property Name="BrochureID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BrochureName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Table_CallTicketScreen">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CustomerName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CustomerId" Type="Int32" />
+          <Property Name="MachineNumber" Type="Int32" />
+          <Property Name="MachineId" Type="Int32" />
+          <Property Name="ModelName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ModelId" Type="Int32" />
+          <Property Name="TicketNo" Type="Int32" />
+          <Property Name="RequestFor" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RequestForId" Type="Int32" />
+          <Property Name="Priority" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Fault" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Resolution" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ContactName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ContactId" Type="Int32" />
+          <Property Name="StartTime" Type="Time" Precision="1" />
+          <Property Name="EndTime" Type="Time" Precision="1" />
+          <Property Name="IsDone" Type="Boolean" />
           <Property Name="CreatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CreatedOn" Type="DateTime" Precision="3" />
         </EntityType>
@@ -1528,7 +772,6 @@
           <Property Name="CreatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CreatedOn" Type="DateTime" Precision="3" />
           <Property Name="CompanyOldName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="BillingAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Table_Faults">
           <Key>
@@ -1579,6 +822,7 @@
           <Property Name="CutomerName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="MachineId" Type="Int32" />
           <Property Name="MachineNumber" Type="Int32" />
+          <Property Name="TicketNo" Type="Int32" />
           <Property Name="ModelId" Type="Int32" />
           <Property Name="ModelName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="RegionId" Type="Int32" />
@@ -1742,6 +986,15 @@
           <Property Name="FeatureDetailsID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="DueAmount" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="IsPaid" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="table_mailtemplate">
+          <Key>
+            <PropertyRef Name="MailID" />
+          </Key>
+          <Property Name="MailID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MailName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="Table_Model">
           <Key>
@@ -2337,6 +1590,153 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PriorityID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Table_Quotation5030">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RefID" Type="Int32" />
+          <Property Name="YourEnquiry" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="KindAttention" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BillingAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Price" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Quantity" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BasicSystemPrice" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OptionalQtyA" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OptionalPriceA" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OptionalQtyB" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OptionalPriceB" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OptionalQtyC" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OptionalPriceC" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OptionalQtyD" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OptionalPriceD" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OptionalQtyE" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OptionalPriceE" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OptionalQtyF" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OptionalPriceF" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OptionalQtyG" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OptionalQtyH" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OptionalPriceH" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CustomerID" Type="Int32" />
+          <Property Name="TemplateID" Type="Int32" />
+          <Property Name="TemplateName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="CustomerName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OptionalPriceG" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BasicSystemQty" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TotalAmount" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Table_Quotation5030Z25ZLX_">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RefID" Type="Int32" />
+          <Property Name="YourEnquiry" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="KindAttention" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BillingAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Price" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Quantity" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BasicSystemQty" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OptionalQtyA" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OptionalPriceA" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OptionalQtyB" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OptionalPriceB" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OptionalQtyC" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OptionalPriceC" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OptionalQtyD" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OptionalPriceD" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OptionalQtyE" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OptionalPriceE" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OptionalQtyF" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OptionalPriceF" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OptionalQtyG" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OptionalPriceG" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OptionalQtyH" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OptionalPriceH" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CustomerID" Type="Int32" />
+          <Property Name="CustomerName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TemplateID" Type="Int32" />
+          <Property Name="TemplateName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BasicSystemPrice" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TotalAmount" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Table_Quotationtemplate">
+          <Key>
+            <PropertyRef Name="RefID" />
+          </Key>
+          <Property Name="RefID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="YourEnquiry" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="KindAttention" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BillingAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TelephoneNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Pincode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Table_Rapid64CAM">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RefID" Type="Int32" />
+          <Property Name="CreatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="TemplateID" Type="Int32" />
+          <Property Name="TemplateName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CustomerID" Type="Int32" />
+          <Property Name="CustomerName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="YourEnquiry" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="KindAttention" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ACSCQty" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ACSCPrice" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BillingAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DesQty" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DesPrice" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TotalAmount" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Table_Rapid_I_4020_4030J_LX_ACSC_05_Apr_2021">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RefID" Type="Int32" />
+          <Property Name="YourEnquiry" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="KindAttention" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BillingAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CustomerID" Type="Int32" />
+          <Property Name="CustomerName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TemplateID" Type="Int32" />
+          <Property Name="TemplateName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Table_Rapid_I_AMC_OFFER">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RefID" Type="Int32" />
+          <Property Name="YourEnquiry" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="KindAttention" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BillingAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CustomerID" Type="Int32" />
+          <Property Name="CustomerName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TemplateID" Type="Int32" />
+          <Property Name="TemplateName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Table_Rapidi2015JLX">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="RefID" Type="Int32" />
           <Property Name="YourEnquiry" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="KindAttention" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
@@ -2362,10 +1762,129 @@
           <Property Name="OptionalQtyH" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="OptionalPriceH" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CustomerID" Type="Int32" />
-          <Property Name="CustomerName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CustomerName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="TemplateID" Type="Int32" />
           <Property Name="TemplateName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="TotalAmount" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Table_Rapid_I_64_Upgrade">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RefID" Type="Int32" />
+          <Property Name="CreatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="UpgradeQtyA" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UpgradePrice" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UpgradeQtyB" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UpgradeQtyC" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CustomerID" Type="Int32" />
+          <Property Name="CustomerName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TemplateID" Type="Int32" />
+          <Property Name="TemplateName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="YourEnquiry" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="KindAttention" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BillingAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TotalAmount" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Table_Rapid_I_Spares">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RefID" Type="Int32" />
+          <Property Name="CreatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="VisionQtyA" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="VisionPriceA" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="VisionQtyB" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="VisionPriceB" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TemplateID" Type="Int32" />
+          <Property Name="TemplateName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CustomerID" Type="Int32" />
+          <Property Name="CustomerName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="YourEnquiry" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="KindAttention" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BillingAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TotalAmount" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Table_rapiditable">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RefID" Type="Int32" />
+          <Property Name="CreatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="VisionQty" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="VisionPrice" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TemplateID" Type="Int32" />
+          <Property Name="TemplateName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CustomerID" Type="Int32" />
+          <Property Name="CustomerName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="YourEnquiry" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="KindAttention" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BillingAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TotalAmount" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Table_RapidiTrainingcharges">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RefID" Type="Int32" />
+          <Property Name="CreatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="TemplateID" Type="Int32" />
+          <Property Name="TemplateName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CustomerID" Type="Int32" />
+          <Property Name="CustomerName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="YourEnquiry" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="KindAttention" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BillingAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TotalAmount" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Table_Rapid_i_VMS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RefID" Type="Int32" />
+          <Property Name="YourEnquiry" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="KindAttention" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BillingAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BasicQty" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BasicPrice" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OptionalQtyA" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OptionalPriceA" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OptionalQtyB" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OptionalPriceB" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OptionalQtyC" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OptionalPriceC" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OptionalQtyD" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OptionalPriceD" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OptionalQtyE" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OptionalPriceE" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OptionalQtyF" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OptionalPriceF" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OptionalQtyG" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OptionalPriceG" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OptionalQtyH" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OptionalPriceH" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CustomerID" Type="Int32" />
+          <Property Name="CustomerName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TemplateID" Type="Int32" />
+          <Property Name="TemplateName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TotalAmount" Type="Int32" />
+          <Property Name="BasicQtyA" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BasicPriceA" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BasicQtyB" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BasicPriceB" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BasicQtyC" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BasicPriceC" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Table_Region">
           <Key>
@@ -2400,18 +1919,11 @@
           <Property Name="SandS" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="SandSId" Type="Int32" />
           <Property Name="Remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Resolution" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="IsDone" Type="Boolean" />
           <Property Name="CreatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CreatedOn" Type="DateTime" Precision="3" />
           <Property Name="IsMachineDeleted" Type="Boolean" />
-          <Property Name="TokenID" Type="Int32" />
-          <Property Name="ContactId" Type="Int32" />
-          <Property Name="Salute" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="ContactName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Designation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Mobile" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Resolution" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Table_RoleMaster">
           <Key>
@@ -2459,42 +1971,22 @@
           <Property Name="CompanyName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CustomerId" Type="Int32" />
           <Property Name="Purpose" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Cluster" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="ModelId" Type="Int32" />
-          <Property Name="ModelName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="RequestForId" Type="Int32" />
-          <Property Name="TicketId" Type="Int32" />
-          <Property Name="Zone" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="EstDistanceKms" Type="Int32" />
-          <Property Name="EstTravelTime" Type="Time" Precision="3" />
-          <Property Name="FoodFuelOthers" Type="Time" Precision="3" />
-          <Property Name="EstJobTime" Type="Time" Precision="3" />
-          <Property Name="SchdET" Type="Time" Precision="3" />
-          <Property Name="IsDone" Type="Boolean" />
-          <Property Name="TotalEstDistKms" Type="Int32" />
-          <Property Name="TotalEstTravelTime" Type="Time" Precision="3" />
-          <Property Name="TotalFoodFuel" Type="Time" Precision="3" />
-          <Property Name="TotalEstJobTime" Type="Time" Precision="3" />
-          <Property Name="TotalSchdET" Type="Time" Precision="3" />
-          <Property Name="MileageCNG" Type="Int32" />
-          <Property Name="MileagePetrol" Type="Int32" />
-          <Property Name="MileageDiesel" Type="Int32" />
-          <Property Name="FuelPriceCNG" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="FuelPricePetrol" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="FuelPriceDiesel" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="FuelPriceReqd" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="FuelReqd" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="SparesReqd" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Vehicle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="StartPlace" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="StartCluster" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="InitialTime" Type="Time" Precision="3" />
-          <Property Name="CreatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="UserId" Type="Int32" />
+          <Property Name="ClusterLocation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CNG" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Mileage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EstInterDistance" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EstCompanyDistance" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ActualODOReading" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EstTravelTime" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EstTimeForJob" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SchdETD" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ActualTime" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CNGFilledPreviously" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UserName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CreatedOn" Type="DateTime" Precision="3" />
-          <Property Name="EndPlace" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="EndCluster" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TripId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TravelId" Type="Int32" />
+          <Property Name="UserId" Type="Int32" />
         </EntityType>
         <EntityType Name="Table_UserRegistration">
           <Key>
@@ -2509,67 +2001,6 @@
           <Property Name="RoleId" Type="Int32" />
           <Property Name="RoleName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityType Name="Table_V20152AXES">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
-          <Property Name="RefID" Type="Int32" />
-          <Property Name="CreatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
-          <Property Name="AxesQty" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="AxesPrice" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="TemplateID" Type="Int32" />
-          <Property Name="TemplateName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="CustomerID" Type="Int32" />
-          <Property Name="CustomerName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="YourEnquiry" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="KindAttention" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="BillingAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="TotalAmount" Type="Int32" />
-        </EntityType>
-        <EntityType Name="Table_V4020">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
-          <Property Name="RefID" Type="Int32" />
-          <Property Name="CreatedBy" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
-          <Property Name="DesQty" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="DesPrice" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="TemplateID" Type="Int32" />
-          <Property Name="TemplateName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="CustomerID" Type="Int32" />
-          <Property Name="CustomerName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="YourEnquiry" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="KindAttention" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="BillingAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="BasicQty" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="BasicPrice" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="TotalAmount" Type="Int32" />
-        </EntityType>
-        <EntityType Name="Table_V4030">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
-          <Property Name="RefID" Type="Int32" />
-          <Property Name="CreatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
-          <Property Name="BasicQty" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="BasicPrice" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="AuxQty" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="AuxPrice" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="TemplateID" Type="Int32" />
-          <Property Name="TemplateName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="CustomerID" Type="Int32" />
-          <Property Name="CustomerName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="YourEnquiry" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="KindAttention" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="BillingAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="TotalAmount" Type="Int32" />
-        </EntityType>
         <EntityType Name="Table_Zone">
           <Key>
             <PropertyRef Name="ZoneId" />
@@ -2583,12 +2014,17 @@
           <EntitySet Name="Table_4020Z25" EntityType="Self.Table_4020Z25" />
           <EntitySet Name="Table_4030InDollor" EntityType="Self.Table_4030InDollor" />
           <EntitySet Name="Table_AttendType" EntityType="Self.Table_AttendType" />
+          <EntitySet Name="table_brochure" EntityType="Self.table_brochure" />
+          <EntitySet Name="Table_CallTicketScreen" EntityType="Self.Table_CallTicketScreen" />
           <EntitySet Name="Table_Cluster" EntityType="Self.Table_Cluster" />
           <EntitySet Name="Table_Common_RefID_Template" EntityType="Self.Table_Common_RefID_Template" />
           <EntitySet Name="Table_Consumables" EntityType="Self.Table_Consumables" />
           <EntitySet Name="Table_Contactdetails" EntityType="Self.Table_Contactdetails" />
           <EntitySet Name="Table_Country" EntityType="Self.Table_Country" />
           <EntitySet Name="Table_CustomerRegistartion" EntityType="Self.Table_CustomerRegistartion" />
+          <EntitySet Name="Table_DocumentMailTemplate" EntityType="Self.Table_DocumentMailTemplate" />
+          <EntitySet Name="Table_DocumentTemplate" EntityType="Self.Table_DocumentTemplate" />
+          <EntitySet Name="Table_DocumentType" EntityType="Self.Table_DocumentType" />
           <EntitySet Name="Table_Faults" EntityType="Self.Table_Faults" />
           <EntitySet Name="Table_Features" EntityType="Self.Table_Features" />
           <EntitySet Name="Table_FollowUpDetails" EntityType="Self.Table_FollowUpDetails" />
@@ -2600,29 +2036,9 @@
           <EntitySet Name="Table_MachineCustomerSansSDetails" EntityType="Self.Table_MachineCustomerSansSDetails" />
           <EntitySet Name="Table_MachineFeatureDetails" EntityType="Self.Table_MachineFeatureDetails" />
           <EntitySet Name="Table_MachineRegistration" EntityType="Self.Table_MachineRegistration" />
+          <EntitySet Name="table_mailtemplate" EntityType="Self.table_mailtemplate" />
           <EntitySet Name="Table_Model" EntityType="Self.Table_Model" />
           <EntitySet Name="Table_Priority" EntityType="Self.Table_Priority" />
-          <EntitySet Name="Table_quotation2015" EntityType="Self.Table_quotation2015" />
-          <EntitySet Name="Table_quotation2015HT" EntityType="Self.Table_quotation2015HT" />
-          <EntitySet Name="Table_Quotation2015_in_dollar" EntityType="Self.Table_Quotation2015_in_dollar" />
-          <EntitySet Name="Table_quotation2015Z25" EntityType="Self.Table_quotation2015Z25" />
-          <EntitySet Name="Table_QUOTATION40202inDollor" EntityType="Self.Table_QUOTATION40202inDollor" />
-          <EntitySet Name="Table_Quotation4020_HT" EntityType="Self.Table_Quotation4020_HT" />
-          <EntitySet Name="Table_Quotation4020template" EntityType="Self.Table_Quotation4020template" />
-          <EntitySet Name="Table_Quotation4030" EntityType="Self.Table_Quotation4030" />
-          <EntitySet Name="Table_Quotation4030z25" EntityType="Self.Table_Quotation4030z25" />
-          <EntitySet Name="Table_Quotation5030" EntityType="Self.Table_Quotation5030" />
-          <EntitySet Name="Table_Quotation5030Z25ZLX_" EntityType="Self.Table_Quotation5030Z25ZLX_" />
-          <EntitySet Name="Table_Quotationtemplate" EntityType="Self.Table_Quotationtemplate" />
-          <EntitySet Name="Table_Rapid64CAM" EntityType="Self.Table_Rapid64CAM" />
-          <EntitySet Name="Table_Rapid_I_4020_4030J_LX_ACSC_05_Apr_2021" EntityType="Self.Table_Rapid_I_4020_4030J_LX_ACSC_05_Apr_2021" />
-          <EntitySet Name="Table_Rapid_I_AMC_OFFER" EntityType="Self.Table_Rapid_I_AMC_OFFER" />
-          <EntitySet Name="Table_Rapidi2015JLX" EntityType="Self.Table_Rapidi2015JLX" />
-          <EntitySet Name="Table_Rapid_I_64_Upgrade" EntityType="Self.Table_Rapid_I_64_Upgrade" />
-          <EntitySet Name="Table_Rapid_I_Spares" EntityType="Self.Table_Rapid_I_Spares" />
-          <EntitySet Name="Table_rapiditable" EntityType="Self.Table_rapiditable" />
-          <EntitySet Name="Table_RapidiTrainingcharges" EntityType="Self.Table_RapidiTrainingcharges" />
-          <EntitySet Name="Table_Rapid_i_VMS" EntityType="Self.Table_Rapid_i_VMS" />
           <EntitySet Name="Table_Region" EntityType="Self.Table_Region" />
           <EntitySet Name="Table_Requests" EntityType="Self.Table_Requests" />
           <EntitySet Name="Table_RequestsFormData" EntityType="Self.Table_RequestsFormData" />
@@ -2715,87 +2131,47 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="CustomerManagerModelStoreContainer" CdmEntityContainer="CustomerManagerEntities">
-          <EntitySetMapping Name="Table_4020Z25">
-            <EntityTypeMapping TypeName="CustomerManagerModel.Table_4020Z25">
-              <MappingFragment StoreEntitySet="Table_4020Z25">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="RefID" ColumnName="RefID" />
-                <ScalarProperty Name="YourEnquiry" ColumnName="YourEnquiry" />
-                <ScalarProperty Name="KindAttention" ColumnName="KindAttention" />
-                <ScalarProperty Name="BillingAddress" ColumnName="BillingAddress" />
-                <ScalarProperty Name="Price" ColumnName="Price" />
-                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-                <ScalarProperty Name="BasicSystemQty" ColumnName="BasicSystemQty" />
-                <ScalarProperty Name="BasicSystemPrice" ColumnName="BasicSystemPrice" />
-                <ScalarProperty Name="OptionalQtyA" ColumnName="OptionalQtyA" />
-                <ScalarProperty Name="OptionalPriceA" ColumnName="OptionalPriceA" />
-                <ScalarProperty Name="OptionalQtyB" ColumnName="OptionalQtyB" />
-                <ScalarProperty Name="OptionalPriceB" ColumnName="OptionalPriceB" />
-                <ScalarProperty Name="OptionalQtyC" ColumnName="OptionalQtyC" />
-                <ScalarProperty Name="OptionalPriceC" ColumnName="OptionalPriceC" />
-                <ScalarProperty Name="OptionalQtyD" ColumnName="OptionalQtyD" />
-                <ScalarProperty Name="OptionalPriceD" ColumnName="OptionalPriceD" />
-                <ScalarProperty Name="OptionalQtyE" ColumnName="OptionalQtyE" />
-                <ScalarProperty Name="OptionalPriceE" ColumnName="OptionalPriceE" />
-                <ScalarProperty Name="OptionalQtyF" ColumnName="OptionalQtyF" />
-                <ScalarProperty Name="OptionalPriceF" ColumnName="OptionalPriceF" />
-                <ScalarProperty Name="OptionalQtyG" ColumnName="OptionalQtyG" />
-                <ScalarProperty Name="OptionalPriceG" ColumnName="OptionalPriceG" />
-                <ScalarProperty Name="OptionalQtyH" ColumnName="OptionalQtyH" />
-                <ScalarProperty Name="OptionalPriceH" ColumnName="OptionalPriceH" />
-                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
-                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
-                <ScalarProperty Name="TemplateID" ColumnName="TemplateID" />
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="TemplateName" ColumnName="TemplateName" />
-                <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Table_4030InDollor">
-            <EntityTypeMapping TypeName="CustomerManagerModel.Table_4030InDollor">
-              <MappingFragment StoreEntitySet="Table_4030InDollor">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="RefID" ColumnName="RefID" />
-                <ScalarProperty Name="YourEnquiry" ColumnName="YourEnquiry" />
-                <ScalarProperty Name="KindAttention" ColumnName="KindAttention" />
-                <ScalarProperty Name="BillingAddress" ColumnName="BillingAddress" />
-                <ScalarProperty Name="Price" ColumnName="Price" />
-                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-                <ScalarProperty Name="BasicSystemQty" ColumnName="BasicSystemQty" />
-                <ScalarProperty Name="BasicSystemPrice" ColumnName="BasicSystemPrice" />
-                <ScalarProperty Name="OptionalQtyA" ColumnName="OptionalQtyA" />
-                <ScalarProperty Name="OptionalPriceA" ColumnName="OptionalPriceA" />
-                <ScalarProperty Name="OptionalQtyB" ColumnName="OptionalQtyB" />
-                <ScalarProperty Name="OptionalPriceB" ColumnName="OptionalPriceB" />
-                <ScalarProperty Name="OptionalQtyC" ColumnName="OptionalQtyC" />
-                <ScalarProperty Name="OptionalPriceC" ColumnName="OptionalPriceC" />
-                <ScalarProperty Name="OptionalQtyD" ColumnName="OptionalQtyD" />
-                <ScalarProperty Name="OptionalPriceD" ColumnName="OptionalPriceD" />
-                <ScalarProperty Name="OptionalQtyE" ColumnName="OptionalQtyE" />
-                <ScalarProperty Name="OptionalPriceE" ColumnName="OptionalPriceE" />
-                <ScalarProperty Name="OptionalQtyF" ColumnName="OptionalQtyF" />
-                <ScalarProperty Name="OptionalPriceF" ColumnName="OptionalPriceF" />
-                <ScalarProperty Name="OptionalQtyG" ColumnName="OptionalQtyG" />
-                <ScalarProperty Name="OptionalPriceG" ColumnName="OptionalPriceG" />
-                <ScalarProperty Name="OptionalQtyH" ColumnName="OptionalQtyH" />
-                <ScalarProperty Name="OptionalPriceH" ColumnName="OptionalPriceH" />
-                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
-                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
-                <ScalarProperty Name="TemplateID" ColumnName="TemplateID" />
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="TemplateName" ColumnName="TemplateName" />
-                <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Table_AttendType">
             <EntityTypeMapping TypeName="CustomerManagerModel.Table_AttendType">
               <MappingFragment StoreEntitySet="Table_AttendType">
                 <ScalarProperty Name="AttendTypeId" ColumnName="AttendTypeId" />
                 <ScalarProperty Name="AttendTypeName" ColumnName="AttendTypeName" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="table_brochure">
+            <EntityTypeMapping TypeName="CustomerManagerModel.table_brochure">
+              <MappingFragment StoreEntitySet="table_brochure">
+                <ScalarProperty Name="BrochureID" ColumnName="BrochureID" />
+                <ScalarProperty Name="BrochureName" ColumnName="BrochureName" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Table_CallTicketScreen">
+            <EntityTypeMapping TypeName="CustomerManagerModel.Table_CallTicketScreen">
+              <MappingFragment StoreEntitySet="Table_CallTicketScreen">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="MachineNumber" ColumnName="MachineNumber" />
+                <ScalarProperty Name="MachineId" ColumnName="MachineId" />
+                <ScalarProperty Name="ModelName" ColumnName="ModelName" />
+                <ScalarProperty Name="ModelId" ColumnName="ModelId" />
+                <ScalarProperty Name="TicketNo" ColumnName="TicketNo" />
+                <ScalarProperty Name="RequestFor" ColumnName="RequestFor" />
+                <ScalarProperty Name="RequestForId" ColumnName="RequestForId" />
+                <ScalarProperty Name="Priority" ColumnName="Priority" />
+                <ScalarProperty Name="Fault" ColumnName="Fault" />
+                <ScalarProperty Name="Resolution" ColumnName="Resolution" />
+                <ScalarProperty Name="ContactName" ColumnName="ContactName" />
+                <ScalarProperty Name="ContactId" ColumnName="ContactId" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+                <ScalarProperty Name="IsDone" ColumnName="IsDone" />
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
                 <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
               </MappingFragment>
@@ -2891,7 +2267,6 @@
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
                 <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
                 <ScalarProperty Name="CompanyOldName" ColumnName="CompanyOldName" />
-                <ScalarProperty Name="BillingAddress" ColumnName="BillingAddress" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2946,6 +2321,7 @@
                 <ScalarProperty Name="CutomerName" ColumnName="CutomerName" />
                 <ScalarProperty Name="MachineId" ColumnName="MachineId" />
                 <ScalarProperty Name="MachineNumber" ColumnName="MachineNumber" />
+                <ScalarProperty Name="TicketNo" ColumnName="TicketNo" />
                 <ScalarProperty Name="ModelId" ColumnName="ModelId" />
                 <ScalarProperty Name="ModelName" ColumnName="ModelName" />
                 <ScalarProperty Name="RegionId" ColumnName="RegionId" />
@@ -3119,6 +2495,16 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="table_mailtemplate">
+            <EntityTypeMapping TypeName="CustomerManagerModel.table_mailtemplate">
+              <MappingFragment StoreEntitySet="table_mailtemplate">
+                <ScalarProperty Name="MailID" ColumnName="MailID" />
+                <ScalarProperty Name="MailName" ColumnName="MailName" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Table_Model">
             <EntityTypeMapping TypeName="CustomerManagerModel.Table_Model">
               <MappingFragment StoreEntitySet="Table_Model">
@@ -3134,635 +2520,6 @@
               <MappingFragment StoreEntitySet="Table_Priority">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="PriorityID" ColumnName="PriorityID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Table_quotation2015">
-            <EntityTypeMapping TypeName="CustomerManagerModel.Table_quotation2015">
-              <MappingFragment StoreEntitySet="Table_quotation2015">
-                <ScalarProperty Name="RefID" ColumnName="RefID" />
-                <ScalarProperty Name="YourEnquiry" ColumnName="YourEnquiry" />
-                <ScalarProperty Name="KindAttention" ColumnName="KindAttention" />
-                <ScalarProperty Name="BillingAddress" ColumnName="BillingAddress" />
-                <ScalarProperty Name="Price" ColumnName="Price" />
-                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-                <ScalarProperty Name="BasicSystemQty" ColumnName="BasicSystemQty" />
-                <ScalarProperty Name="BasicSystemPrice" ColumnName="BasicSystemPrice" />
-                <ScalarProperty Name="OptionalQtyA" ColumnName="OptionalQtyA" />
-                <ScalarProperty Name="OptionalPriceA" ColumnName="OptionalPriceA" />
-                <ScalarProperty Name="OptionalQtyB" ColumnName="OptionalQtyB" />
-                <ScalarProperty Name="OptionalPriceB" ColumnName="OptionalPriceB" />
-                <ScalarProperty Name="OptionalQtyC" ColumnName="OptionalQtyC" />
-                <ScalarProperty Name="OptionalPriceC" ColumnName="OptionalPriceC" />
-                <ScalarProperty Name="OptionalQtyD" ColumnName="OptionalQtyD" />
-                <ScalarProperty Name="OptionalPriceD" ColumnName="OptionalPriceD" />
-                <ScalarProperty Name="OptionalQtyE" ColumnName="OptionalQtyE" />
-                <ScalarProperty Name="OptionalPriceE" ColumnName="OptionalPriceE" />
-                <ScalarProperty Name="OptionalQtyF" ColumnName="OptionalQtyF" />
-                <ScalarProperty Name="OptionalPriceF" ColumnName="OptionalPriceF" />
-                <ScalarProperty Name="OptionalQtyG" ColumnName="OptionalQtyG" />
-                <ScalarProperty Name="OptionalPriceG" ColumnName="OptionalPriceG" />
-                <ScalarProperty Name="OptionalQtyH" ColumnName="OptionalQtyH" />
-                <ScalarProperty Name="OptionalPriceH" ColumnName="OptionalPriceH" />
-                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
-                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
-                <ScalarProperty Name="TemplateID" ColumnName="TemplateID" />
-                <ScalarProperty Name="TemplateName" ColumnName="TemplateName" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Table_quotation2015HT">
-            <EntityTypeMapping TypeName="CustomerManagerModel.Table_quotation2015HT">
-              <MappingFragment StoreEntitySet="Table_quotation2015HT">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="RefID" ColumnName="RefID" />
-                <ScalarProperty Name="YourEnquiry" ColumnName="YourEnquiry" />
-                <ScalarProperty Name="BillingAddress" ColumnName="BillingAddress" />
-                <ScalarProperty Name="Price" ColumnName="Price" />
-                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-                <ScalarProperty Name="BasicSystemQty" ColumnName="BasicSystemQty" />
-                <ScalarProperty Name="BasicSystemPrice" ColumnName="BasicSystemPrice" />
-                <ScalarProperty Name="OptionalQtyA" ColumnName="OptionalQtyA" />
-                <ScalarProperty Name="OptionalPriceA" ColumnName="OptionalPriceA" />
-                <ScalarProperty Name="OptionalQtyB" ColumnName="OptionalQtyB" />
-                <ScalarProperty Name="OptionalPriceB" ColumnName="OptionalPriceB" />
-                <ScalarProperty Name="OptionalQtyC" ColumnName="OptionalQtyC" />
-                <ScalarProperty Name="OptionalPriceC" ColumnName="OptionalPriceC" />
-                <ScalarProperty Name="OptionalQtyD" ColumnName="OptionalQtyD" />
-                <ScalarProperty Name="OptionalPriceD" ColumnName="OptionalPriceD" />
-                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
-                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
-                <ScalarProperty Name="TemplateID" ColumnName="TemplateID" />
-                <ScalarProperty Name="TemplateName" ColumnName="TemplateName" />
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Table_Quotation2015_in_dollar">
-            <EntityTypeMapping TypeName="CustomerManagerModel.Table_Quotation2015_in_dollar">
-              <MappingFragment StoreEntitySet="Table_Quotation2015-in-dollar">
-                <ScalarProperty Name="RefID" ColumnName="RefID" />
-                <ScalarProperty Name="YourEnquiry" ColumnName="YourEnquiry" />
-                <ScalarProperty Name="KindAttention" ColumnName="KindAttention" />
-                <ScalarProperty Name="BillingAddress" ColumnName="BillingAddress" />
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="BasicSystemQty" ColumnName="BasicSystemQty" />
-                <ScalarProperty Name="BasicSystemPrice" ColumnName="BasicSystemPrice" />
-                <ScalarProperty Name="OptionalQtyA" ColumnName="OptionalQtyA" />
-                <ScalarProperty Name="OptionalPriceA" ColumnName="OptionalPriceA" />
-                <ScalarProperty Name="OptionalQtyB" ColumnName="OptionalQtyB" />
-                <ScalarProperty Name="OptionalPriceB" ColumnName="OptionalPriceB" />
-                <ScalarProperty Name="OptionalQtyC" ColumnName="OptionalQtyC" />
-                <ScalarProperty Name="OptionalPriceC" ColumnName="OptionalPriceC" />
-                <ScalarProperty Name="OptionalQtyD" ColumnName="OptionalQtyD" />
-                <ScalarProperty Name="OptionalPriceD" ColumnName="OptionalPriceD" />
-                <ScalarProperty Name="OptionalQtyE" ColumnName="OptionalQtyE" />
-                <ScalarProperty Name="OptionalPriceE" ColumnName="OptionalPriceE" />
-                <ScalarProperty Name="OptionalQtyF" ColumnName="OptionalQtyF" />
-                <ScalarProperty Name="OptionalPriceF" ColumnName="OptionalPriceF" />
-                <ScalarProperty Name="OptionalQtyG" ColumnName="OptionalQtyG" />
-                <ScalarProperty Name="OptionalPriceG" ColumnName="OptionalPriceG" />
-                <ScalarProperty Name="OptionalQtyH" ColumnName="OptionalQtyH" />
-                <ScalarProperty Name="OptionalPriceH" ColumnName="OptionalPriceH" />
-                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
-                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
-                <ScalarProperty Name="TemplateID" ColumnName="TemplateID" />
-                <ScalarProperty Name="TemplateName" ColumnName="TemplateName" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Table_quotation2015Z25">
-            <EntityTypeMapping TypeName="CustomerManagerModel.Table_quotation2015Z25">
-              <MappingFragment StoreEntitySet="Table_quotation2015Z25">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="RefID" ColumnName="RefID" />
-                <ScalarProperty Name="YourEnquiry" ColumnName="YourEnquiry" />
-                <ScalarProperty Name="BillingAddress" ColumnName="BillingAddress" />
-                <ScalarProperty Name="Price" ColumnName="Price" />
-                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-                <ScalarProperty Name="BasicSystemQty" ColumnName="BasicSystemQty" />
-                <ScalarProperty Name="BasicSystemPrice" ColumnName="BasicSystemPrice" />
-                <ScalarProperty Name="OptionalQtyA" ColumnName="OptionalQtyA" />
-                <ScalarProperty Name="OptionalPriceA" ColumnName="OptionalPriceA" />
-                <ScalarProperty Name="OptionalQtyB" ColumnName="OptionalQtyB" />
-                <ScalarProperty Name="OptionalPriceB" ColumnName="OptionalPriceB" />
-                <ScalarProperty Name="OptionalQtyC" ColumnName="OptionalQtyC" />
-                <ScalarProperty Name="OptionalPriceC" ColumnName="OptionalPriceC" />
-                <ScalarProperty Name="OptionalQtyD" ColumnName="OptionalQtyD" />
-                <ScalarProperty Name="OptionalPriceD" ColumnName="OptionalPriceD" />
-                <ScalarProperty Name="OptionalPriceE" ColumnName="OptionalPriceE" />
-                <ScalarProperty Name="OptionalQtyF" ColumnName="OptionalQtyF" />
-                <ScalarProperty Name="OptionalPriceF" ColumnName="OptionalPriceF" />
-                <ScalarProperty Name="OptionalQtyG" ColumnName="OptionalQtyG" />
-                <ScalarProperty Name="OptionalPriceG" ColumnName="OptionalPriceG" />
-                <ScalarProperty Name="OptionalQtyH" ColumnName="OptionalQtyH" />
-                <ScalarProperty Name="OptionalPriceH" ColumnName="OptionalPriceH" />
-                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
-                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
-                <ScalarProperty Name="TemplateID" ColumnName="TemplateID" />
-                <ScalarProperty Name="TemplateName" ColumnName="TemplateName" />
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="KindAttention" ColumnName="KindAttention" />
-                <ScalarProperty Name="OptionalQtyE" ColumnName="OptionalQtyE" />
-                <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Table_QUOTATION40202inDollor">
-            <EntityTypeMapping TypeName="CustomerManagerModel.Table_QUOTATION40202inDollor">
-              <MappingFragment StoreEntitySet="Table_QUOTATION40202inDollor">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="RefID" ColumnName="RefID" />
-                <ScalarProperty Name="YourEnquiry" ColumnName="YourEnquiry" />
-                <ScalarProperty Name="BillingAddress" ColumnName="BillingAddress" />
-                <ScalarProperty Name="Price" ColumnName="Price" />
-                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-                <ScalarProperty Name="BasicSystemQty" ColumnName="BasicSystemQty" />
-                <ScalarProperty Name="BasicSystemPrice" ColumnName="BasicSystemPrice" />
-                <ScalarProperty Name="OptionalQtyA" ColumnName="OptionalQtyA" />
-                <ScalarProperty Name="OptionalPriceA" ColumnName="OptionalPriceA" />
-                <ScalarProperty Name="OptionalQtyB" ColumnName="OptionalQtyB" />
-                <ScalarProperty Name="OptionalPriceB" ColumnName="OptionalPriceB" />
-                <ScalarProperty Name="OptionalQtyC" ColumnName="OptionalQtyC" />
-                <ScalarProperty Name="OptionalPriceC" ColumnName="OptionalPriceC" />
-                <ScalarProperty Name="OptionalQtyD" ColumnName="OptionalQtyD" />
-                <ScalarProperty Name="OptionalPriceD" ColumnName="OptionalPriceD" />
-                <ScalarProperty Name="OptionalPriceE" ColumnName="OptionalPriceE" />
-                <ScalarProperty Name="OptionalQtyF" ColumnName="OptionalQtyF" />
-                <ScalarProperty Name="OptionalPriceF" ColumnName="OptionalPriceF" />
-                <ScalarProperty Name="OptionalQtyG" ColumnName="OptionalQtyG" />
-                <ScalarProperty Name="OptionalPriceG" ColumnName="OptionalPriceG" />
-                <ScalarProperty Name="OptionalQtyH" ColumnName="OptionalQtyH" />
-                <ScalarProperty Name="OptionalPriceH" ColumnName="OptionalPriceH" />
-                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
-                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
-                <ScalarProperty Name="TemplateID" ColumnName="TemplateID" />
-                <ScalarProperty Name="TemplateName" ColumnName="TemplateName" />
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="OptionalQtyE" ColumnName="OptionalQtyE" />
-                <ScalarProperty Name="KindAttention" ColumnName="KindAttention" />
-                <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Table_Quotation4020_HT">
-            <EntityTypeMapping TypeName="CustomerManagerModel.Table_Quotation4020_HT">
-              <MappingFragment StoreEntitySet="Table_Quotation4020-HT">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="RefID" ColumnName="RefID" />
-                <ScalarProperty Name="YourEnquiry" ColumnName="YourEnquiry" />
-                <ScalarProperty Name="KindAttention" ColumnName="KindAttention" />
-                <ScalarProperty Name="BillingAddress" ColumnName="BillingAddress" />
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="BasicSystemQty" ColumnName="BasicSystemQty" />
-                <ScalarProperty Name="BasicSystemPrice" ColumnName="BasicSystemPrice" />
-                <ScalarProperty Name="OptionalQtyA" ColumnName="OptionalQtyA" />
-                <ScalarProperty Name="OptionalPriceA" ColumnName="OptionalPriceA" />
-                <ScalarProperty Name="OptionalQtyB" ColumnName="OptionalQtyB" />
-                <ScalarProperty Name="OptionalPriceB" ColumnName="OptionalPriceB" />
-                <ScalarProperty Name="OptionalQtyC" ColumnName="OptionalQtyC" />
-                <ScalarProperty Name="OptionalPriceC" ColumnName="OptionalPriceC" />
-                <ScalarProperty Name="OptionalQtyD" ColumnName="OptionalQtyD" />
-                <ScalarProperty Name="OptionalPriceD" ColumnName="OptionalPriceD" />
-                <ScalarProperty Name="OptionalQtyE" ColumnName="OptionalQtyE" />
-                <ScalarProperty Name="OptionalPriceE" ColumnName="OptionalPriceE" />
-                <ScalarProperty Name="OptionalQtyF" ColumnName="OptionalQtyF" />
-                <ScalarProperty Name="OptionalPriceF" ColumnName="OptionalPriceF" />
-                <ScalarProperty Name="OptionalQtyG" ColumnName="OptionalQtyG" />
-                <ScalarProperty Name="OptionalPriceG" ColumnName="OptionalPriceG" />
-                <ScalarProperty Name="OptionalQtyH" ColumnName="OptionalQtyH" />
-                <ScalarProperty Name="OptionalPriceH" ColumnName="OptionalPriceH" />
-                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
-                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
-                <ScalarProperty Name="TemplateID" ColumnName="TemplateID" />
-                <ScalarProperty Name="TemplateName" ColumnName="TemplateName" />
-                <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Table_Quotation4020template">
-            <EntityTypeMapping TypeName="CustomerManagerModel.Table_Quotation4020template">
-              <MappingFragment StoreEntitySet="Table_Quotation4020template">
-                <ScalarProperty Name="RefID" ColumnName="RefID" />
-                <ScalarProperty Name="YourEnquiry" ColumnName="YourEnquiry" />
-                <ScalarProperty Name="KindAttention" ColumnName="KindAttention" />
-                <ScalarProperty Name="BillingAddress" ColumnName="BillingAddress" />
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="BasicSystemQty" ColumnName="BasicSystemQty" />
-                <ScalarProperty Name="BasicSystemPrice" ColumnName="BasicSystemPrice" />
-                <ScalarProperty Name="OptionalQtyA" ColumnName="OptionalQtyA" />
-                <ScalarProperty Name="OptionalPriceA" ColumnName="OptionalPriceA" />
-                <ScalarProperty Name="OptionalQtyB" ColumnName="OptionalQtyB" />
-                <ScalarProperty Name="OptionalPriceB" ColumnName="OptionalPriceB" />
-                <ScalarProperty Name="OptionalQtyC" ColumnName="OptionalQtyC" />
-                <ScalarProperty Name="OptionalPriceC" ColumnName="OptionalPriceC" />
-                <ScalarProperty Name="OptionalQtyD" ColumnName="OptionalQtyD" />
-                <ScalarProperty Name="OptionalPriceD" ColumnName="OptionalPriceD" />
-                <ScalarProperty Name="OptionalQtyE" ColumnName="OptionalQtyE" />
-                <ScalarProperty Name="OptionalPriceE" ColumnName="OptionalPriceE" />
-                <ScalarProperty Name="OptionalQtyF" ColumnName="OptionalQtyF" />
-                <ScalarProperty Name="OptionalPriceF" ColumnName="OptionalPriceF" />
-                <ScalarProperty Name="OptionalQtyG" ColumnName="OptionalQtyG" />
-                <ScalarProperty Name="OptionalPriceG" ColumnName="OptionalPriceG" />
-                <ScalarProperty Name="OptionalQtyH" ColumnName="OptionalQtyH" />
-                <ScalarProperty Name="OptionalPriceH" ColumnName="OptionalPriceH" />
-                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
-                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
-                <ScalarProperty Name="TemplateID" ColumnName="TemplateID" />
-                <ScalarProperty Name="TemplateName" ColumnName="TemplateName" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Table_Quotation4030">
-            <EntityTypeMapping TypeName="CustomerManagerModel.Table_Quotation4030">
-              <MappingFragment StoreEntitySet="Table_Quotation4030">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="RefID" ColumnName="RefID" />
-                <ScalarProperty Name="YourEnquiry" ColumnName="YourEnquiry" />
-                <ScalarProperty Name="KindAttention" ColumnName="KindAttention" />
-                <ScalarProperty Name="BillingAddress" ColumnName="BillingAddress" />
-                <ScalarProperty Name="Price" ColumnName="Price" />
-                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-                <ScalarProperty Name="BasicSystemQty" ColumnName="BasicSystemQty" />
-                <ScalarProperty Name="BasicSystemPrice" ColumnName="BasicSystemPrice" />
-                <ScalarProperty Name="OptionalQtyA" ColumnName="OptionalQtyA" />
-                <ScalarProperty Name="OptionalPriceA" ColumnName="OptionalPriceA" />
-                <ScalarProperty Name="OptionalQtyB" ColumnName="OptionalQtyB" />
-                <ScalarProperty Name="OptionalPriceB" ColumnName="OptionalPriceB" />
-                <ScalarProperty Name="OptionalQtyC" ColumnName="OptionalQtyC" />
-                <ScalarProperty Name="OptionalPriceC" ColumnName="OptionalPriceC" />
-                <ScalarProperty Name="OptionalQtyD" ColumnName="OptionalQtyD" />
-                <ScalarProperty Name="OptionalPriceD" ColumnName="OptionalPriceD" />
-                <ScalarProperty Name="OptionalQtyE" ColumnName="OptionalQtyE" />
-                <ScalarProperty Name="OptionalPriceE" ColumnName="OptionalPriceE" />
-                <ScalarProperty Name="OptionalQtyF" ColumnName="OptionalQtyF" />
-                <ScalarProperty Name="OptionalPriceF" ColumnName="OptionalPriceF" />
-                <ScalarProperty Name="OptionalQtyG" ColumnName="OptionalQtyG" />
-                <ScalarProperty Name="OptionalPriceG" ColumnName="OptionalPriceG" />
-                <ScalarProperty Name="OptionalQtyH" ColumnName="OptionalQtyH" />
-                <ScalarProperty Name="OptionalPriceH" ColumnName="OptionalPriceH" />
-                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
-                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
-                <ScalarProperty Name="TemplateID" ColumnName="TemplateID" />
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="TemplateName" ColumnName="TemplateName" />
-                <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Table_Quotation4030z25">
-            <EntityTypeMapping TypeName="CustomerManagerModel.Table_Quotation4030z25">
-              <MappingFragment StoreEntitySet="Table_Quotation4030z25">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="RefID" ColumnName="RefID" />
-                <ScalarProperty Name="YourEnquiry" ColumnName="YourEnquiry" />
-                <ScalarProperty Name="KindAttention" ColumnName="KindAttention" />
-                <ScalarProperty Name="BillingAddress" ColumnName="BillingAddress" />
-                <ScalarProperty Name="Price" ColumnName="Price" />
-                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-                <ScalarProperty Name="BasicSystemQty" ColumnName="BasicSystemQty" />
-                <ScalarProperty Name="BasicSystemPrice" ColumnName="BasicSystemPrice" />
-                <ScalarProperty Name="OptionalQtyA" ColumnName="OptionalQtyA" />
-                <ScalarProperty Name="OptionalPriceA" ColumnName="OptionalPriceA" />
-                <ScalarProperty Name="OptionalQtyB" ColumnName="OptionalQtyB" />
-                <ScalarProperty Name="OptionalPriceB" ColumnName="OptionalPriceB" />
-                <ScalarProperty Name="OptionalQtyC" ColumnName="OptionalQtyC" />
-                <ScalarProperty Name="OptionalQtyD" ColumnName="OptionalQtyD" />
-                <ScalarProperty Name="OptionalPriceD" ColumnName="OptionalPriceD" />
-                <ScalarProperty Name="OptionalQtyE" ColumnName="OptionalQtyE" />
-                <ScalarProperty Name="OptionalPriceE" ColumnName="OptionalPriceE" />
-                <ScalarProperty Name="OptionalQtyF" ColumnName="OptionalQtyF" />
-                <ScalarProperty Name="OptionalPriceF" ColumnName="OptionalPriceF" />
-                <ScalarProperty Name="OptionalQtyG" ColumnName="OptionalQtyG" />
-                <ScalarProperty Name="OptionalPriceG" ColumnName="OptionalPriceG" />
-                <ScalarProperty Name="OptionalQtyH" ColumnName="OptionalQtyH" />
-                <ScalarProperty Name="OptionalPriceH" ColumnName="OptionalPriceH" />
-                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
-                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
-                <ScalarProperty Name="TemplateID" ColumnName="TemplateID" />
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="OptionalPriceC" ColumnName="OptionalPriceC" />
-                <ScalarProperty Name="TemplateName" ColumnName="TemplateName" />
-                <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Table_Quotation5030">
-            <EntityTypeMapping TypeName="CustomerManagerModel.Table_Quotation5030">
-              <MappingFragment StoreEntitySet="Table_Quotation5030">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="RefID" ColumnName="RefID" />
-                <ScalarProperty Name="YourEnquiry" ColumnName="YourEnquiry" />
-                <ScalarProperty Name="KindAttention" ColumnName="KindAttention" />
-                <ScalarProperty Name="BillingAddress" ColumnName="BillingAddress" />
-                <ScalarProperty Name="Price" ColumnName="Price" />
-                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-                <ScalarProperty Name="BasicSystemPrice" ColumnName="BasicSystemPrice" />
-                <ScalarProperty Name="OptionalQtyA" ColumnName="OptionalQtyA" />
-                <ScalarProperty Name="OptionalPriceA" ColumnName="OptionalPriceA" />
-                <ScalarProperty Name="OptionalQtyB" ColumnName="OptionalQtyB" />
-                <ScalarProperty Name="OptionalPriceB" ColumnName="OptionalPriceB" />
-                <ScalarProperty Name="OptionalQtyC" ColumnName="OptionalQtyC" />
-                <ScalarProperty Name="OptionalPriceC" ColumnName="OptionalPriceC" />
-                <ScalarProperty Name="OptionalQtyD" ColumnName="OptionalQtyD" />
-                <ScalarProperty Name="OptionalPriceD" ColumnName="OptionalPriceD" />
-                <ScalarProperty Name="OptionalQtyE" ColumnName="OptionalQtyE" />
-                <ScalarProperty Name="OptionalPriceE" ColumnName="OptionalPriceE" />
-                <ScalarProperty Name="OptionalQtyF" ColumnName="OptionalQtyF" />
-                <ScalarProperty Name="OptionalPriceF" ColumnName="OptionalPriceF" />
-                <ScalarProperty Name="OptionalQtyG" ColumnName="OptionalQtyG" />
-                <ScalarProperty Name="OptionalQtyH" ColumnName="OptionalQtyH" />
-                <ScalarProperty Name="OptionalPriceH" ColumnName="OptionalPriceH" />
-                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
-                <ScalarProperty Name="TemplateID" ColumnName="TemplateID" />
-                <ScalarProperty Name="TemplateName" ColumnName="TemplateName" />
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
-                <ScalarProperty Name="OptionalPriceG" ColumnName="OptionalPriceG" />
-                <ScalarProperty Name="BasicSystemQty" ColumnName="BasicSystemQty" />
-                <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Table_Quotation5030Z25ZLX_">
-            <EntityTypeMapping TypeName="CustomerManagerModel.Table_Quotation5030Z25ZLX_">
-              <MappingFragment StoreEntitySet="Table_Quotation5030Z25ZLX_">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="RefID" ColumnName="RefID" />
-                <ScalarProperty Name="YourEnquiry" ColumnName="YourEnquiry" />
-                <ScalarProperty Name="KindAttention" ColumnName="KindAttention" />
-                <ScalarProperty Name="BillingAddress" ColumnName="BillingAddress" />
-                <ScalarProperty Name="Price" ColumnName="Price" />
-                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-                <ScalarProperty Name="BasicSystemQty" ColumnName="BasicSystemQty" />
-                <ScalarProperty Name="OptionalQtyA" ColumnName="OptionalQtyA" />
-                <ScalarProperty Name="OptionalPriceA" ColumnName="OptionalPriceA" />
-                <ScalarProperty Name="OptionalQtyB" ColumnName="OptionalQtyB" />
-                <ScalarProperty Name="OptionalPriceB" ColumnName="OptionalPriceB" />
-                <ScalarProperty Name="OptionalQtyC" ColumnName="OptionalQtyC" />
-                <ScalarProperty Name="OptionalPriceC" ColumnName="OptionalPriceC" />
-                <ScalarProperty Name="OptionalQtyD" ColumnName="OptionalQtyD" />
-                <ScalarProperty Name="OptionalPriceD" ColumnName="OptionalPriceD" />
-                <ScalarProperty Name="OptionalQtyE" ColumnName="OptionalQtyE" />
-                <ScalarProperty Name="OptionalPriceE" ColumnName="OptionalPriceE" />
-                <ScalarProperty Name="OptionalQtyF" ColumnName="OptionalQtyF" />
-                <ScalarProperty Name="OptionalPriceF" ColumnName="OptionalPriceF" />
-                <ScalarProperty Name="OptionalQtyG" ColumnName="OptionalQtyG" />
-                <ScalarProperty Name="OptionalPriceG" ColumnName="OptionalPriceG" />
-                <ScalarProperty Name="OptionalQtyH" ColumnName="OptionalQtyH" />
-                <ScalarProperty Name="OptionalPriceH" ColumnName="OptionalPriceH" />
-                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
-                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
-                <ScalarProperty Name="TemplateID" ColumnName="TemplateID" />
-                <ScalarProperty Name="TemplateName" ColumnName="TemplateName" />
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="BasicSystemPrice" ColumnName="BasicSystemPrice" />
-                <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Table_Quotationtemplate">
-            <EntityTypeMapping TypeName="CustomerManagerModel.Table_Quotationtemplate">
-              <MappingFragment StoreEntitySet="Table_Quotationtemplate">
-                <ScalarProperty Name="RefID" ColumnName="RefID" />
-                <ScalarProperty Name="YourEnquiry" ColumnName="YourEnquiry" />
-                <ScalarProperty Name="KindAttention" ColumnName="KindAttention" />
-                <ScalarProperty Name="BillingAddress" ColumnName="BillingAddress" />
-                <ScalarProperty Name="TelephoneNo" ColumnName="TelephoneNo" />
-                <ScalarProperty Name="Pincode" ColumnName="Pincode" />
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Table_Rapid64CAM">
-            <EntityTypeMapping TypeName="CustomerManagerModel.Table_Rapid64CAM">
-              <MappingFragment StoreEntitySet="Table_Rapid64CAM">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="RefID" ColumnName="RefID" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-                <ScalarProperty Name="TemplateID" ColumnName="TemplateID" />
-                <ScalarProperty Name="TemplateName" ColumnName="TemplateName" />
-                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
-                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
-                <ScalarProperty Name="YourEnquiry" ColumnName="YourEnquiry" />
-                <ScalarProperty Name="KindAttention" ColumnName="KindAttention" />
-                <ScalarProperty Name="ACSCQty" ColumnName="ACSCQty" />
-                <ScalarProperty Name="ACSCPrice" ColumnName="ACSCPrice" />
-                <ScalarProperty Name="BillingAddress" ColumnName="BillingAddress" />
-                <ScalarProperty Name="DesQty" ColumnName="DesQty" />
-                <ScalarProperty Name="DesPrice" ColumnName="DesPrice" />
-                <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Table_Rapid_I_4020_4030J_LX_ACSC_05_Apr_2021">
-            <EntityTypeMapping TypeName="CustomerManagerModel.Table_Rapid_I_4020_4030J_LX_ACSC_05_Apr_2021">
-              <MappingFragment StoreEntitySet="Table_Rapid-I 4020&amp;4030J LX ACSC 05 Apr 2021">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="RefID" ColumnName="RefID" />
-                <ScalarProperty Name="YourEnquiry" ColumnName="YourEnquiry" />
-                <ScalarProperty Name="KindAttention" ColumnName="KindAttention" />
-                <ScalarProperty Name="BillingAddress" ColumnName="BillingAddress" />
-                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
-                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
-                <ScalarProperty Name="TemplateID" ColumnName="TemplateID" />
-                <ScalarProperty Name="TemplateName" ColumnName="TemplateName" />
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Table_Rapid_I_AMC_OFFER">
-            <EntityTypeMapping TypeName="CustomerManagerModel.Table_Rapid_I_AMC_OFFER">
-              <MappingFragment StoreEntitySet="Table_Rapid-I_AMC-OFFER">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="RefID" ColumnName="RefID" />
-                <ScalarProperty Name="YourEnquiry" ColumnName="YourEnquiry" />
-                <ScalarProperty Name="KindAttention" ColumnName="KindAttention" />
-                <ScalarProperty Name="BillingAddress" ColumnName="BillingAddress" />
-                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
-                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
-                <ScalarProperty Name="TemplateID" ColumnName="TemplateID" />
-                <ScalarProperty Name="TemplateName" ColumnName="TemplateName" />
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Table_Rapidi2015JLX">
-            <EntityTypeMapping TypeName="CustomerManagerModel.Table_Rapidi2015JLX">
-              <MappingFragment StoreEntitySet="Table_Rapidi2015JLX">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="RefID" ColumnName="RefID" />
-                <ScalarProperty Name="YourEnquiry" ColumnName="YourEnquiry" />
-                <ScalarProperty Name="KindAttention" ColumnName="KindAttention" />
-                <ScalarProperty Name="BillingAddress" ColumnName="BillingAddress" />
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="BasicSystemQty" ColumnName="BasicSystemQty" />
-                <ScalarProperty Name="BasicSystemPrice" ColumnName="BasicSystemPrice" />
-                <ScalarProperty Name="OptionalQtyA" ColumnName="OptionalQtyA" />
-                <ScalarProperty Name="OptionalPriceA" ColumnName="OptionalPriceA" />
-                <ScalarProperty Name="OptionalQtyB" ColumnName="OptionalQtyB" />
-                <ScalarProperty Name="OptionalPriceB" ColumnName="OptionalPriceB" />
-                <ScalarProperty Name="OptionalQtyC" ColumnName="OptionalQtyC" />
-                <ScalarProperty Name="OptionalPriceC" ColumnName="OptionalPriceC" />
-                <ScalarProperty Name="OptionalQtyD" ColumnName="OptionalQtyD" />
-                <ScalarProperty Name="OptionalPriceD" ColumnName="OptionalPriceD" />
-                <ScalarProperty Name="OptionalQtyE" ColumnName="OptionalQtyE" />
-                <ScalarProperty Name="OptionalPriceE" ColumnName="OptionalPriceE" />
-                <ScalarProperty Name="OptionalQtyF" ColumnName="OptionalQtyF" />
-                <ScalarProperty Name="OptionalPriceF" ColumnName="OptionalPriceF" />
-                <ScalarProperty Name="OptionalQtyG" ColumnName="OptionalQtyG" />
-                <ScalarProperty Name="OptionalPriceG" ColumnName="OptionalPriceG" />
-                <ScalarProperty Name="OptionalQtyH" ColumnName="OptionalQtyH" />
-                <ScalarProperty Name="OptionalPriceH" ColumnName="OptionalPriceH" />
-                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
-                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
-                <ScalarProperty Name="TemplateID" ColumnName="TemplateID" />
-                <ScalarProperty Name="TemplateName" ColumnName="TemplateName" />
-                <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Table_Rapid_I_64_Upgrade">
-            <EntityTypeMapping TypeName="CustomerManagerModel.Table_Rapid_I_64_Upgrade">
-              <MappingFragment StoreEntitySet="Table_Rapid-I-64-Upgrade">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="RefID" ColumnName="RefID" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-                <ScalarProperty Name="UpgradeQtyA" ColumnName="UpgradeQtyA" />
-                <ScalarProperty Name="UpgradePrice" ColumnName="UpgradePrice" />
-                <ScalarProperty Name="UpgradeQtyB" ColumnName="UpgradeQtyB" />
-                <ScalarProperty Name="UpgradeQtyC" ColumnName="UpgradeQtyC" />
-                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
-                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
-                <ScalarProperty Name="TemplateID" ColumnName="TemplateID" />
-                <ScalarProperty Name="TemplateName" ColumnName="TemplateName" />
-                <ScalarProperty Name="YourEnquiry" ColumnName="YourEnquiry" />
-                <ScalarProperty Name="KindAttention" ColumnName="KindAttention" />
-                <ScalarProperty Name="BillingAddress" ColumnName="BillingAddress" />
-                <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Table_Rapid_I_Spares">
-            <EntityTypeMapping TypeName="CustomerManagerModel.Table_Rapid_I_Spares">
-              <MappingFragment StoreEntitySet="Table_Rapid-I-Spares">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="RefID" ColumnName="RefID" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-                <ScalarProperty Name="VisionQtyA" ColumnName="VisionQtyA" />
-                <ScalarProperty Name="VisionPriceA" ColumnName="VisionPriceA" />
-                <ScalarProperty Name="VisionQtyB" ColumnName="VisionQtyB" />
-                <ScalarProperty Name="VisionPriceB" ColumnName="VisionPriceB" />
-                <ScalarProperty Name="TemplateID" ColumnName="TemplateID" />
-                <ScalarProperty Name="TemplateName" ColumnName="TemplateName" />
-                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
-                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
-                <ScalarProperty Name="YourEnquiry" ColumnName="YourEnquiry" />
-                <ScalarProperty Name="KindAttention" ColumnName="KindAttention" />
-                <ScalarProperty Name="BillingAddress" ColumnName="BillingAddress" />
-                <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Table_rapiditable">
-            <EntityTypeMapping TypeName="CustomerManagerModel.Table_rapiditable">
-              <MappingFragment StoreEntitySet="Table_rapiditable">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="RefID" ColumnName="RefID" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-                <ScalarProperty Name="VisionQty" ColumnName="VisionQty" />
-                <ScalarProperty Name="VisionPrice" ColumnName="VisionPrice" />
-                <ScalarProperty Name="TemplateID" ColumnName="TemplateID" />
-                <ScalarProperty Name="TemplateName" ColumnName="TemplateName" />
-                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
-                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
-                <ScalarProperty Name="YourEnquiry" ColumnName="YourEnquiry" />
-                <ScalarProperty Name="KindAttention" ColumnName="KindAttention" />
-                <ScalarProperty Name="BillingAddress" ColumnName="BillingAddress" />
-                <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Table_RapidiTrainingcharges">
-            <EntityTypeMapping TypeName="CustomerManagerModel.Table_RapidiTrainingcharges">
-              <MappingFragment StoreEntitySet="Table_RapidiTrainingcharges">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="RefID" ColumnName="RefID" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-                <ScalarProperty Name="TemplateID" ColumnName="TemplateID" />
-                <ScalarProperty Name="TemplateName" ColumnName="TemplateName" />
-                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
-                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
-                <ScalarProperty Name="YourEnquiry" ColumnName="YourEnquiry" />
-                <ScalarProperty Name="KindAttention" ColumnName="KindAttention" />
-                <ScalarProperty Name="BillingAddress" ColumnName="BillingAddress" />
-                <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Table_Rapid_i_VMS">
-            <EntityTypeMapping TypeName="CustomerManagerModel.Table_Rapid_i_VMS">
-              <MappingFragment StoreEntitySet="Table_Rapid-i-VMS">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="RefID" ColumnName="RefID" />
-                <ScalarProperty Name="YourEnquiry" ColumnName="YourEnquiry" />
-                <ScalarProperty Name="KindAttention" ColumnName="KindAttention" />
-                <ScalarProperty Name="BillingAddress" ColumnName="BillingAddress" />
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="BasicSystemQty" ColumnName="BasicSystemQty" />
-                <ScalarProperty Name="BasicSystemPrice" ColumnName="BasicSystemPrice" />
-                <ScalarProperty Name="OptionalQtyA" ColumnName="OptionalQtyA" />
-                <ScalarProperty Name="OptionalPriceA" ColumnName="OptionalPriceA" />
-                <ScalarProperty Name="OptionalQtyB" ColumnName="OptionalQtyB" />
-                <ScalarProperty Name="OptionalPriceB" ColumnName="OptionalPriceB" />
-                <ScalarProperty Name="OptionalQtyC" ColumnName="OptionalQtyC" />
-                <ScalarProperty Name="OptionalPriceC" ColumnName="OptionalPriceC" />
-                <ScalarProperty Name="OptionalQtyD" ColumnName="OptionalQtyD" />
-                <ScalarProperty Name="OptionalPriceD" ColumnName="OptionalPriceD" />
-                <ScalarProperty Name="OptionalQtyE" ColumnName="OptionalQtyE" />
-                <ScalarProperty Name="OptionalPriceE" ColumnName="OptionalPriceE" />
-                <ScalarProperty Name="OptionalQtyF" ColumnName="OptionalQtyF" />
-                <ScalarProperty Name="OptionalPriceF" ColumnName="OptionalPriceF" />
-                <ScalarProperty Name="OptionalQtyG" ColumnName="OptionalQtyG" />
-                <ScalarProperty Name="OptionalPriceG" ColumnName="OptionalPriceG" />
-                <ScalarProperty Name="OptionalQtyH" ColumnName="OptionalQtyH" />
-                <ScalarProperty Name="OptionalPriceH" ColumnName="OptionalPriceH" />
-                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
-                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
-                <ScalarProperty Name="TemplateID" ColumnName="TemplateID" />
-                <ScalarProperty Name="TemplateName" ColumnName="TemplateName" />
-                <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -3800,18 +2557,11 @@
                 <ScalarProperty Name="SandS" ColumnName="SandS" />
                 <ScalarProperty Name="SandSId" ColumnName="SandSId" />
                 <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="Resolution" ColumnName="Resolution" />
                 <ScalarProperty Name="IsDone" ColumnName="IsDone" />
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
                 <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
                 <ScalarProperty Name="IsMachineDeleted" ColumnName="IsMachineDeleted" />
-                <ScalarProperty Name="TokenID" ColumnName="TokenID" />
-                <ScalarProperty Name="ContactId" ColumnName="ContactId" />
-                <ScalarProperty Name="Salute" ColumnName="Salute" />
-                <ScalarProperty Name="ContactName" ColumnName="ContactName" />
-                <ScalarProperty Name="Designation" ColumnName="Designation" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
-                <ScalarProperty Name="Resolution" ColumnName="Resolution" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -3873,33 +2623,15 @@
                 <ScalarProperty Name="Zone" ColumnName="Zone" />
                 <ScalarProperty Name="EstDistanceKms" ColumnName="EstDistanceKms" />
                 <ScalarProperty Name="EstTravelTime" ColumnName="EstTravelTime" />
-                <ScalarProperty Name="FoodFuelOthers" ColumnName="FoodFuelOthers" />
-                <ScalarProperty Name="EstJobTime" ColumnName="EstJobTime" />
-                <ScalarProperty Name="SchdET" ColumnName="SchdET" />
-                <ScalarProperty Name="IsDone" ColumnName="IsDone" />
-                <ScalarProperty Name="TotalEstDistKms" ColumnName="TotalEstDistKms" />
-                <ScalarProperty Name="TotalEstTravelTime" ColumnName="TotalEstTravelTime" />
-                <ScalarProperty Name="TotalFoodFuel" ColumnName="TotalFoodFuel" />
-                <ScalarProperty Name="TotalEstJobTime" ColumnName="TotalEstJobTime" />
-                <ScalarProperty Name="TotalSchdET" ColumnName="TotalSchdET" />
-                <ScalarProperty Name="MileageCNG" ColumnName="MileageCNG" />
-                <ScalarProperty Name="MileagePetrol" ColumnName="MileagePetrol" />
-                <ScalarProperty Name="MileageDiesel" ColumnName="MileageDiesel" />
-                <ScalarProperty Name="FuelPriceCNG" ColumnName="FuelPriceCNG" />
-                <ScalarProperty Name="FuelPricePetrol" ColumnName="FuelPricePetrol" />
-                <ScalarProperty Name="FuelPriceDiesel" ColumnName="FuelPriceDiesel" />
-                <ScalarProperty Name="FuelPriceReqd" ColumnName="FuelPriceReqd" />
-                <ScalarProperty Name="FuelReqd" ColumnName="FuelReqd" />
-                <ScalarProperty Name="SparesReqd" ColumnName="SparesReqd" />
-                <ScalarProperty Name="Vehicle" ColumnName="Vehicle" />
-                <ScalarProperty Name="StartPlace" ColumnName="StartPlace" />
-                <ScalarProperty Name="StartCluster" ColumnName="StartCluster" />
-                <ScalarProperty Name="InitialTime" ColumnName="InitialTime" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="EstTimeForJob" ColumnName="EstTimeForJob" />
+                <ScalarProperty Name="SchdETD" ColumnName="SchdETD" />
+                <ScalarProperty Name="ActualTime" ColumnName="ActualTime" />
+                <ScalarProperty Name="CNGFilledPreviously" ColumnName="CNGFilledPreviously" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-                <ScalarProperty Name="EndPlace" ColumnName="EndPlace" />
-                <ScalarProperty Name="EndCluster" ColumnName="EndCluster" />
+                <ScalarProperty Name="TripId" ColumnName="TripId" />
+                <ScalarProperty Name="TravelId" ColumnName="TravelId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
