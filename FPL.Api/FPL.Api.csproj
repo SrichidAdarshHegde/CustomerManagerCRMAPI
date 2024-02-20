@@ -318,6 +318,7 @@
     <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net461\System.ValueTuple.dll</HintPath>
     </Reference>
+    <Reference Include="System.Web" />
     <Reference Include="System.Web.Cors, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Cors.5.2.7\lib\net45\System.Web.Cors.dll</HintPath>
     </Reference>
@@ -350,7 +351,6 @@
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Web" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
@@ -414,27 +414,38 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\Blob\BlobDocuments.cs" />
+    <Compile Include="Controllers\BrochureController.cs" />
     <Compile Include="Controllers\CustomerRegistrationController.cs" />
     <Compile Include="Controllers\FollowUpController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MachineRegistrationController.cs" />
+    <Compile Include="Controllers\MailtemplateController.cs" />
     <Compile Include="Controllers\Masters\AttendTypeController.cs" />
     <Compile Include="Controllers\Masters\ClusterController.cs" />
     <Compile Include="Controllers\Masters\ConsumablesController.cs" />
     <Compile Include="Controllers\Masters\CountryController.cs" />
+    <Compile Include="Controllers\Masters\DocumentMailTemplateController.cs" />
+    <Compile Include="Controllers\Masters\DocumentTemplateController.cs" />
+    <Compile Include="Controllers\Masters\DocumentTypeController.cs" />
+    <Compile Include="Controllers\Masters\DocumentTypeDetails.cs" />
     <Compile Include="Controllers\Masters\FaultsController.cs" />
     <Compile Include="Controllers\Masters\FeaturesController.cs" />
     <Compile Include="Controllers\Masters\InvoicePerticularController.cs" />
     <Compile Include="Controllers\Masters\ModelController.cs" />
+    <Compile Include="Controllers\Masters\PurposeEstJobTimeController.cs" />
     <Compile Include="Controllers\Masters\RegionController.cs" />
     <Compile Include="Controllers\Masters\RequestsController.cs" />
     <Compile Include="Controllers\Masters\roleController.cs" />
     <Compile Include="Controllers\Masters\RouteController.cs" />
     <Compile Include="Controllers\Masters\SandsController.cs" />
     <Compile Include="Controllers\Masters\ZoneController.cs" />
+    <Compile Include="Controllers\quotation2015HTController.cs" />
+    <Compile Include="Controllers\QuotationManagerTemplatesController.cs" />
+    <Compile Include="Controllers\quotationtemplateController.cs" />
     <Compile Include="Controllers\RegistrationController.cs" />
     <Compile Include="Controllers\RequestAndInteractionsController.cs" />
+    <Compile Include="Controllers\TemplateController.cs" />
     <Compile Include="Controllers\TravelBudgetController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -499,6 +510,48 @@
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>bin\FPL.Api.xml</DocumentationFile>
+    <RegisterForComInterop>true</RegisterForComInterop>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>bin\FPL.Api.xml</DocumentationFile>
+    <RegisterForComInterop>true</RegisterForComInterop>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />

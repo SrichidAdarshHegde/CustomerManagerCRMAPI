@@ -40,5 +40,6 @@ namespace FPL.Dal.DataModel
         public string CreatedBy { get; set; }
         public Nullable<System.DateTime> CreatedOn { get; set; }
         public string CompanyOldName { get; set; }
+        public string BillingAddress { get; set; }
     }
 }

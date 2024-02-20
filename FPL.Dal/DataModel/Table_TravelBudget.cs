@@ -15,24 +15,46 @@ namespace FPL.Dal.DataModel
     public partial class Table_TravelBudget
     {
         public int id { get; set; }
+        public Nullable<int> TripSheetNo { get; set; }
         public string MachineNumber { get; set; }
-        public string CustomerName { get; set; }
+        public string CompanyName { get; set; }
+        public Nullable<int> CustomerId { get; set; }
         public string Purpose { get; set; }
-        public string ClusterLocation { get; set; }
-        public string CNG { get; set; }
-        public string Mileage { get; set; }
-        public string EstInterDistance { get; set; }
-        public string EstCompanyDistance { get; set; }
-        public string ActualODOReading { get; set; }
-        public string EstTravelTime { get; set; }
-        public string EstTimeForJob { get; set; }
-        public string SchdETD { get; set; }
-        public string ActualTime { get; set; }
-        public string CNGFilledPreviously { get; set; }
-        public string UserName { get; set; }
-        public Nullable<System.DateTime> CreatedOn { get; set; }
-        public string TripId { get; set; }
-        public Nullable<int> TravelId { get; set; }
+        public string Cluster { get; set; }
+        public Nullable<int> ModelId { get; set; }
+        public string ModelName { get; set; }
+        public string Remarks { get; set; }
+        public Nullable<int> RequestForId { get; set; }
+        public Nullable<int> TicketId { get; set; }
+        public string Zone { get; set; }
+        public Nullable<int> EstDistanceKms { get; set; }
+        public Nullable<System.TimeSpan> EstTravelTime { get; set; }
+        public Nullable<System.TimeSpan> FoodFuelOthers { get; set; }
+        public Nullable<System.TimeSpan> EstJobTime { get; set; }
+        public Nullable<System.TimeSpan> SchdET { get; set; }
+        public Nullable<bool> IsDone { get; set; }
+        public Nullable<int> TotalEstDistKms { get; set; }
+        public Nullable<System.TimeSpan> TotalEstTravelTime { get; set; }
+        public Nullable<System.TimeSpan> TotalFoodFuel { get; set; }
+        public Nullable<System.TimeSpan> TotalEstJobTime { get; set; }
+        public Nullable<System.TimeSpan> TotalSchdET { get; set; }
+        public Nullable<int> MileageCNG { get; set; }
+        public Nullable<int> MileagePetrol { get; set; }
+        public Nullable<int> MileageDiesel { get; set; }
+        public Nullable<decimal> FuelPriceCNG { get; set; }
+        public Nullable<decimal> FuelPricePetrol { get; set; }
+        public Nullable<decimal> FuelPriceDiesel { get; set; }
+        public Nullable<decimal> FuelPriceReqd { get; set; }
+        public Nullable<decimal> FuelReqd { get; set; }
+        public string SparesReqd { get; set; }
+        public string Vehicle { get; set; }
+        public string StartPlace { get; set; }
+        public string StartCluster { get; set; }
+        public string EndPlace { get; set; }
+        public string EndCluster { get; set; }
+        public Nullable<System.TimeSpan> InitialTime { get; set; }
+        public string CreatedBy { get; set; }
         public Nullable<int> UserId { get; set; }
+        public Nullable<System.DateTime> CreatedOn { get; set; }
     }
 }

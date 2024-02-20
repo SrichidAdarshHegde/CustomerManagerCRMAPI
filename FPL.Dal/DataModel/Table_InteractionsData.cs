@@ -19,6 +19,7 @@ namespace FPL.Dal.DataModel
         public string CutomerName { get; set; }
         public Nullable<int> MachineId { get; set; }
         public Nullable<int> MachineNumber { get; set; }
+        public Nullable<int> TicketNo { get; set; }
         public Nullable<int> ModelId { get; set; }
         public string ModelName { get; set; }
         public Nullable<int> RegionId { get; set; }
