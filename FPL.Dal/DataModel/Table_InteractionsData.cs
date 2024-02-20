@@ -34,5 +34,6 @@ namespace FPL.Dal.DataModel
         public Nullable<System.DateTime> CreatedOn { get; set; }
         public Nullable<int> RequestId { get; set; }
         public Nullable<System.DateTime> DateOfInteraction { get; set; }
+        public Nullable<int> TicketNo { get; set; }
     }
 }

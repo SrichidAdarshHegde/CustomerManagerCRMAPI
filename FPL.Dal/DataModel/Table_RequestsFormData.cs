@@ -28,5 +28,13 @@ namespace FPL.Dal.DataModel
         public string CreatedBy { get; set; }
         public Nullable<System.DateTime> CreatedOn { get; set; }
         public Nullable<bool> IsMachineDeleted { get; set; }
+        public Nullable<int> TokenID { get; set; }
+        public Nullable<int> ContactId { get; set; }
+        public string Salute { get; set; }
+        public string ContactName { get; set; }
+        public string Designation { get; set; }
+        public string Email { get; set; }
+        public string Mobile { get; set; }
+        public string Resolution { get; set; }
     }
 }

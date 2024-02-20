@@ -25,8 +25,11 @@ namespace FPL.Dal.DataModel
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Table_4020Z25> Table_4020Z25 { get; set; }
+        public virtual DbSet<Table_4030InDollor> Table_4030InDollor { get; set; }
         public virtual DbSet<Table_AttendType> Table_AttendType { get; set; }
         public virtual DbSet<Table_Cluster> Table_Cluster { get; set; }
+        public virtual DbSet<Table_Common_RefID_Template> Table_Common_RefID_Template { get; set; }
         public virtual DbSet<Table_Consumables> Table_Consumables { get; set; }
         public virtual DbSet<Table_Contactdetails> Table_Contactdetails { get; set; }
         public virtual DbSet<Table_Country> Table_Country { get; set; }
@@ -44,14 +47,46 @@ namespace FPL.Dal.DataModel
         public virtual DbSet<Table_MachineRegistration> Table_MachineRegistration { get; set; }
         public virtual DbSet<Table_Model> Table_Model { get; set; }
         public virtual DbSet<Table_Priority> Table_Priority { get; set; }
+        public virtual DbSet<Table_quotation2015> Table_quotation2015 { get; set; }
+        public virtual DbSet<Table_quotation2015HT> Table_quotation2015HT { get; set; }
+        public virtual DbSet<Table_Quotation2015_in_dollar> Table_Quotation2015_in_dollar { get; set; }
+        public virtual DbSet<Table_quotation2015Z25> Table_quotation2015Z25 { get; set; }
+        public virtual DbSet<Table_QUOTATION40202inDollor> Table_QUOTATION40202inDollor { get; set; }
+        public virtual DbSet<Table_Quotation4020_HT> Table_Quotation4020_HT { get; set; }
+        public virtual DbSet<Table_Quotation4020template> Table_Quotation4020template { get; set; }
+        public virtual DbSet<Table_Quotation4030> Table_Quotation4030 { get; set; }
+        public virtual DbSet<Table_Quotation4030z25> Table_Quotation4030z25 { get; set; }
+        public virtual DbSet<Table_Quotation5030> Table_Quotation5030 { get; set; }
+        public virtual DbSet<Table_Quotation5030Z25ZLX_> Table_Quotation5030Z25ZLX_ { get; set; }
+        public virtual DbSet<Table_Quotationtemplate> Table_Quotationtemplate { get; set; }
+        public virtual DbSet<Table_Rapid64CAM> Table_Rapid64CAM { get; set; }
+        public virtual DbSet<Table_Rapid_I_4020_4030J_LX_ACSC_05_Apr_2021> Table_Rapid_I_4020_4030J_LX_ACSC_05_Apr_2021 { get; set; }
+        public virtual DbSet<Table_Rapid_I_AMC_OFFER> Table_Rapid_I_AMC_OFFER { get; set; }
+        public virtual DbSet<Table_Rapidi2015JLX> Table_Rapidi2015JLX { get; set; }
+        public virtual DbSet<Table_Rapid_I_64_Upgrade> Table_Rapid_I_64_Upgrade { get; set; }
+        public virtual DbSet<Table_Rapid_I_Spares> Table_Rapid_I_Spares { get; set; }
+        public virtual DbSet<Table_rapiditable> Table_rapiditable { get; set; }
+        public virtual DbSet<Table_RapidiTrainingcharges> Table_RapidiTrainingcharges { get; set; }
+        public virtual DbSet<Table_Rapid_i_VMS> Table_Rapid_i_VMS { get; set; }
         public virtual DbSet<Table_Region> Table_Region { get; set; }
         public virtual DbSet<Table_Requests> Table_Requests { get; set; }
         public virtual DbSet<Table_RequestsFormData> Table_RequestsFormData { get; set; }
         public virtual DbSet<Table_RoleMaster> Table_RoleMaster { get; set; }
         public virtual DbSet<Table_Route> Table_Route { get; set; }
         public virtual DbSet<Table_Sands> Table_Sands { get; set; }
+        public virtual DbSet<table_template> table_template { get; set; }
         public virtual DbSet<Table_TravelBudget> Table_TravelBudget { get; set; }
         public virtual DbSet<Table_UserRegistration> Table_UserRegistration { get; set; }
+        public virtual DbSet<Table_V20152AXES> Table_V20152AXES { get; set; }
+        public virtual DbSet<Table_V4020> Table_V4020 { get; set; }
+        public virtual DbSet<Table_V4030> Table_V4030 { get; set; }
         public virtual DbSet<Table_Zone> Table_Zone { get; set; }
+        public virtual DbSet<table_brochure> table_brochure { get; set; }
+        public virtual DbSet<Table_DocumentMailTemplate> Table_DocumentMailTemplate { get; set; }
+        public virtual DbSet<Table_DocumentTemplate> Table_DocumentTemplate { get; set; }
+        public virtual DbSet<Table_DocumentType> Table_DocumentType { get; set; }
+        public virtual DbSet<table_mailtemplate> table_mailtemplate { get; set; }
+        public virtual DbSet<Table_ModeofTransport> Table_ModeofTransport { get; set; }
+        public virtual DbSet<Table_PurposeEstJobTime> Table_PurposeEstJobTime { get; set; }
     }
 }
